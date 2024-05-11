@@ -13,9 +13,25 @@ public class LineLogic : MonoBehaviour
     private PuzzleNode lastSelectedNode;
     private readonly List<PuzzleNode> checkedNodes = new();
 
-    private List<PuzzleNode> GetCheckedNodes()
+    public PuzzleNode[] GetCheckedNodes()
     {
-        return new List<PuzzleNode>(checkedNodes);
+        return checkedNodes.ToArray();
+    }
+
+    public bool IsPathValid()
+    {
+        PuzzleNode lastNode = null;
+        foreach (var node in checkedNodes)
+        {
+            if (!node.ValidateConnection(lastNode))
+            {
+                return false;
+            }
+
+            lastNode = node;
+        }
+
+        return true;
     }
 
     private void Awake()
@@ -75,6 +91,8 @@ public class LineLogic : MonoBehaviour
             }
         }
     }
+    
+    
 
     private void UpdateLineRenderer()
     {

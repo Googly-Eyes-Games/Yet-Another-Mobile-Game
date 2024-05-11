@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using UnityEngine;
 
@@ -11,7 +12,12 @@ public class PuzzleNode : MonoBehaviour
     [HideInInspector]
     public BoardLogic boardLogic;
 
-    public virtual void Select() { }
+    public event Action OnSelection;
+
+    public virtual void Select()
+    {
+        OnSelection?.Invoke();
+    }
     public virtual void UnSelect() { }
 
     public virtual bool ValidateConnection(PuzzleNode previousNode)

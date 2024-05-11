@@ -15,6 +15,9 @@ namespace DefaultNamespace
         
         [field: SerializeField]
         public Color OilTile { get; private set; }
+        
+        [field: SerializeField]
+        public Color LandTile { get; private set; }
 
         private static ColorPalette instance;
 
