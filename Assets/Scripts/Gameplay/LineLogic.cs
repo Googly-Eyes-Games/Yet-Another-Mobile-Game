@@ -1,70 +1,76 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-public class Game : MonoBehaviour
+[RequireComponent(typeof(SFGPlayerInput))]
+public class LineLogic : MonoBehaviour
 {
     [SerializeField]
     private LineRenderer lineRenderer;
-    
-    [SerializeField]
-    private GameObject debugCircle;
 
-    [SerializeField, Header("InputActions")]
-    private InputActionProperty positionInputAction;
-    
-    [SerializeField]
-    private InputActionProperty pressInputAction;
+    private SFGPlayerInput playerInput;
 
-    private bool isPressed;
+    private PuzzleNode lastHitNode;
+    private PuzzleNode lastSelectedNode;
+    private readonly List<PuzzleNode> checkedNodes = new();
 
-    private Vector2 position;
-
-    private GameObject lastHit;
-    private readonly List<GameObject> checkedNodes = new();
+    private List<PuzzleNode> GetCheckedNodes()
+    {
+        return new List<PuzzleNode>(checkedNodes);
+    }
 
     private void Awake()
     {
-        pressInputAction.action.started += PressStarted;
-        pressInputAction.action.canceled += PressCancelled;
+        playerInput = GetComponent<SFGPlayerInput>();
+    }
+
+    private void OnEnable()
+    {
+        playerInput.OnUnPress += HandleUnPress;
+    }
+
+    private void OnDisable()
+    {
+        playerInput.OnUnPress -= HandleUnPress;
     }
 
     private void Update()
     {
-        if (isPressed)
+        if (playerInput.IsPressed)
         {
-            HandleDebugPoint();
             HandleLineLogic();
         }
     }
 
     private void HandleLineLogic()
     {
-        Vector2 inputPoint = positionInputAction.action.ReadValue<Vector2>();
-        
         Camera mainCam = Camera.main;
         if (mainCam)
         {
-            RaycastHit2D hit = Physics2D.Raycast(mainCam.ScreenToWorldPoint(inputPoint), Vector2.zero);
+            RaycastHit2D hit = Physics2D.Raycast(mainCam.ScreenToWorldPoint(playerInput.TouchPosition), Vector2.zero);
             if (hit)
             {
-                GameObject hitGO = hit.collider.gameObject;
+                PuzzleNode hitNode = hit.collider.GetComponent<PuzzleNode>();
 
-                if (hitGO != lastHit)
+                if (hitNode != lastHitNode)
                 {
-                    lastHit = hitGO;
-                
-                    if (!checkedNodes.Contains(hitGO))
+                    if (!checkedNodes.Contains(hitNode) && hitNode.ValidateConnection(lastSelectedNode))
                     {
-                        checkedNodes.Add(hitGO);
+                        // Select node
+                        checkedNodes.Add(hitNode);
+                        lastSelectedNode = hitNode;
+                        hitNode.Select();
                         UpdateLineRenderer();
                     }
-                    else if (checkedNodes[^2] == hitGO && checkedNodes.Count > 1)
+                    else if (checkedNodes.Count >= 2 && checkedNodes[^2] == hitNode)
                     {
+                        // Unselect node
+                        lastSelectedNode = hitNode;
+                        checkedNodes[^1].UnSelect();
                         checkedNodes.RemoveAt(checkedNodes.Count - 1);
                         UpdateLineRenderer();
                     }
+                    
+                    lastHitNode = hitNode;
                 }
             }
         }
@@ -80,25 +86,17 @@ public class Game : MonoBehaviour
         }
     }
 
-    private void HandleDebugPoint()
+    private void HandleUnPress()
     {
-        RectTransform debugTransform = debugCircle.GetComponent<RectTransform>();
-        position = positionInputAction.action.ReadValue<Vector2>();
-        
-        debugTransform.position = new Vector3(position.x, position.y, 999f);
-    }
-
-    public void PressStarted(InputAction.CallbackContext callbackContext)
-    {
-        isPressed = true;
-    }
-    
-    public void PressCancelled(InputAction.CallbackContext callbackContext)
-    {
-        Debug.Log("TapCanceled");
-        isPressed = false;
+        foreach (PuzzleNode node in checkedNodes)
+        {
+            node.UnSelect();
+        }
         
         checkedNodes.Clear();
+        lastHitNode = null;
+        lastSelectedNode = null;
+        
         UpdateLineRenderer();
     }
 }
