@@ -37,4 +37,22 @@ public static class MathUtils
 
         return true;
     }
+
+    public static Vector2 RandomDirection()
+    {
+        Vector2 result;
+        result.x = Mathf.Cos(Random.value);
+        result.y = Mathf.Sin(Random.value);
+        return result;
+    }
+
+    public static Vector3 ToVector3(this Vector2 vector2)
+    {
+        return new Vector3(vector2.x, vector2.y, 0f);
+    }
+    
+    public static Vector2 ToVector2(this Vector3 vector3)
+    {
+        return new Vector2(vector3.x, vector3.y);
+    }
 }

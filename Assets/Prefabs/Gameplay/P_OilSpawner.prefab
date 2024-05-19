@@ -45,6 +45,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   oilTilePrefab: {fileID: 5086431249321168965, guid: 0fcb493898d0d30c0ba34dd3b819aaf8, type: 3}
-  oilTileSize: 1
+  oilTileSize: 1.4
   oilTileNoiseOffset: 0.1
-  spawnerSize: {x: 19, y: 2}
+  spawnerSize: {x: 14, y: 2}
+  noiseScale: 0.2
+  noisePower: 1
+  noiseThreshold: 0.7

@@ -387,7 +387,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ba167970ce11d1f09d78ab1a1b62d6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraSpeed: 1.5
+  cameraStartSpeed: 2
+  cameraAcceleration: 0.1
 --- !u!1 &536857129
 GameObject:
   m_ObjectHideFlags: 0
@@ -674,7 +675,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: ffcfdc6857a3608bc887d1ed59501bea, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1204,10 +1205,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: P_OilValidator
       objectReference: {fileID: 0}
-    - target: {fileID: 603912677086265446, guid: 7e56a4c12c31ea89d80439d0fd95c472, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8111375721350365043, guid: 7e56a4c12c31ea89d80439d0fd95c472, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1263,11 +1260,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 442074952449820160, guid: c3cbba6088227f585a0649dbe567820c, type: 3}
       propertyPath: oilTileSize
-      value: 1.4
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 442074952449820160, guid: c3cbba6088227f585a0649dbe567820c, type: 3}
-      propertyPath: spawnerSize.x
-      value: 20
+      propertyPath: oilTileNoiseOffset
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 3877829122613765949, guid: c3cbba6088227f585a0649dbe567820c, type: 3}
       propertyPath: m_LocalPosition.x
