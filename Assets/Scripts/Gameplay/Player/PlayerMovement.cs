@@ -18,7 +18,10 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         playerInput = GetComponent<SFGPlayerInput>();
-        targetPosition = transform.position;
+        
+        Camera mainCamera = Camera.main;
+        targetPosition = mainCamera.WorldToScreenPoint(transform.position);
+        
         lastPosition = transform.position + Vector3.down;
     }
 
@@ -33,17 +36,16 @@ public class PlayerMovement : MonoBehaviour
     {
         if (playerInput.IsPressed)
         {
-            Camera camera = Camera.main;
-            Vector3 worldTouchPosition = camera.ScreenToWorldPoint(playerInput.TouchPosition);
-            worldTouchPosition.z = 0f;
-
-            targetPosition = worldTouchPosition;
+            targetPosition = playerInput.TouchPosition;
         }
     }
 
     private void UpdatePosition()
     {
-        transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * shipSpeed);
+        Camera mainCamera = Camera.main;
+        Vector3 worldTargetPosition = mainCamera.ScreenToWorldPoint(targetPosition);
+        worldTargetPosition.z = transform.position.z;
+        transform.position = Vector3.Lerp(transform.position, worldTargetPosition, Time.deltaTime * shipSpeed);
     }
 
     private void UpdateRotation()
