@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1448282503953788603}
   - component: {fileID: 1944753720685825739}
   - component: {fileID: 7250823911136476931}
+  - component: {fileID: 3285660890529276970}
   m_Layer: 0
   m_Name: P_Player
   m_TagString: Untagged
@@ -84,6 +85,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bed57ecbb551d910abed2692cd2e634, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shipSpeed: 5
   distanceToCalculateRotation: 0.5
 --- !u!114 &7250823911136476931
 MonoBehaviour:
@@ -98,8 +100,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lineRenderer: {fileID: 7871698988865549445}
-  distanceBetweenMarks: 1
-  maxMarksCount: 10
+  distanceBetweenMarks: 3
+  maxMarksCount: 15
+--- !u!114 &3285660890529276970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1930646814466186765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48b21e20898d084a08f4a5d10426445a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  oilCleanerPrefab: {fileID: 4892720520018858844, guid: 7a8492ab0e19296db8e125e72881c7ee, type: 3}
 --- !u!1 &4062776038511924834
 GameObject:
   m_ObjectHideFlags: 0
@@ -223,8 +238,8 @@ LineRenderer:
       m_ColorSpace: 0
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
-    numCornerVertices: 0
-    numCapVertices: 0
+    numCornerVertices: 4
+    numCapVertices: 4
     alignment: 0
     textureMode: 0
     textureScale: {x: 1, y: 1}
@@ -259,13 +274,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6301910158178188357}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 2}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 851433918784124413}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!212 &2463513446214777018
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -307,12 +322,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 55a259b26fc0342849b20c08e51a40b1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 137d9041e86aa49ce889135fd79352b5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 5.12, y: 5.12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

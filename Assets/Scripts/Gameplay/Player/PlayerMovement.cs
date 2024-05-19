@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     {
         playerInput = GetComponent<SFGPlayerInput>();
         targetPosition = transform.position;
+        lastPosition = transform.position + Vector3.down;
     }
 
     private void Update()
