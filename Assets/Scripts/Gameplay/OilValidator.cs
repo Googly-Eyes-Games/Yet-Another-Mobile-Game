@@ -7,7 +7,7 @@ public class OilValidator : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Oil"))
+        if (isActiveAndEnabled && other.CompareTag("Oil"))
         {
             onGameOver?.Invoke();
         }
