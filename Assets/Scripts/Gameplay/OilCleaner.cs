@@ -15,6 +15,9 @@ public class OilCleaner : MonoBehaviour
 
     [SerializeField]
     private float maxAreaToDestroySpill = 3f;
+
+    [SerializeField]
+    private IntSOEvent onScoreChanged;
     
     public void CleanOil(Vector3[] closedRopeLoop)
     {
@@ -61,13 +64,16 @@ public class OilCleaner : MonoBehaviour
         cleanerPolygon.Add(closedRopeLoop.ToPathD());
 
         PathsD newSpill = Clipper.Difference(spillPolygon, cleanerPolygon, FillRule.NonZero);
-        Vector2[] newSpillPoints = newSpill[0].ToVectorArray();
+        float cleanedArea = MathUtils.CalculateAreaOfPolygon(spillPoints);
         
         if (newSpill.Count != 0 && newSpill[0].Count != 0)
         {
+            Vector2[] newSpillPoints = newSpill[0].ToVectorArray();
             // No intersection or area of difference is small
             float areaOfNewSpill = MathUtils.CalculateAreaOfPolygon(newSpillPoints);
             Debug.Log($"Area of new spill: {areaOfNewSpill}");
+
+            cleanedArea -= areaOfNewSpill;
 
             if (areaOfNewSpill > maxAreaToDestroySpill)
             {
@@ -83,6 +89,12 @@ public class OilCleaner : MonoBehaviour
                 return;
             }
         }
+
+        // Transfer to score manager
+        float selectedArea = MathUtils.CalculateAreaOfPolygon(closedRopeLoop);
+        float scoreEarned = (0.5f + 2.5f * Mathf.Pow(Mathf.Clamp01(cleanedArea / selectedArea), 2f)) * cleanedArea;
+        
+        onScoreChanged.Invoke(Mathf.RoundToInt(scoreEarned));
         
         oilSpill.FullClean();
         Destroy(spillCollider.GameObject());

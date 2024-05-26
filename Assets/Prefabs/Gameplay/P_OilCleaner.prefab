@@ -199,6 +199,7 @@ MonoBehaviour:
   lineRenderer: {fileID: 7545497137336597670}
   polygonCollider2D: {fileID: 5072098593880943279}
   maxAreaToDestroySpill: 4
+  onScoreChanged: {fileID: 11400000, guid: cb77d7f418d96fad9bd3f960335022e2, type: 2}
 --- !u!50 &6115003225556308617
 Rigidbody2D:
   serializedVersion: 4
