@@ -15,7 +15,7 @@ public class OilSpillMeshGenerator : MonoBehaviour
 
     private void Start()
     {
-        UpdateDefaultPoints();
+        GenerateFromCollider();
     }
 
     public void UpdateMesh(Vector2[] polygonPoints)
@@ -42,7 +42,7 @@ public class OilSpillMeshGenerator : MonoBehaviour
     }
 
     [Button]
-    private void UpdateDefaultPoints()
+    public void GenerateFromCollider()
     {
         polygonCollider = GetComponent<PolygonCollider2D>();
         meshFilter = GetComponent<MeshFilter>();

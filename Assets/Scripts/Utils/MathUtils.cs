@@ -1,5 +1,9 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using Clipper2Lib;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public static class MathUtils
 {
@@ -65,5 +69,39 @@ public static class MathUtils
     public static T GetRandom<T>(this List<T> list)
     {
         return list[Random.Range(0, list.Count)];
+    }
+
+    public static PathD ToPathD(this Vector2[] points)
+    {
+        List<double> data = new List<double>();
+        foreach (Vector2 point in points)
+        {
+            data.Add(point.x);
+            data.Add(point.y);
+        }
+
+        return Clipper.MakePath(data.ToArray());
+    }
+
+    public static Vector2[] ToVectorArray(this PathD pathD)
+    {
+        Vector2[] result = new Vector2[pathD.Count];
+        for (int pointID = 0; pointID < pathD.Count; pointID++)
+        {
+            result[pointID] = new Vector2((float)pathD[pointID].x, (float)pathD[pointID].y);
+        }
+
+        return result;
+    }
+
+    // https://stackoverflow.com/questions/2034540/calculating-area-of-irregular-polygon-in-c-sharp
+    public static float CalculateAreaOfPolygon(Vector2[] polygon)
+    {
+        List<Vector2> loopedPolygon = polygon.ToList();
+        loopedPolygon.Add(polygon[0]);
+        
+        return Math.Abs(polygon.Take(polygon.Length)
+            .Select((p, i) => (loopedPolygon[i + 1].x - p.x) * (loopedPolygon[i + 1].y + p.y))
+            .Sum() / 2);
     }
 }

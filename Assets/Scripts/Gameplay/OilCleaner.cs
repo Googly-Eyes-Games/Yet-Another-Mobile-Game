@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Clipper2Lib;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -11,6 +12,9 @@ public class OilCleaner : MonoBehaviour
 
     [SerializeField]
     private PolygonCollider2D polygonCollider2D;
+
+    [SerializeField]
+    private float maxAreaToDestroySpill = 3f;
     
     public void CleanOil(Vector3[] closedRopeLoop)
     {
@@ -35,13 +39,52 @@ public class OilCleaner : MonoBehaviour
 
         foreach (Collider2D collider in overlappedColliders)
         {
-            OilSpill oilSpill = collider.GetComponent<OilSpill>();
-            if (oilSpill)
-            {
-                oilSpill.FullClean();
-            }
-            
-            Destroy(collider.GameObject());
+            Vector2[] closedRopeLoop2D = closedRopeLoop.Select(x => new Vector2(x.x, x.y)).ToArray();
+            SplitSpill(collider, closedRopeLoop2D);
         }
+    }
+
+    private void SplitSpill(Collider2D spillCollider, Vector2[] closedRopeLoop)
+    {
+        OilSpill oilSpill = spillCollider.GetComponent<OilSpill>();
+        PolygonCollider2D polygonSpill = spillCollider as PolygonCollider2D;
+        
+        Vector2[] spillPoints = polygonSpill.points;
+        for (int pointID = 0; pointID < spillPoints.Length; pointID++)
+        {
+            spillPoints[pointID] = polygonSpill.transform.TransformPoint(spillPoints[pointID]);
+        }
+
+        PathsD spillPolygon = new PathsD();
+        spillPolygon.Add(spillPoints.ToPathD());
+        PathsD cleanerPolygon = new PathsD();
+        cleanerPolygon.Add(closedRopeLoop.ToPathD());
+
+        PathsD newSpill = Clipper.Difference(spillPolygon, cleanerPolygon, FillRule.NonZero);
+        Vector2[] newSpillPoints = newSpill[0].ToVectorArray();
+        
+        if (newSpill.Count != 0 && newSpill[0].Count != 0)
+        {
+            // No intersection or area of difference is small
+            float areaOfNewSpill = MathUtils.CalculateAreaOfPolygon(newSpillPoints);
+            Debug.Log($"Area of new spill: {areaOfNewSpill}");
+
+            if (areaOfNewSpill > maxAreaToDestroySpill)
+            {
+                for (int pointID = 0; pointID < newSpillPoints.Length; pointID++)
+                {
+                    newSpillPoints[pointID] = polygonSpill.transform.InverseTransformPoint(newSpillPoints[pointID]);
+                }
+
+                polygonSpill.points = newSpillPoints;
+                OilSpillMeshGenerator meshGenerator = polygonSpill.GetComponent<OilSpillMeshGenerator>();
+                meshGenerator.GenerateFromCollider();
+                
+                return;
+            }
+        }
+        
+        oilSpill.FullClean();
+        Destroy(spillCollider.GameObject());
     }
 }
