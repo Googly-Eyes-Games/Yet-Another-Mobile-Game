@@ -100,8 +100,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lineRenderer: {fileID: 7871698988865549445}
-  distanceBetweenMarks: 3
-  maxMarksCount: 15
+  distanceBetweenMarks: 1.5
+  maxMarksCount: 25
 --- !u!114 &3285660890529276970
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -89,7 +89,8 @@ public class RopeHandler : MonoBehaviour
 
     private void UpdateMarksVisuals()
     {
-        Vector3[] marksPositions = Marks.Select(x => new Vector3(x.Position.x, x.Position.y)).ToArray();
+        float depth = lineRenderer.transform.position.z;
+        Vector3[] marksPositions = Marks.Select(x => new Vector3(x.Position.x, x.Position.y, depth)).ToArray();
         lineRenderer.positionCount = marksPositions.Length;
         lineRenderer.SetPositions(marksPositions);
     }
