@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public static class MathUtils
@@ -45,6 +46,11 @@ public static class MathUtils
         result.y = Mathf.Sin(Random.value);
         return result;
     }
+    
+    public static Quaternion RandomRotation2D()
+    {
+        return Quaternion.Euler(0f, 0f, Random.Range(-180f, 180f));
+    }
 
     public static Vector3 ToVector3(this Vector2 vector2)
     {
@@ -54,5 +60,10 @@ public static class MathUtils
     public static Vector2 ToVector2(this Vector3 vector3)
     {
         return new Vector2(vector3.x, vector3.y);
+    }
+
+    public static T GetRandom<T>(this List<T> list)
+    {
+        return list[Random.Range(0, list.Count)];
     }
 }
