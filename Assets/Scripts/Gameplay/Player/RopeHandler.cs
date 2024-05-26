@@ -70,7 +70,7 @@ public class RopeHandler : MonoBehaviour
             if (MathUtils.SegmentsIntersection(
                     lastSegmentStart, lastSegmentEnd,
                     Marks[markID].Position, Marks[markID + 1].Position,
-                    out Vector2 intersection, 0.01f
+                    out Vector2 intersection, 0.001f
                     ))
             {
                 List<Vector3> result = new ();
