@@ -35,6 +35,12 @@ public class OilCleaner : MonoBehaviour
 
         foreach (Collider2D collider in overlappedColliders)
         {
+            OilSpill oilSpill = collider.GetComponent<OilSpill>();
+            if (oilSpill)
+            {
+                oilSpill.FullClean();
+            }
+            
             Destroy(collider.GameObject());
         }
     }

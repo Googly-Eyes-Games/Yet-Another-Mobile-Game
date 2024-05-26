@@ -1,6 +1,8 @@
+using System;
 using System.Linq;
 using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(PolygonCollider2D))]
 [RequireComponent(typeof(MeshFilter))]
@@ -16,6 +18,11 @@ public class OilSpillMeshGenerator : MonoBehaviour
         polygonCollider = GetComponent<PolygonCollider2D>();
         meshFilter = GetComponent<MeshFilter>();
         lineRenderer = GetComponent<LineRenderer>();
+    }
+
+    private void Start()
+    {
+        UpdateDefaultPoints();
     }
 
     public void UpdateMesh(Vector2[] polygonPoints)
