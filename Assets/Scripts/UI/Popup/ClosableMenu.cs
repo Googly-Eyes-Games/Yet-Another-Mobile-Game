@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class CloseablePopup : MonoBehaviour
 {
+    [SerializeField] private InputLockSOEvent onInputLockChanged;
     [SerializeField] private Button closeButton;
     public Action OnClose;
 
@@ -22,6 +23,7 @@ public class CloseablePopup : MonoBehaviour
     private void HandleCloseButton()
     {
         OnClose?.Invoke();
+        onInputLockChanged.Invoke(InputLock.LockOnlyBottom);
         gameObject.SetActive(false);
     }
 }

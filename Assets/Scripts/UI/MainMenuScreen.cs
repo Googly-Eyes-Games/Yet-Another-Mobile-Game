@@ -2,11 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class MainMenuScreen : MonoBehaviour
 {
     [SerializeField] private IntSOEvent onScoreChanged;
+    [SerializeField] private InputLockSOEvent onInputLockChanged;
 
     [SerializeField] private Button muteButton;
     [SerializeField] private Button shopButton;
@@ -26,6 +28,8 @@ public class MainMenuScreen : MonoBehaviour
     {
         muteButtonImage = muteButton.GetComponent<Image>();
 
+        onInputLockChanged.Invoke(InputLock.LockOnlyBottom);
+
         onScoreChanged.OnRaise += OnScoreChanged;
         muteButton.onClick.AddListener(OnMutePressed);
         shopButton.onClick.AddListener(OnShopPressed);
@@ -44,6 +48,7 @@ public class MainMenuScreen : MonoBehaviour
 
     private void OnScoreChanged(int obj)
     {
+        onInputLockChanged.Invoke(InputLock.None);
         gameObject.SetActive(false);
     }
 
@@ -57,22 +62,34 @@ public class MainMenuScreen : MonoBehaviour
 
     private void OnShopPressed()
     {
-        shopMenu.SetActive(!shopMenu.activeInHierarchy);
+        bool show = !shopMenu.activeInHierarchy;
+
+        shopMenu.SetActive(show);
         helpMenu.SetActive(false);
         etcMenu.SetActive(false);
+        
+        onInputLockChanged.Invoke(show ? InputLock.Locked : InputLock.LockOnlyBottom);
     }
 
     private void OnHelpPressed()
     {
+        bool show = !helpMenu.activeInHierarchy;
+
         shopMenu.SetActive(false);
-        helpMenu.SetActive(!helpMenu.activeInHierarchy);
+        helpMenu.SetActive(show);
         etcMenu.SetActive(false);
+
+        onInputLockChanged.Invoke(show ? InputLock.Locked : InputLock.LockOnlyBottom);
     }
 
     private void OnEtcPressed()
     {
+        bool show = !etcMenu.activeInHierarchy;
+
         shopMenu.SetActive(false);
         helpMenu.SetActive(false);
-        etcMenu.SetActive(!etcMenu.activeInHierarchy);
+        etcMenu.SetActive(show);
+
+        onInputLockChanged.Invoke(show ? InputLock.Locked : InputLock.LockOnlyBottom);
     }
 }

@@ -89,6 +89,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6887ba81b980c0c47b78a33d72b420e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onInputLockChanged: {fileID: 11400000, guid: 7bbcf3f12f13f6e499a1b55f0d617150, type: 2}
   closeButton: {fileID: 572272760744314922}
 --- !u!1001 &9217442905555610949
 PrefabInstance:

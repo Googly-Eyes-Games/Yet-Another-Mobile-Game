@@ -254,6 +254,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onScoreChanged: {fileID: 11400000, guid: cb77d7f418d96fad9bd3f960335022e2, type: 2}
+  onInputLockChanged: {fileID: 11400000, guid: 7bbcf3f12f13f6e499a1b55f0d617150, type: 2}
   muteButton: {fileID: 8503781145258507528}
   shopButton: {fileID: 8215004305976079024}
   helpButton: {fileID: 3273430689691903279}
