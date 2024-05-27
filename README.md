@@ -3,7 +3,6 @@ Creddits
 Googly Eyes Games
 
 In alphabetical order
-
-    Banasik Mateusz
-    Baraniecki Krystian
-    Świędrych Szymon
+* Banasik Mateusz
+* Baraniecki Krystian
+* Świędrych Szymon
