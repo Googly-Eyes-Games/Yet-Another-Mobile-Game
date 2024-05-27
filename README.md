@@ -1,5 +1,6 @@
 Yet-Another-Mobile-Game
-Creddits
+
+Credits
 Googly Eyes Games
 
 In alphabetical order
