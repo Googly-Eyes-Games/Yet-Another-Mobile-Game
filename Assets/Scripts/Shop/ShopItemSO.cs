@@ -13,4 +13,7 @@ public class ShopItemSO : ScriptableObject
     [field: SerializeField]
     public int Price { get; private set; }
     
+    [field: SerializeField]
+    public Color Color { get; private set; }
+    
 }

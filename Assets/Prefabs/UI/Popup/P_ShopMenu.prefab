@@ -561,7 +561,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shopContent: {fileID: 1148152055865135873}
   itemTemplate: {fileID: 7591294309573430423, guid: bd28e483e76e36145aa896943d7c8c52, type: 3}
-  ShopItemsSO: []
+  ShopItemsSO:
+  - {fileID: 11400000, guid: 1d31e0469135e194288cf4b63e524ed7, type: 2}
+  - {fileID: 11400000, guid: ff7bd8be076cda44d8d801993d494d21, type: 2}
+  - {fileID: 11400000, guid: 98b5b286bb172b4439ed1cc815bfa3db, type: 2}
 --- !u!224 &9081730752910116705 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6627346180033513551, guid: c75db1421a215d24cba4c59c6d949c88, type: 3}

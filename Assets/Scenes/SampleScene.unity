@@ -400,6 +400,11 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &362079933 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1930646814466186765, guid: b6c710d3b4d7fd070b86310ad8f2b306, type: 3}
+  m_PrefabInstance: {fileID: 5914468038357032739}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -967,6 +972,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1340182852331746872, guid: 8d73d92923563a743a8ab24c17b370b2, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 362079933}
+    - target: {fileID: 1340182852331746872, guid: 8d73d92923563a743a8ab24c17b370b2, type: 3}
       propertyPath: itemTemplate
       value: 
       objectReference: {fileID: 7591294309573430423, guid: bd28e483e76e36145aa896943d7c8c52, type: 3}
@@ -1152,7 +1161,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7985718085067719759, guid: 8d73d92923563a743a8ab24c17b370b2, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -37.32434
+      value: -37.32422
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1430,6 +1439,18 @@ PrefabInstance:
     - target: {fileID: 1930646814466186765, guid: b6c710d3b4d7fd070b86310ad8f2b306, type: 3}
       propertyPath: m_Name
       value: P_Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2463513446214777018, guid: b6c710d3b4d7fd070b86310ad8f2b306, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2463513446214777018, guid: b6c710d3b4d7fd070b86310ad8f2b306, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2463513446214777018, guid: b6c710d3b4d7fd070b86310ad8f2b306, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7871698988865549445, guid: b6c710d3b4d7fd070b86310ad8f2b306, type: 3}
       propertyPath: m_Parameters.alignment

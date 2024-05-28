@@ -7,5 +7,6 @@ public class ItemTemplate : MonoBehaviour
     public TextMeshProUGUI titleText;
     public Image image;
     public TextMeshProUGUI priceText;
+    public Button button;
 
 }
