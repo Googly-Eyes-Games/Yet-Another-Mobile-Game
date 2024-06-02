@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Clipper2Lib;
+using erulathra;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -64,16 +65,17 @@ public class OilCleaner : MonoBehaviour
         cleanerPolygon.Add(closedRopeLoop.ToPathD());
 
         PathsD newSpill = Clipper.Difference(spillPolygon, cleanerPolygon, FillRule.NonZero);
-        float cleanedArea = MathUtils.CalculateAreaOfPolygon(spillPoints);
+
+        float spillArea = MathUtils.CalculateAreaOfPolygon(spillPoints);
+        bool wasProperClean = true;
         
         if (newSpill.Count != 0 && newSpill[0].Count != 0)
         {
             Vector2[] newSpillPoints = newSpill[0].ToVectorArray();
             // No intersection or area of difference is small
             float areaOfNewSpill = MathUtils.CalculateAreaOfPolygon(newSpillPoints);
-            Debug.Log($"Area of new spill: {areaOfNewSpill}");
 
-            cleanedArea -= areaOfNewSpill;
+            wasProperClean = false;
 
             if (areaOfNewSpill > maxAreaToDestroySpill)
             {
@@ -90,11 +92,16 @@ public class OilCleaner : MonoBehaviour
             }
         }
 
-        // Transfer to score manager
-        float selectedArea = MathUtils.CalculateAreaOfPolygon(closedRopeLoop);
-        float scoreEarned = (0.5f + 2.5f * Mathf.Pow(Mathf.Clamp01(cleanedArea / selectedArea), 2f)) * cleanedArea;
-        
-        onScoreChanged.Invoke(Mathf.RoundToInt(scoreEarned));
+        ScoreSubsystem scoreSubsystem = SceneSubsystemManager.GetSubsystem<ScoreSubsystem>();
+        if (wasProperClean)
+        {
+            float selectedArea = MathUtils.CalculateAreaOfPolygon(closedRopeLoop);
+            scoreSubsystem.AddWholeClearedSpillScore(selectedArea, spillArea);
+        }
+        else
+        {
+            scoreSubsystem.AddBaseScore();
+        }
         
         oilSpill.FullClean();
         Destroy(spillCollider.GameObject());

@@ -10,9 +10,6 @@ public class ScoreHandler : MonoBehaviour
     [SerializeField]
     private TMP_Text text;
 
-    // Wrong place to keep score. Just for testing
-    private int score;
-
     public void OnEnable()
     {
         onScoreChanged.OnRaise += HandleScoreChanged;
@@ -23,9 +20,8 @@ public class ScoreHandler : MonoBehaviour
         onScoreChanged.OnRaise -= HandleScoreChanged;
     }
 
-    public void HandleScoreChanged(int scoreDifference)
+    public void HandleScoreChanged(int score)
     {
-        score += scoreDifference;
         text.text = $"Score: {score}";
     }
 }
