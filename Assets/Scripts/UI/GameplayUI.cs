@@ -2,8 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class GameplayScreen : MonoBehaviour
+public class GameplayUI : MonoBehaviour
 {
     [SerializeField] private IntSOEvent onScoreChanged;
     [SerializeField] private Canvas canvas;
@@ -21,5 +22,10 @@ public class GameplayScreen : MonoBehaviour
     private void OnScoreChanged(int obj)
     {
         canvas.enabled = true;
+    }
+
+    public void OnPauseButton()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

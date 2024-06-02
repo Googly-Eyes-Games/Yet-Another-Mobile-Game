@@ -43,6 +43,9 @@ public class OilCleaner : MonoBehaviour
 
         foreach (Collider2D collider in overlappedColliders)
         {
+            if (!collider.CompareTag("Oil"))
+                continue;
+            
             Vector2[] closedRopeLoop2D = closedRopeLoop.Select(x => new Vector2(x.x, x.y)).ToArray();
             SplitSpill(collider, closedRopeLoop2D);
         }

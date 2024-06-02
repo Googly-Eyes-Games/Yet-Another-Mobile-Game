@@ -7,6 +7,9 @@ public class CameraMovement : MonoBehaviour
     private SOEvent startGameEvent;
     
     [SerializeField]
+    private SOEvent gameOverEvent;
+    
+    [SerializeField]
     private float cameraTargetStartSpeed = 2f;
     
     [SerializeField]
@@ -36,15 +39,23 @@ public class CameraMovement : MonoBehaviour
     private void OnEnable()
     {
         startGameEvent.OnRaise += StartGame;
+        gameOverEvent.OnRaise += GameOver;
     }
 
     private void OnDisable()
     {
         startGameEvent.OnRaise -= StartGame;
+        gameOverEvent.OnRaise -= GameOver;
     }
 
     public void StartGame()
     {
         GameStarted = true;
     }
+    
+    private void GameOver()
+    {
+        GameStarted = false;
+    }
+
 }
