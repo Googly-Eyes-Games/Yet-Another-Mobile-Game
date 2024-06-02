@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class Scrap : MonoBehaviour
@@ -7,7 +6,10 @@ public class Scrap : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Add hajs");
+            GameSave newSave = SaveManager.Instance.Save;
+            newSave.MoneyAmount += 1;
+            SaveManager.Instance.SaveGameAsync(newSave);
+            
             Destroy(gameObject);
         }
     }
