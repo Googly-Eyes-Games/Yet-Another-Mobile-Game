@@ -1,4 +1,4 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Clipper2Lib;
@@ -8,6 +8,8 @@ using UnityEngine;
 
 public class OilCleaner : MonoBehaviour
 {
+    public event Action<float> OnCleanSpill;
+    
     [SerializeField]
     private LineRenderer lineRenderer;
 
@@ -100,10 +102,13 @@ public class OilCleaner : MonoBehaviour
         {
             float selectedArea = MathUtils.CalculateAreaOfPolygon(closedRopeLoop);
             scoreSubsystem.AddWholeClearedSpillScore(selectedArea, spillArea);
+
+            OnCleanSpill?.Invoke(spillArea / selectedArea);
         }
         else
         {
             scoreSubsystem.AddBaseScore();
+            OnCleanSpill?.Invoke(-1f);
         }
         
         oilSpill.FullClean();
