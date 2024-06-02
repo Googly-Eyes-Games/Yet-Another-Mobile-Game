@@ -1,52 +1,34 @@
-using System;
 using System.Linq;
 using NaughtyAttributes;
 using UnityEngine;
-using UnityEngine.Events;
+using UnityEngine.U2D;
 
 [RequireComponent(typeof(PolygonCollider2D))]
-[RequireComponent(typeof(MeshFilter))]
-[RequireComponent(typeof(LineRenderer))]
+[RequireComponent(typeof(SpriteShapeController))]
 public class OilSpillMeshGenerator : MonoBehaviour
 {
     private PolygonCollider2D polygonCollider;
-    private MeshFilter meshFilter;
-    private LineRenderer lineRenderer;
-
-    private void Start()
-    {
-        GenerateFromCollider();
-    }
+    private SpriteShapeController spriteShapeController;
 
     public void UpdateMesh(Vector2[] polygonPoints)
     {
         Vector3[] vertices = polygonPoints.Select(x => new Vector3(x.x, x.y)).ToArray();
+        spriteShapeController.spline.Clear();
 
-        Triangulator triangulator = new Triangulator(polygonPoints);
-        int[] indices = triangulator.Triangulate();
-
-        Mesh newMesh = new Mesh()
+        for (int pointID = 0; pointID < vertices.Length; pointID++)
         {
-            vertices = vertices,
-            triangles = indices
-        };
-        
-        newMesh.RecalculateNormals();
-        newMesh.RecalculateBounds();
+            spriteShapeController.spline.InsertPointAt(pointID, vertices[pointID]);
+            spriteShapeController.spline.SetTangentMode(pointID, ShapeTangentMode.Continuous);
+        }
 
-        meshFilter.sharedMesh = newMesh;
         polygonCollider.SetPath(0, polygonPoints);
-        lineRenderer.positionCount = vertices.Length;
-        lineRenderer.SetPositions(vertices);
-        lineRenderer.useWorldSpace = false;
     }
 
     [Button]
     public void GenerateFromCollider()
     {
         polygonCollider = GetComponent<PolygonCollider2D>();
-        meshFilter = GetComponent<MeshFilter>();
-        lineRenderer = GetComponent<LineRenderer>();
+        spriteShapeController = GetComponent<SpriteShapeController>();
             
         UpdateMesh(polygonCollider.points);
     }
