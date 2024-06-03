@@ -104,4 +104,20 @@ public static class MathUtils
             .Select((p, i) => (loopedPolygon[i + 1].x - p.x) * (loopedPolygon[i + 1].y + p.y))
             .Sum() / 2);
     }
+
+    public static Vector2[] OptimizePolygon(Vector2[] points, float factor)
+    {
+        List<Vector2> result = points.ToList();
+        for (int pointID = 0; pointID < result.Count - 1; pointID++)
+        {
+            if ((result[pointID + 1] - result[pointID]).SqrMagnitude() < factor * factor)
+            {
+                result[pointID] += result[pointID + 1];
+                result[pointID] *= 0.5f;
+                result.RemoveAt(pointID + 1);
+            }
+        }
+
+        return result.ToArray();
+    }
 }

@@ -89,7 +89,7 @@ public class OilCleaner : MonoBehaviour
                     newSpillPoints[pointID] = polygonSpill.transform.InverseTransformPoint(newSpillPoints[pointID]);
                 }
 
-                polygonSpill.points = newSpillPoints;
+                polygonSpill.points = MathUtils.OptimizePolygon(newSpillPoints, 0.3f);
                 OilSpillMeshGenerator meshGenerator = polygonSpill.GetComponent<OilSpillMeshGenerator>();
                 meshGenerator.GenerateFromCollider();
                 
