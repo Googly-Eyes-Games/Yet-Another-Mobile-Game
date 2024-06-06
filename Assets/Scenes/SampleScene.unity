@@ -1976,6 +1976,14 @@ PrefabInstance:
       propertyPath: Player
       value: 
       objectReference: {fileID: 362079933}
+    - target: {fileID: 1340182852331746872, guid: 8d73d92923563a743a8ab24c17b370b2, type: 3}
+      propertyPath: boatItemsSO.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1340182852331746872, guid: 8d73d92923563a743a8ab24c17b370b2, type: 3}
+      propertyPath: boatItemsSO.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: ff7bd8be076cda44d8d801993d494d21, type: 2}
     - target: {fileID: 1541056938569549552, guid: 8d73d92923563a743a8ab24c17b370b2, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

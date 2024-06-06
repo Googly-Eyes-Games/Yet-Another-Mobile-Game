@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eee14ab965521e0449816c4a7c42c884, type: 3}
-  m_Name: PinkBoat
+  m_Name: ShipSO
   m_EditorClassIdentifier: 
-  <Title>k__BackingField: Pink
-  <Sprite>k__BackingField: {fileID: 21300000, guid: 137d9041e86aa49ce889135fd79352b5, type: 3}
+  <Title>k__BackingField: Ship
+  <Sprite>k__BackingField: {fileID: 21300000, guid: d7e070af2e1ed70479859ace9cb914fe, type: 3}
   <Price>k__BackingField: 20
-  <Color>k__BackingField: {r: 0.8980392, g: 0, b: 0.6037315, a: 1}
+  <Color>k__BackingField: {r: 1, g: 1, b: 1, a: 1}

@@ -22,7 +22,7 @@ public class ShopMenu : MonoBehaviour
         {
             CreateItem(boatItemSO, boatsContent.transform, () => 
             {
-                Player.GetComponentInChildren<SpriteRenderer>().color = boatItemSO.Color;
+                Player.GetComponentInChildren<SpriteRenderer>().sprite = boatItemSO.Sprite;
             });
         }
 
