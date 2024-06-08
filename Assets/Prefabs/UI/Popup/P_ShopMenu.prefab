@@ -1176,24 +1176,28 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7860913932987720070, guid: c75db1421a215d24cba4c59c6d949c88, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 6627346180033513551, guid: c75db1421a215d24cba4c59c6d949c88, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4675903003094189608}
+      insertIndex: 0
+      addedObject: {fileID: 3130218946201370843}
     - targetCorrespondingSourceObject: {fileID: 6627346180033513551, guid: c75db1421a215d24cba4c59c6d949c88, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2709730124893723223}
-    - targetCorrespondingSourceObject: {fileID: 6627346180033513551, guid: c75db1421a215d24cba4c59c6d949c88, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8660007091652151821}
-    - targetCorrespondingSourceObject: {fileID: 6627346180033513551, guid: c75db1421a215d24cba4c59c6d949c88, type: 3}
-      insertIndex: -1
+      insertIndex: 1
       addedObject: {fileID: 5215530505462304082}
     - targetCorrespondingSourceObject: {fileID: 6627346180033513551, guid: c75db1421a215d24cba4c59c6d949c88, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3130218946201370843}
+      insertIndex: 2
+      addedObject: {fileID: 8660007091652151821}
+    - targetCorrespondingSourceObject: {fileID: 6627346180033513551, guid: c75db1421a215d24cba4c59c6d949c88, type: 3}
+      insertIndex: 3
+      addedObject: {fileID: 2709730124893723223}
+    - targetCorrespondingSourceObject: {fileID: 6627346180033513551, guid: c75db1421a215d24cba4c59c6d949c88, type: 3}
+      insertIndex: 4
+      addedObject: {fileID: 4675903003094189608}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 530080184457855788, guid: c75db1421a215d24cba4c59c6d949c88, type: 3}
       insertIndex: -1
