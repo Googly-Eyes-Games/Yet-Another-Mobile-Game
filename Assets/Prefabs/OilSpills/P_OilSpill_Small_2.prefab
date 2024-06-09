@@ -356,6 +356,22 @@ PrefabInstance:
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[42].y
       value: 0.8985367
       objectReference: {fileID: 0}
+    - target: {fileID: 1296614281376484329, guid: fdb715c030d67b9f49c48f5b23a9a708, type: 3}
+      propertyPath: <Bounds>k__BackingField.m_Center.x
+      value: -0.24274272
+      objectReference: {fileID: 0}
+    - target: {fileID: 1296614281376484329, guid: fdb715c030d67b9f49c48f5b23a9a708, type: 3}
+      propertyPath: <Bounds>k__BackingField.m_Center.y
+      value: -0.14134026
+      objectReference: {fileID: 0}
+    - target: {fileID: 1296614281376484329, guid: fdb715c030d67b9f49c48f5b23a9a708, type: 3}
+      propertyPath: <Bounds>k__BackingField.m_Extent.x
+      value: 0.5717385
+      objectReference: {fileID: 0}
+    - target: {fileID: 1296614281376484329, guid: fdb715c030d67b9f49c48f5b23a9a708, type: 3}
+      propertyPath: <Bounds>k__BackingField.m_Extent.y
+      value: 0.58788586
+      objectReference: {fileID: 0}
     - target: {fileID: 5785794387631210607, guid: fdb715c030d67b9f49c48f5b23a9a708, type: 3}
       propertyPath: m_Name
       value: P_OilSpill_Small_2
