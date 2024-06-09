@@ -203,6 +203,7 @@ MonoBehaviour:
   polygonCollider2D: {fileID: 5072098593880943279}
   maxAreaToDestroySpill: 4
   onScoreChanged: {fileID: 11400000, guid: cb77d7f418d96fad9bd3f960335022e2, type: 2}
+  CleanedSpillPrefab: {fileID: 5785794387631210607, guid: ff3ae45cc1c3ccea1a535414c14327fc, type: 3}
 --- !u!50 &6115003225556308617
 Rigidbody2D:
   serializedVersion: 4

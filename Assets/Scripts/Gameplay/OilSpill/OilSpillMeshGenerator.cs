@@ -52,6 +52,22 @@ public class OilSpillMeshGenerator : MonoBehaviour
     {
         UpdateMesh(polygonCollider.points);
     }
+    
+    public void GenerateFromShape(SpriteShapeController otherShape)
+    {
+        spriteShapeController.spline.Clear();
+
+        Spline spline = spriteShapeController.spline;
+        Spline otherSpline = otherShape.spline;
+        
+        for (int pointID = 0; pointID < otherSpline.GetPointCount(); pointID++)
+        {
+            spline.InsertPointAt(pointID, otherSpline.GetPosition(pointID));
+            spline.SetTangentMode(pointID, ShapeTangentMode.Continuous);
+            spline.SetLeftTangent(pointID, otherSpline.GetLeftTangent(pointID));
+            spline.SetRightTangent(pointID, otherSpline.GetRightTangent(pointID));
+        }
+    }
 
     private static class ShaderLookUp
     {
