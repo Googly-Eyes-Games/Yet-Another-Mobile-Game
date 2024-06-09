@@ -70,8 +70,8 @@ public class GameplaySpawner : MonoBehaviour
 
         OilSpillMeshGenerator meshGenerator = newSpill.GetComponent<OilSpillMeshGenerator>();
         
-        Vector3 boundMin = newSpill.transform.TransformPoint(meshGenerator.Bounds.min);
-        Vector3 boundMax = newSpill.transform.TransformPoint(meshGenerator.Bounds.max);
+        Vector3 boundMin = meshGenerator.Bounds.min;
+        Vector3 boundMax = meshGenerator.Bounds.max;
         
         float halfSize = spawnerSize.x / 2f;
 

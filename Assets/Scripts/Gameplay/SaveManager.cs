@@ -28,7 +28,26 @@ public class SaveManager : ScriptableObject
         }
     }
 
-    public GameSave Save { get; private set; }
+    private GameSave save;
+    public GameSave Save {
+	    get
+	    {
+		    GameSave saveCopy;
+		    lock (saveGameCS)
+		    {
+				saveCopy = save;
+		    }
+
+		    return saveCopy;
+	    }
+	    private set
+	    {
+		    lock (saveGameCS)
+		    {
+			    save = value;
+		    }
+	    }
+    }
     
     public void ResetSave()
     {
@@ -56,7 +75,10 @@ public class SaveManager : ScriptableObject
 
     private void OnEnable()
     {
-		savePath = Path.Combine(Application.persistentDataPath, "save.sav");
+	    lock (saveGameCS)
+	    {
+		    savePath = Path.Combine(Application.persistentDataPath, "save.sav");
+	    }
     }
 
     private void LoadGame()
@@ -83,7 +105,7 @@ public class SaveManager : ScriptableObject
 }
 
 [Serializable]
-public class GameSave
+public struct GameSave
 {
     public int MoneyAmount { get; set; }
 }

@@ -30,6 +30,12 @@ public class CleanerVFX : MonoBehaviour
         feedbackVFXRenderer = GetComponent<ParticleSystemRenderer>();
         oilCleaner = GetComponent<OilCleaner>();
         oilCleaner.OnCleanSpill += OnCleanSpill;
+        oilCleaner.OnPartlyClean += OnPartlyClean;
+    }
+
+    private void OnPartlyClean()
+    {
+        Handheld.Vibrate();
     }
 
     private void OnCleanSpill(float cleanFactor)

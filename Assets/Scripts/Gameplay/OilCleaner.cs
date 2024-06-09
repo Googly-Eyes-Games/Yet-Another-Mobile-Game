@@ -9,6 +9,7 @@ using UnityEngine;
 public class OilCleaner : MonoBehaviour
 {
     public event Action<float> OnCleanSpill;
+    public event Action OnPartlyClean;
     
     [SerializeField]
     private LineRenderer lineRenderer;
@@ -92,6 +93,9 @@ public class OilCleaner : MonoBehaviour
                 polygonSpill.points = MathUtils.OptimizePolygon(newSpillPoints, 0.3f);
                 OilSpillMeshGenerator meshGenerator = polygonSpill.GetComponent<OilSpillMeshGenerator>();
                 meshGenerator.GenerateFromCollider();
+                meshGenerator.EnableWarning = true;
+                
+                OnPartlyClean?.Invoke();
                 
                 return;
             }
