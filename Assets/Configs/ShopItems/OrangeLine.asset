@@ -16,3 +16,4 @@ MonoBehaviour:
   <Sprite>k__BackingField: {fileID: 21300000, guid: 9dcb22d562b822df69aeaa3a2326c337, type: 3}
   <Price>k__BackingField: 10
   <Color>k__BackingField: {r: 1, g: 0.5921569, b: 0, a: 1}
+  <Purchased>k__BackingField: 1
