@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameplayUI : MonoBehaviour
 {
@@ -22,10 +21,5 @@ public class GameplayUI : MonoBehaviour
     private void OnScoreChanged(int obj)
     {
         canvas.enabled = true;
-    }
-
-    public void OnPauseButton()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

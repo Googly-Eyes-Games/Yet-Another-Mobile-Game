@@ -67,6 +67,22 @@ public class GameplaySpawner : MonoBehaviour
         scrapSpawnedThisPass = false;
         
         RandomizePositionAndRotation(newSpill.transform);
+
+        OilSpillMeshGenerator meshGenerator = newSpill.GetComponent<OilSpillMeshGenerator>();
+        
+        Vector3 boundMin = meshGenerator.Bounds.min;
+        Vector3 boundMax = meshGenerator.Bounds.max;
+        
+        float halfSize = spawnerSize.x / 2f;
+
+        if (boundMax.x > halfSize || boundMin.x > halfSize)
+        {
+            newSpill.transform.position -= meshGenerator.Bounds.extents;
+        }
+        else if (boundMax.x < -halfSize || boundMin.x < -halfSize)
+        {
+            newSpill.transform.position += meshGenerator.Bounds.extents;
+        }
     }
 
     private void SpawnScrap()

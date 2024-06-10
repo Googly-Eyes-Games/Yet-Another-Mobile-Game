@@ -524,6 +524,22 @@ PrefabInstance:
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[63].y
       value: -1.2244835
       objectReference: {fileID: 0}
+    - target: {fileID: 1296614281376484329, guid: fdb715c030d67b9f49c48f5b23a9a708, type: 3}
+      propertyPath: <Bounds>k__BackingField.m_Center.x
+      value: -0.93868804
+      objectReference: {fileID: 0}
+    - target: {fileID: 1296614281376484329, guid: fdb715c030d67b9f49c48f5b23a9a708, type: 3}
+      propertyPath: <Bounds>k__BackingField.m_Center.y
+      value: -0.3827362
+      objectReference: {fileID: 0}
+    - target: {fileID: 1296614281376484329, guid: fdb715c030d67b9f49c48f5b23a9a708, type: 3}
+      propertyPath: <Bounds>k__BackingField.m_Extent.x
+      value: 1.5626246
+      objectReference: {fileID: 0}
+    - target: {fileID: 1296614281376484329, guid: fdb715c030d67b9f49c48f5b23a9a708, type: 3}
+      propertyPath: <Bounds>k__BackingField.m_Extent.y
+      value: 1.3951893
+      objectReference: {fileID: 0}
     - target: {fileID: 5785794387631210607, guid: fdb715c030d67b9f49c48f5b23a9a708, type: 3}
       propertyPath: m_Name
       value: P_OilSpill_Medium_1
@@ -1422,7 +1438,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8726264201264682737, guid: fdb715c030d67b9f49c48f5b23a9a708, type: 3}
       propertyPath: m_DynamicOccludee
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8726264201264682737, guid: fdb715c030d67b9f49c48f5b23a9a708, type: 3}
       propertyPath: m_LocalAABB.m_Center.x

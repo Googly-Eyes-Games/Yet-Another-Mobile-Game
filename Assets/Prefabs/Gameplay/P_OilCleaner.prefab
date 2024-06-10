@@ -203,6 +203,7 @@ MonoBehaviour:
   polygonCollider2D: {fileID: 5072098593880943279}
   maxAreaToDestroySpill: 4
   onScoreChanged: {fileID: 11400000, guid: cb77d7f418d96fad9bd3f960335022e2, type: 2}
+  CleanedSpillPrefab: {fileID: 5785794387631210607, guid: ff3ae45cc1c3ccea1a535414c14327fc, type: 3}
 --- !u!50 &6115003225556308617
 Rigidbody2D:
   serializedVersion: 4
@@ -255,7 +256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25156d30ad5475f818b3b647636812cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cleanFactorToPerfectClean: 0.4
+  cleanFactorToPerfectClean: 0.3
   perfectSprite: {fileID: 2800000, guid: 3ad4a6b7df2df8d589776d915b7ba1ca, type: 3}
   tooBigSprite: {fileID: 2800000, guid: 0c0f43581a2cf06af8b0fcc0c72b1157, type: 3}
   tooSmallSprite: {fileID: 2800000, guid: eeef1875574234f81a3d2abfbfc18d30, type: 3}

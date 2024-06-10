@@ -1,5 +1,6 @@
 using System.Linq;
 using NaughtyAttributes;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.U2D;
 
@@ -7,10 +8,32 @@ using UnityEngine.U2D;
 [RequireComponent(typeof(SpriteShapeController))]
 public class OilSpillMeshGenerator : MonoBehaviour
 {
-    private PolygonCollider2D polygonCollider;
-    private SpriteShapeController spriteShapeController;
+    public Bounds Bounds => spriteShapeRenderer.bounds;
 
-    public void UpdateMesh(Vector2[] polygonPoints)
+    private bool enableWarning;
+    public bool EnableWarning
+    {
+        get => enableWarning;
+        set
+        {
+            enableWarning = value;
+            spriteShapeRenderer.material.SetFloat(ShaderLookUp.Warning, value ? 1f : 0f);
+        }
+    }
+    
+    [Foldout("Components")]
+    [SerializeField]
+    private PolygonCollider2D polygonCollider;
+    
+    [Foldout("Components")]
+    [SerializeField]
+    private SpriteShapeController spriteShapeController;
+    
+    [Foldout("Components")]
+    [SerializeField]
+    private SpriteShapeRenderer spriteShapeRenderer;
+
+    private void UpdateMesh(Vector2[] polygonPoints)
     {
         Vector3[] vertices = polygonPoints.Select(x => new Vector3(x.x, x.y)).ToArray();
         spriteShapeController.spline.Clear();
@@ -23,13 +46,31 @@ public class OilSpillMeshGenerator : MonoBehaviour
 
         polygonCollider.SetPath(0, polygonPoints);
     }
-
+    
     [Button]
     public void GenerateFromCollider()
     {
-        polygonCollider = GetComponent<PolygonCollider2D>();
-        spriteShapeController = GetComponent<SpriteShapeController>();
-            
         UpdateMesh(polygonCollider.points);
+    }
+    
+    public void GenerateFromShape(SpriteShapeController otherShape)
+    {
+        spriteShapeController.spline.Clear();
+
+        Spline spline = spriteShapeController.spline;
+        Spline otherSpline = otherShape.spline;
+        
+        for (int pointID = 0; pointID < otherSpline.GetPointCount(); pointID++)
+        {
+            spline.InsertPointAt(pointID, otherSpline.GetPosition(pointID));
+            spline.SetTangentMode(pointID, ShapeTangentMode.Continuous);
+            spline.SetLeftTangent(pointID, otherSpline.GetLeftTangent(pointID));
+            spline.SetRightTangent(pointID, otherSpline.GetRightTangent(pointID));
+        }
+    }
+
+    private static class ShaderLookUp
+    {
+        public static int Warning = Shader.PropertyToID("_Warning");
     }
 }

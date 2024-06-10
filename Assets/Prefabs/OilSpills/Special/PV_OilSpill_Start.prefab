@@ -922,6 +922,22 @@ PrefabInstance:
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[83].y
       value: -2.0666585
       objectReference: {fileID: 0}
+    - target: {fileID: 1296614281376484329, guid: fdb715c030d67b9f49c48f5b23a9a708, type: 3}
+      propertyPath: <Bounds>k__BackingField.m_Center.x
+      value: 1.1288822
+      objectReference: {fileID: 0}
+    - target: {fileID: 1296614281376484329, guid: fdb715c030d67b9f49c48f5b23a9a708, type: 3}
+      propertyPath: <Bounds>k__BackingField.m_Center.y
+      value: -0.23688662
+      objectReference: {fileID: 0}
+    - target: {fileID: 1296614281376484329, guid: fdb715c030d67b9f49c48f5b23a9a708, type: 3}
+      propertyPath: <Bounds>k__BackingField.m_Extent.x
+      value: 2.561098
+      objectReference: {fileID: 0}
+    - target: {fileID: 1296614281376484329, guid: fdb715c030d67b9f49c48f5b23a9a708, type: 3}
+      propertyPath: <Bounds>k__BackingField.m_Extent.y
+      value: 2.0811844
+      objectReference: {fileID: 0}
     - target: {fileID: 5785794387631210607, guid: fdb715c030d67b9f49c48f5b23a9a708, type: 3}
       propertyPath: m_Name
       value: PV_OilSpill_Start

@@ -10,14 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 7438868743639530111}
   - component: {fileID: 241157255165282827}
-  - component: {fileID: 4234632863123880398}
   - component: {fileID: 1296614281376484329}
-  - component: {fileID: 8585260426000923315}
   - component: {fileID: 8726264201264682737}
   - component: {fileID: 5879752179789749022}
+  - component: {fileID: 5316522876015530632}
   m_Layer: 0
-  m_Name: P_OilSpill_Base
-  m_TagString: Oil
+  m_Name: P_CleanedSpill
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -87,33 +86,6 @@ PolygonCollider2D:
       - {x: 1, y: -1}
       - {x: -1, y: -1}
   m_UseDelaunayMesh: 0
---- !u!50 &4234632863123880398
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5785794387631210607}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!114 &1296614281376484329
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129,18 +101,6 @@ MonoBehaviour:
   polygonCollider: {fileID: 241157255165282827}
   spriteShapeController: {fileID: 5879752179789749022}
   spriteShapeRenderer: {fileID: 8726264201264682737}
---- !u!114 &8585260426000923315
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5785794387631210607}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae3c668eb06a4be8a4ff5a6c4af725e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1971053207 &8726264201264682737
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -161,8 +121,8 @@ SpriteShapeRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 80f6851de6c8da80e9c24728e2e8aedd, type: 2}
-  - {fileID: 2100000, guid: 80f6851de6c8da80e9c24728e2e8aedd, type: 2}
+  - {fileID: 2100000, guid: 1cc1e5a1d69c7526e8f1122841b7ed1c, type: 2}
+  - {fileID: 2100000, guid: 1cc1e5a1d69c7526e8f1122841b7ed1c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -268,3 +228,16 @@ MonoBehaviour:
   - {x: 1, y: 1}
   - {x: 1, y: -1}
   - {x: -1, y: -1}
+--- !u!114 &5316522876015530632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5785794387631210607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d68a54fb06921e663a361610fd881276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeToDissolve: 1

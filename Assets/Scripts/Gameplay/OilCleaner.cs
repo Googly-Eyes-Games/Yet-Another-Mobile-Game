@@ -5,10 +5,12 @@ using Clipper2Lib;
 using erulathra;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.U2D;
 
 public class OilCleaner : MonoBehaviour
 {
     public event Action<float> OnCleanSpill;
+    public event Action OnPartlyClean;
     
     [SerializeField]
     private LineRenderer lineRenderer;
@@ -21,6 +23,9 @@ public class OilCleaner : MonoBehaviour
 
     [SerializeField]
     private IntSOEvent onScoreChanged;
+
+    [SerializeField]
+    private GameObject CleanedSpillPrefab;
     
     public void CleanOil(Vector3[] closedRopeLoop)
     {
@@ -92,6 +97,12 @@ public class OilCleaner : MonoBehaviour
                 polygonSpill.points = MathUtils.OptimizePolygon(newSpillPoints, 0.3f);
                 OilSpillMeshGenerator meshGenerator = polygonSpill.GetComponent<OilSpillMeshGenerator>();
                 meshGenerator.GenerateFromCollider();
+                meshGenerator.EnableWarning = true;
+                
+                PathsD cleanedSpill = Clipper.Intersect(spillPolygon, cleanerPolygon, FillRule.NonZero);
+                SpawnCleanedSpill(MathUtils.OptimizePolygon(cleanedSpill[0].ToVectorArray(), 0.3f));
+
+                OnPartlyClean?.Invoke();
                 
                 return;
             }
@@ -112,6 +123,32 @@ public class OilCleaner : MonoBehaviour
         }
         
         oilSpill.FullClean();
+        
+        SpriteShapeController spriteShapeController = polygonSpill.GetComponent<SpriteShapeController>();
+        SpawnCleanedSpill(spriteShapeController);
+        
         Destroy(spillCollider.GameObject());
+    }
+
+    private void SpawnCleanedSpill(Vector2[] cleanedSpill)
+    {
+        GameObject cleanedSpillGameObject = Instantiate(CleanedSpillPrefab);
+        
+        cleanedSpillGameObject.transform.position += Vector3.forward * 5f;
+        PolygonCollider2D cleanedSpillPolygon = cleanedSpillGameObject.GetComponent<PolygonCollider2D>();
+        cleanedSpillPolygon.points = cleanedSpill;
+        OilSpillMeshGenerator cleanedSpillMeshGenerator = cleanedSpillGameObject.GetComponent<OilSpillMeshGenerator>();
+        cleanedSpillMeshGenerator.GenerateFromCollider();
+    }
+    
+    private void SpawnCleanedSpill(SpriteShapeController otherShape)
+    {
+        GameObject cleanedSpillGameObject = Instantiate(CleanedSpillPrefab);
+        cleanedSpillGameObject.transform.position = otherShape.transform.position;
+        cleanedSpillGameObject.transform.rotation = otherShape.transform.rotation;
+        
+        cleanedSpillGameObject.transform.position += Vector3.forward * 5f;
+        OilSpillMeshGenerator cleanedSpillMeshGenerator = cleanedSpillGameObject.GetComponent<OilSpillMeshGenerator>();
+        cleanedSpillMeshGenerator.GenerateFromShape(otherShape);
     }
 }
