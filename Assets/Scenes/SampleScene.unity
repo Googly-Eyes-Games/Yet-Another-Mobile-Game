@@ -2280,6 +2280,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 362079933}
     - target: {fileID: 1340182852331746872, guid: 8d73d92923563a743a8ab24c17b370b2, type: 3}
+      propertyPath: saveDataChangedEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 8ca7d45b1dc4d7eb59e6a46eb6d4f780, type: 2}
+    - target: {fileID: 1340182852331746872, guid: 8d73d92923563a743a8ab24c17b370b2, type: 3}
       propertyPath: boatItemsSO.Array.size
       value: 2
       objectReference: {fileID: 0}
