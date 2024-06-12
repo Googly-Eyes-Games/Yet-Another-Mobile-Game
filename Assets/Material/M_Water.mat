@@ -37,12 +37,12 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _bubbles_cutoff: 8
-    - _foam_bubbles_scale: 1.11
+    - _bubbles_cutoff: 2.49
+    - _foam_bubbles_scale: 0.47
     m_Colors:
     - _foam_bubbles_speed: {r: -1, g: -0.7, b: 0, a: 0}
-    - _foam_color: {r: 0.5568628, g: 0.7921569, b: 0.9019608, a: 1}
-    - _water_color: {r: 0.12941177, g: 0.61960787, b: 0.7372549, a: 0}
+    - _foam_color: {r: 0.19681203, g: 0.4614456, b: 0.693, a: 1}
+    - _water_color: {r: 0.078431375, g: 0.36078432, b: 0.61960787, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &8860654210259018270
 MonoBehaviour:

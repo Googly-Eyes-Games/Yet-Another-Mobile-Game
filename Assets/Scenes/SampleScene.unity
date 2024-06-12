@@ -2621,6 +2621,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 519420032}
     m_Modifications:
+    - target: {fileID: 442074952449820160, guid: c3cbba6088227f585a0649dbe567820c, type: 3}
+      propertyPath: distanceToSpawnOil
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 3877829122613765949, guid: c3cbba6088227f585a0649dbe567820c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
