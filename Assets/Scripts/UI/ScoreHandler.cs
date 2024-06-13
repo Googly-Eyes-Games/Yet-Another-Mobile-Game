@@ -22,6 +22,6 @@ public class ScoreHandler : MonoBehaviour
 
     public void HandleScoreChanged(int score)
     {
-        text.text = $"Score: {score}";
+        text.text = $"{score}";
     }
 }

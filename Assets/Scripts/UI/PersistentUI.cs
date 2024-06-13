@@ -25,6 +25,6 @@ public class PersistentUI : MonoBehaviour
 
     private void HandleSaveDataChanged()
     {
-        moneyText.text = $"$ {SaveManager.Instance.Save.MoneyAmount}";
+        moneyText.text = $"{SaveManager.Instance.Save.MoneyAmount}";
     }
 }
