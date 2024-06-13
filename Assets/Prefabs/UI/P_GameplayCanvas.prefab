@@ -269,6 +269,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onScoreChanged: {fileID: 11400000, guid: cb77d7f418d96fad9bd3f960335022e2, type: 2}
   text: {fileID: 1585116969156827631}
+  animationTime: 0.9
 --- !u!1 &8081992716912056998
 GameObject:
   m_ObjectHideFlags: 0
