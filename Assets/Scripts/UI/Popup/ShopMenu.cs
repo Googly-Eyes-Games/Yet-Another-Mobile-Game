@@ -87,7 +87,7 @@ public class ShopMenu : MonoBehaviour
         itemTemplateComponent.titleText.text = itemSO.Title;
         itemTemplateComponent.image.sprite = itemSO.Sprite;
         itemTemplateComponent.image.color = itemSO.Color;
-        itemTemplateComponent.priceText.text = itemSO.Price.ToString();
+        itemTemplateComponent.priceText.text = $"Buy: {itemSO.Price} scrap";
     
         itemTemplateComponent.button.onClick.AddListener(() => onClickAction(itemTemplateComponent.button));
 
