@@ -58,4 +58,9 @@ public class PlayerMovement : MonoBehaviour
             transform.rotation = MathUtils.LookAt2D(boatDirection);
         }
     }
+    
+    public void UpgradeShipSpeed(int value)
+    {
+        shipSpeed += value;
+    }
 }

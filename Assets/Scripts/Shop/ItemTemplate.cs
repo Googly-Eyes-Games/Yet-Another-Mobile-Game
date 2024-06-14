@@ -11,5 +11,6 @@ public class ItemTemplate : MonoBehaviour
     public Image image;
     public TextMeshProUGUI priceText;
     public Button button;
+    public TextMeshProUGUI upgradeText;
 
 }

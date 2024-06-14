@@ -94,6 +94,11 @@ public class RopeHandler : MonoBehaviour
         lineRenderer.positionCount = marksPositions.Length;
         lineRenderer.SetPositions(marksPositions);
     }
+    
+    public void UpgradeMarksCount(int value)
+    {
+        maxMarksCount += value;
+    }
 }
 
 public class Mark

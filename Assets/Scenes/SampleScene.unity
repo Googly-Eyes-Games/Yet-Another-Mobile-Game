@@ -2148,6 +2148,26 @@ PrefabInstance:
       propertyPath: itemTemplate
       value: 
       objectReference: {fileID: 4037640489509342810, guid: bd28e483e76e36145aa896943d7c8c52, type: 3}
+    - target: {fileID: 1340182852331746872, guid: 8d73d92923563a743a8ab24c17b370b2, type: 3}
+      propertyPath: upgradesSO.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1340182852331746872, guid: 8d73d92923563a743a8ab24c17b370b2, type: 3}
+      propertyPath: boatItemsSO.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1340182852331746872, guid: 8d73d92923563a743a8ab24c17b370b2, type: 3}
+      propertyPath: upgradesSO.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 97f067c5e9aa70b4babdba3431336e0f, type: 2}
+    - target: {fileID: 1340182852331746872, guid: 8d73d92923563a743a8ab24c17b370b2, type: 3}
+      propertyPath: upgradesSO.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 82d9b6ea204010241a12c2c2ffbc992d, type: 2}
+    - target: {fileID: 1340182852331746872, guid: 8d73d92923563a743a8ab24c17b370b2, type: 3}
+      propertyPath: boatItemsSO.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: d5c56226f4f7a0c418e098b7a24c6a0e, type: 2}
     - target: {fileID: 1418586007118387994, guid: 8d73d92923563a743a8ab24c17b370b2, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
