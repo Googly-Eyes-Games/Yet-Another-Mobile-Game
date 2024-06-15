@@ -19,29 +19,23 @@ public class ShopMenu : MonoBehaviour
     [SerializeField] private List<ShopItemSO> lineItemsSO;
     [SerializeField] private List<ShopUpgradeSO> upgradesSO;
     
-    private Dictionary<Button, ShopItemSO> boatsDict = new();
-    private Dictionary<Button, ShopItemSO> linesDict = new();
     private Dictionary<Button, ShopItemSO> buttonsDict = new();
-    private Dictionary<ShopItemSO, bool> itemsDict = new();
-
-    private List<ShopUpgradeSO> startShopUpgradesSO;
-    
     private Dictionary<Button, ShopUpgradeSO> upgradesDict = new();
     
     private void Awake()
     {
         GameSave newSave = SaveManager.Instance.Save;
-        newSave.MoneyAmount = 50;
+        newSave.MoneyAmount = 34;
         SaveManager.Instance.SaveGameAsync(newSave);
         
         foreach (var boatItemSO in boatItemsSO)
         {
-            CreateItem(boatItemSO, boatsContent.transform,  button  => HandleItemClick(button, boatItemSO, true));
+            CreateItem(boatItemSO, boatsContent.transform,  button  => HandleItemClick(button, boatItemSO));
         }
 
         foreach (var lineItemSO in lineItemsSO)
         {
-            CreateItem(lineItemSO, linesContent.transform, button => HandleItemClick(button, lineItemSO, false));
+            CreateItem(lineItemSO, linesContent.transform, button => HandleItemClick(button, lineItemSO));
         }
         
         foreach (var upgradeSO in upgradesSO)
@@ -50,46 +44,47 @@ public class ShopMenu : MonoBehaviour
         }
     }
 
-    private void HandleItemClick(Button button, ShopItemSO shopItemSo,  bool isBoat)
+    private void HandleItemClick(Button button, ShopItemSO shopItemSo)
     {
         GameSave newSave = SaveManager.Instance.Save;
-        
-        if (itemsDict[shopItemSo])
-        {
-            if (isBoat)
-            {
-                Player.GetComponentInChildren<SpriteRenderer>().sprite = shopItemSo.Sprite;
-            }
-            else
-            {
-                var lineRenderer = Player.GetComponentInChildren<LineRenderer>();
-                lineRenderer.startColor = shopItemSo.Color;
-                lineRenderer.endColor = shopItemSo.Color;
-            }
-            
-            button.GetComponentInChildren<TextMeshProUGUI>().text = "In use";
-            button.interactable = false;
 
-            Dictionary<Button, ShopItemSO> localDict = isBoat ? boatsDict : linesDict;
-            
-            foreach (var buttonPair in localDict)
-            {
-                if (buttonPair.Key == button)
-                    continue;
-
-                if (!itemsDict[buttonPair.Value]) 
-                    continue;
-                        
-                buttonPair.Key.GetComponentInChildren<TextMeshProUGUI>().text = "Use";
-                buttonPair.Key.interactable = true;
-            }
-        }
-        else
+        if (!shopItemSo.Purchased)
         {
             newSave.MoneyAmount -= shopItemSo.Price;
             SaveManager.Instance.SaveGameAsync(newSave);
-            button.GetComponentInChildren<TextMeshProUGUI>().text = "Use";
-            itemsDict[shopItemSo] = true;
+            shopItemSo.Purchased = true;
+        }
+        
+        if (shopItemSo.itemType == ShopItemSO.ItemType.Boat)
+        {
+            Player.GetComponentInChildren<SpriteRenderer>().sprite = shopItemSo.Sprite;
+            newSave.Sprite = shopItemSo.Sprite;
+        }
+        else
+        {
+            var lineRenderer = Player.GetComponentInChildren<LineRenderer>();
+            lineRenderer.startColor = shopItemSo.Color;
+            lineRenderer.endColor = shopItemSo.Color;
+            newSave.LineColor = shopItemSo.Color;
+        }
+            
+        SaveManager.Instance.SaveGameAsync(newSave);
+        button.GetComponentInChildren<TextMeshProUGUI>().text = "In use";
+        button.interactable = false;
+            
+        foreach (var buttonPair in buttonsDict)
+        {
+            if (buttonPair.Key == button)
+                continue;
+
+            if (buttonPair.Value.itemType != shopItemSo.itemType)
+                continue;
+
+            if (!buttonPair.Value.Purchased) 
+                continue;
+            
+            buttonPair.Key.GetComponentInChildren<TextMeshProUGUI>().text = "Use";
+            buttonPair.Key.interactable = true;
         }
     }
     
@@ -106,24 +101,40 @@ public class ShopMenu : MonoBehaviour
         itemTemplateComponent.priceText.text = $"{itemSO.Price} $";
     
         itemTemplateComponent.button.onClick.AddListener(() => onClickAction(itemTemplateComponent.button));
+        
+        buttonsDict.Add(itemTemplateComponent.button, itemSO);
+        
+        if (!itemSO.Purchased) 
+            return;
 
-        if (parentTransform == boatsContent.transform)
+        if (itemSO.itemType == ShopItemSO.ItemType.Boat)
         {
-            boatsDict.Add(itemTemplateComponent.button, itemSO);
+            if (itemSO.Sprite == SaveManager.Instance.Save.Sprite)
+            {
+                itemTemplateComponent.button.interactable = false;
+                itemTemplateComponent.button.GetComponentInChildren<TextMeshProUGUI>().text = "In use";
+            }
+            else
+            {
+                itemTemplateComponent.button.interactable = true;
+                itemTemplateComponent.button.GetComponentInChildren<TextMeshProUGUI>().text = "Use";
+            }
         }
         else
         {
-            linesDict.Add(itemTemplateComponent.button, itemSO);
+            if (itemSO.Color == SaveManager.Instance.Save.LineColor)
+            {
+                itemTemplateComponent.button.interactable = false;
+                itemTemplateComponent.button.GetComponentInChildren<TextMeshProUGUI>().text = "In use";
+            }
+            else
+            {
+                itemTemplateComponent.button.interactable = true;
+                itemTemplateComponent.button.GetComponentInChildren<TextMeshProUGUI>().text = "Use";
+            }
         }
         
-        buttonsDict.Add(itemTemplateComponent.button, itemSO);
-        itemsDict.Add(itemSO, itemSO.Purchased);
-
-        if (!itemSO.Purchased) 
-            return;
         
-        itemTemplateComponent.button.interactable = false;
-        itemTemplateComponent.button.GetComponentInChildren<TextMeshProUGUI>().text = "In use";
     }
     
     private void CreateUpgradeItem(ShopUpgradeSO upgradeSO, Transform parentTransform, UnityEngine.Events.UnityAction<ItemTemplate> onClickAction)
@@ -134,7 +145,7 @@ public class ShopMenu : MonoBehaviour
 
         itemTemplateComponent.titleText.text = upgradeSO.Title;
         itemTemplateComponent.image.sprite = upgradeSO.Sprite;
-        itemTemplateComponent.priceText.text = $"{upgradeSO.BasePrice} $";
+        itemTemplateComponent.priceText.text = upgradeSO.currentLevel == upgradeSO.maxLevel ? "Max" : $"{upgradeSO.BasePrice} $";
         itemTemplateComponent.upgradeText.text = upgradeSO.currentLevel.ToString();
 
         itemTemplateComponent.button.onClick.AddListener(() => onClickAction(itemTemplateComponent));
@@ -146,18 +157,20 @@ public class ShopMenu : MonoBehaviour
         GameSave newSave = SaveManager.Instance.Save;
 
         newSave.MoneyAmount -= upgradeSO.GetCurrentPrice();
-        SaveManager.Instance.SaveGameAsync(newSave);
+        upgradeSO.currentLevel += upgradeSO.UpgradeIncrement;
         
         if (upgradeSO.upgradeType == ShopUpgradeSO.UpgradeType.LineLength)
         {
+            newSave.LineLengthLevel = upgradeSO.currentLevel;
             Player.GetComponent<RopeHandler>().UpgradeMarksCount(upgradeSO.UpgradeIncrement);
         }
         else
         {
+            newSave.ShipSpeedLevel = upgradeSO.currentLevel;
             Player.GetComponent<PlayerMovement>().UpgradeShipSpeed(upgradeSO.UpgradeIncrement);
         }
+        SaveManager.Instance.SaveGameAsync(newSave);
         
-        upgradeSO.currentLevel += upgradeSO.UpgradeIncrement;
         iconTemplate.upgradeText.text = upgradeSO.currentLevel.ToString();
         
         if (upgradeSO.currentLevel == upgradeSO.maxLevel)
@@ -177,7 +190,7 @@ public class ShopMenu : MonoBehaviour
         
         foreach (var buttonPair in buttonsDict)
         {
-            if (!itemsDict[buttonPair.Value])
+            if (!buttonPair.Value.Purchased)
             {
                 buttonPair.Key.interactable = buttonsDict[buttonPair.Key].Price <= newSave.MoneyAmount;
             }
@@ -199,6 +212,11 @@ public class ShopMenu : MonoBehaviour
 
     public void ResetSO()
     {
+        foreach (var itemSo in buttonsDict.Values)
+        {
+            itemSo.Purchased = itemSo.Price == 0;
+        }
+        
         foreach (var upgradeSo in upgradesDict.Values)
         {
             upgradeSo.currentLevel = 0;

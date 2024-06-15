@@ -17,3 +17,4 @@ MonoBehaviour:
   <Price>k__BackingField: 1
   <Color>k__BackingField: {r: 0, g: 0.94509804, b: 0.08627451, a: 1}
   <Purchased>k__BackingField: 0
+  itemType: 1

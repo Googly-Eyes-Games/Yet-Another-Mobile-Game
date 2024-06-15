@@ -8,7 +8,7 @@ public class SaveManager : ScriptableObject
 {
 	[SerializeField]
 	private SOEvent onSaveDataChanged;
-
+	
 	private static string savePath;
 	
     private static SaveManager instance;
@@ -51,7 +51,8 @@ public class SaveManager : ScriptableObject
     
     public void ResetSave()
     {
-	    SaveGameAsync(new GameSave());
+	    GameSave initialGameSave = InitializeGameSettings();
+	    SaveGameAsync(initialGameSave);
     }
     
     public void SaveGameAsync(GameSave newSave)
@@ -87,7 +88,9 @@ public class SaveManager : ScriptableObject
 	    {
 			if (!File.Exists(savePath))
 			{
-				SaveGameAsync(new GameSave());
+				GameSave initialGameSave = InitializeGameSettings();
+				
+				SaveGameAsync(initialGameSave);
 				return;
 			}
 			
@@ -101,11 +104,38 @@ public class SaveManager : ScriptableObject
 			Save = (GameSave) binaryFormatter.Deserialize(memoryStream);
 	    }
     }
+    
+    private GameSave InitializeGameSettings()
+    {
+	    BaseSettingSO baseSettingSo = Resources.Load<BaseSettingSO>("SO_BaseSettings");
+	    
+	    if (baseSettingSo == null)
+	    {
+		    Debug.LogError("Failed to load BaseSettingSO from Resources!");
+		    return new GameSave();
+	    }
+	    
+	    GameSave initialSave = new GameSave
+	    {
+		    ShipSpeedLevel = baseSettingSo.ShipSpeedLevel,
+		    LineLengthLevel = baseSettingSo.LineLengthLevel,
+		    Sprite = baseSettingSo.Sprite,
+		    LineColor = baseSettingSo.LineColor
+	    };
+	    
+	    return initialSave;
+    }
 
 }
 
 [Serializable]
 public struct GameSave
 {
-    public int MoneyAmount { get; set; }
+	public int MoneyAmount { get; set; }
+	public float ShipSpeedLevel { get; set; }
+	public float LineLengthLevel { get; set; }
+	
+	public Sprite Sprite { get; set; }
+	
+	public Color LineColor { get; set; }
 }

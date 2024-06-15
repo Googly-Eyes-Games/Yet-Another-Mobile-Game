@@ -20,6 +20,21 @@ public class RopeHandler : MonoBehaviour
     
     private void Awake()
     {
+        GameSave newSave = SaveManager.Instance.Save;
+
+        maxMarksCount += newSave.LineLengthLevel;
+        
+        if (newSave.LineColor == new Color(0, 0, 0, 0))
+        {
+            newSave.LineColor = lineRenderer.startColor;
+            SaveManager.Instance.SaveGameAsync(newSave);
+        }
+        else
+        {
+            lineRenderer.startColor = newSave.LineColor;
+            lineRenderer.endColor = newSave.LineColor;
+        }
+        
         PlaceMark();
     }
 
@@ -95,7 +110,7 @@ public class RopeHandler : MonoBehaviour
         lineRenderer.SetPositions(marksPositions);
     }
     
-    public void UpgradeMarksCount(int value)
+    public void UpgradeMarksCount(float value)
     {
         maxMarksCount += value;
     }

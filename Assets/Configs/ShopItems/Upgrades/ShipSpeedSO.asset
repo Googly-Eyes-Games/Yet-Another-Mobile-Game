@@ -18,5 +18,5 @@ MonoBehaviour:
   <PriceIncrement>k__BackingField: 1
   <UpgradeIncrement>k__BackingField: 1
   upgradeType: 0
-  currentLevel: 0
+  currentLevel: 4
   maxLevel: 4

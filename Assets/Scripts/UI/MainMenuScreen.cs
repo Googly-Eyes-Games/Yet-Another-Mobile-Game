@@ -93,6 +93,7 @@ public class MainMenuScreen : MonoBehaviour
         onInputLockChanged.Invoke(show ? InputLock.Locked : InputLock.LockOnlyBottom);
     }
 
+
     private void OnApplicationQuit()
     {
         shopMenu.GetComponent<ShopMenu>().ResetSO();

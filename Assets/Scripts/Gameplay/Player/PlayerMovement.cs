@@ -23,6 +23,22 @@ public class PlayerMovement : MonoBehaviour
         targetPosition = mainCamera.WorldToScreenPoint(transform.position);
         
         lastPosition = transform.position + Vector3.down;
+        
+        GameSave newSave = SaveManager.Instance.Save;
+
+        shipSpeed += newSave.ShipSpeedLevel;
+        
+        if (newSave.Sprite == null)
+        {
+            Sprite boatSprite = GetComponentInChildren<SpriteRenderer>().sprite;
+            newSave.Sprite = boatSprite;
+        }
+        else
+        {
+            GetComponentInChildren<SpriteRenderer>().sprite = newSave.Sprite;
+        }
+        
+        SaveManager.Instance.SaveGameAsync(newSave);
     }
 
     private void Update()
@@ -59,7 +75,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
     
-    public void UpgradeShipSpeed(int value)
+    public void UpgradeShipSpeed(float value)
     {
         shipSpeed += value;
     }
