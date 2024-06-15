@@ -24,10 +24,6 @@ public class ShopMenu : MonoBehaviour
     
     private void Awake()
     {
-        GameSave newSave = SaveManager.Instance.Save;
-        newSave.MoneyAmount = 34;
-        SaveManager.Instance.SaveGameAsync(newSave);
-        
         foreach (var boatItemSO in boatItemsSO)
         {
             CreateItem(boatItemSO, boatsContent.transform,  button  => HandleItemClick(button, boatItemSO));
@@ -107,34 +103,24 @@ public class ShopMenu : MonoBehaviour
         if (!itemSO.Purchased) 
             return;
 
+        bool isInUse;
+
         if (itemSO.itemType == ShopItemSO.ItemType.Boat)
         {
-            if (itemSO.Sprite == SaveManager.Instance.Save.Sprite)
-            {
-                itemTemplateComponent.button.interactable = false;
-                itemTemplateComponent.button.GetComponentInChildren<TextMeshProUGUI>().text = "In use";
-            }
-            else
-            {
-                itemTemplateComponent.button.interactable = true;
-                itemTemplateComponent.button.GetComponentInChildren<TextMeshProUGUI>().text = "Use";
-            }
+            isInUse = itemSO.Sprite == SaveManager.Instance.Save.Sprite;
         }
         else
         {
-            if (itemSO.Color == SaveManager.Instance.Save.LineColor)
-            {
-                itemTemplateComponent.button.interactable = false;
-                itemTemplateComponent.button.GetComponentInChildren<TextMeshProUGUI>().text = "In use";
-            }
-            else
-            {
-                itemTemplateComponent.button.interactable = true;
-                itemTemplateComponent.button.GetComponentInChildren<TextMeshProUGUI>().text = "Use";
-            }
+            isInUse = itemSO.Color == SaveManager.Instance.Save.LineColor;
         }
-        
-        
+
+        SetButtonState(itemTemplateComponent.button, isInUse);
+    }
+    
+    private void SetButtonState(Button button, bool isInUse)
+    {
+        button.interactable = !isInUse;
+        button.GetComponentInChildren<TextMeshProUGUI>().text = isInUse ? "In use" : "Use";
     }
     
     private void CreateUpgradeItem(ShopUpgradeSO upgradeSO, Transform parentTransform, UnityEngine.Events.UnityAction<ItemTemplate> onClickAction)
@@ -145,7 +131,7 @@ public class ShopMenu : MonoBehaviour
 
         itemTemplateComponent.titleText.text = upgradeSO.Title;
         itemTemplateComponent.image.sprite = upgradeSO.Sprite;
-        itemTemplateComponent.priceText.text = upgradeSO.currentLevel == upgradeSO.maxLevel ? "Max" : $"{upgradeSO.BasePrice} $";
+        itemTemplateComponent.priceText.text = upgradeSO.currentLevel == upgradeSO.maxLevel ? "Max" : $"{upgradeSO.GetCurrentPrice()} $";
         itemTemplateComponent.upgradeText.text = upgradeSO.currentLevel.ToString();
 
         itemTemplateComponent.button.onClick.AddListener(() => onClickAction(itemTemplateComponent));

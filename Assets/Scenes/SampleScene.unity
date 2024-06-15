@@ -1783,6 +1783,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26e1fc63c521b79bbbe96d31a7887bbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1877000417 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1340182852331746872, guid: 8d73d92923563a743a8ab24c17b370b2, type: 3}
+  m_PrefabInstance: {fileID: 2138106721909400148}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccfa9e3b82eb49344a8d10870bea28f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &1894121292 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6671547645648521632, guid: cbdde79bbf00fc94a97ca71a98c64303, type: 3}
@@ -2928,6 +2939,10 @@ PrefabInstance:
       propertyPath: moneyChangedEvent
       value: 
       objectReference: {fileID: 11400000, guid: daae21a27b9f923d691ab98c9d5ebb8d, type: 2}
+    - target: {fileID: 4046983935940862309, guid: e3683d6797689c0dbac0de609d93aa94, type: 3}
+      propertyPath: shopMenuComponent
+      value: 
+      objectReference: {fileID: 1877000417}
     - target: {fileID: 4046983935940862309, guid: e3683d6797689c0dbac0de609d93aa94, type: 3}
       propertyPath: saveDataChangedEvent
       value: 

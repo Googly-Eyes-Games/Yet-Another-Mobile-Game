@@ -12,6 +12,10 @@ public class PersistentUI : MonoBehaviour
     [SerializeField]
     private SOEvent saveDataChangedEvent;
 
+    [Foldout("Components")]
+    [SerializeField]
+    private ShopMenu shopMenuComponent;
+    
     private void OnEnable()
     {
         saveDataChangedEvent.OnRaise += HandleSaveDataChanged;
@@ -26,5 +30,10 @@ public class PersistentUI : MonoBehaviour
     private void HandleSaveDataChanged()
     {
         moneyText.text = $"{SaveManager.Instance.Save.MoneyAmount}";
+    }
+    
+    private void OnApplicationQuit()
+    {
+        shopMenuComponent.GetComponent<ShopMenu>().ResetSO();
     }
 }

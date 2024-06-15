@@ -111,7 +111,7 @@ public class SaveManager : ScriptableObject
 	    
 	    if (baseSettingSo == null)
 	    {
-		    Debug.LogError("Failed to load BaseSettingSO from Resources!");
+		    Debug.LogError("Failed to load SO_BaseSettings!");
 		    return new GameSave();
 	    }
 	    
