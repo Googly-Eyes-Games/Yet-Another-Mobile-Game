@@ -802,6 +802,7 @@ MonoBehaviour:
   cameraTargetStartSpeed: 2
   cameraStartAcceleration: 1
   cameraAcceleration: 0.1
+  maxCameraSpeed: 12
 --- !u!1 &536857129
 GameObject:
   m_ObjectHideFlags: 0
@@ -3765,7 +3766,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2880003817483353600, guid: 09b91807b4a9e9240a93abb49627c319, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 28
+      value: 52.5
       objectReference: {fileID: 0}
     - target: {fileID: 2880003817483353600, guid: 09b91807b4a9e9240a93abb49627c319, type: 3}
       propertyPath: m_LocalPosition.z
