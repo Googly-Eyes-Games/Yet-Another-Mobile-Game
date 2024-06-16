@@ -97,6 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa54c736ba9789340abeaef967ab2daa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scrapCollectedEvent: {fileID: 11400000, guid: 8ca7d45b1dc4d7eb59e6a46eb6d4f780, type: 2}
 --- !u!1 &8209616908944191785
 GameObject:
   m_ObjectHideFlags: 0
