@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using NaughtyAttributes;
-using UnityEditor;
 using UnityEngine;
 using Task = System.Threading.Tasks.Task;
 

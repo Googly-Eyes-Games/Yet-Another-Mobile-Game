@@ -1,5 +1,4 @@
 using System;
-using UnityEditor;
 using UnityEngine;
 
 [RequireComponent(typeof(SFGPlayerInput))]
