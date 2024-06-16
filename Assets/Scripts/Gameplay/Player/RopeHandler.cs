@@ -20,6 +20,7 @@ public class RopeHandler : MonoBehaviour
     [SerializeField]
     private SOEvent onSaveDataChanged;
     
+    [HideInInspector]
     public int maxMarksCount;
 
     public List<Mark> Marks { get; private set; } = new List<Mark>();

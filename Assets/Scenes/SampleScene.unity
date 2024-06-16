@@ -4050,10 +4050,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1448282503953788603, guid: b6c710d3b4d7fd070b86310ad8f2b306, type: 3}
-      propertyPath: inputLockSoEvent
-      value: 
-      objectReference: {fileID: 11400000, guid: 7bbcf3f12f13f6e499a1b55f0d617150, type: 2}
-    - target: {fileID: 1448282503953788603, guid: b6c710d3b4d7fd070b86310ad8f2b306, type: 3}
       propertyPath: <bottomScreenCollider>k__BackingField
       value: 
       objectReference: {fileID: 1256162656}

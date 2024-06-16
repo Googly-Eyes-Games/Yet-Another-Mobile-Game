@@ -16,7 +16,6 @@ GameObject:
   - component: {fileID: 3285660890529276970}
   - component: {fileID: 670854593434297399}
   - component: {fileID: 9031058740065241135}
-  - component: {fileID: 5402423778320912564}
   m_Layer: 0
   m_Name: P_Player
   m_TagString: Player
@@ -95,6 +94,8 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: 2299295580859018848, guid: 3643c46d94ac1517d8187cbc044d87f0, type: 3}
+  inputLockSoEvent: {fileID: 11400000, guid: 7bbcf3f12f13f6e499a1b55f0d617150, type: 2}
+  <bottomScreenCollider>k__BackingField: {fileID: 0}
 --- !u!114 &1944753720685825739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,7 +110,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseShipSpeed: 7
   distanceToCalculateRotation: 0.5
-  enableInputEvent: {fileID: 0}
   onSaveDataChanged: {fileID: 11400000, guid: 58c6647f86093d0008e1c128a5708046, type: 2}
 --- !u!114 &7250823911136476931
 MonoBehaviour:
@@ -125,8 +125,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lineRenderer: {fileID: 7871698988865549445}
   distanceBetweenMarks: 1.5
-  <baseMaxMarksCount>k__BackingField: 25
-  onSaveDataChanged: {fileID: 0}
+  <baseMaxMarksCount>k__BackingField: 20
+  onSaveDataChanged: {fileID: 11400000, guid: 58c6647f86093d0008e1c128a5708046, type: 2}
   maxMarksCount: 25
 --- !u!114 &3285660890529276970
 MonoBehaviour:
@@ -203,22 +203,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0.00868857, y: -0.0000000010357581}
   m_Size: {x: 2.6159544, y: 1.000009}
   m_Direction: 1
---- !u!114 &5402423778320912564
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1930646814466186765}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 061938e9753fd6b738b6973f938deb73, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 2463513446214777018}
-  lineRenderer: {fileID: 7871698988865549445}
-  onSaveDataChanged: {fileID: 11400000, guid: 58c6647f86093d0008e1c128a5708046, type: 2}
-  ropeHandler: {fileID: 0}
 --- !u!1 &2355332299511954561
 GameObject:
   m_ObjectHideFlags: 0
