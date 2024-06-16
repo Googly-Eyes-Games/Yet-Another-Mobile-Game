@@ -17,15 +17,18 @@ public class CameraMovement : MonoBehaviour
     
     [SerializeField]
     private float cameraAcceleration = 0.1f;
+    
+    [SerializeField]
+    private float maxCameraSpeed = 12.0f;
 
-    private bool GameStarted = false;
+    private bool gameStarted = false;
 
     private float currentCameraSpeed = 0f;
     private float currentAcceleration = 0f;
 
     private void Update()
     {
-        if (GameStarted)
+        if (gameStarted)
         {
             transform.position += Vector3.up * (Time.deltaTime * currentCameraSpeed);
             
@@ -33,6 +36,7 @@ public class CameraMovement : MonoBehaviour
             currentAcceleration = Mathf.Lerp(cameraStartAcceleration, cameraAcceleration, speedNormalized);
             
             currentCameraSpeed += currentAcceleration * Time.deltaTime;
+            currentCameraSpeed = Mathf.Min(maxCameraSpeed, currentCameraSpeed);
         }
     }
 
@@ -50,12 +54,12 @@ public class CameraMovement : MonoBehaviour
 
     public void StartGame()
     {
-        GameStarted = true;
+        gameStarted = true;
     }
     
     private void GameOver()
     {
-        GameStarted = false;
+        gameStarted = false;
     }
 
 }
