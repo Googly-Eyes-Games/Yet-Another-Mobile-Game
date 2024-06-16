@@ -44,7 +44,7 @@ Material:
     - _Warning: 0
     m_Colors:
     - _Color: {r: 0.16078432, g: 0.08235294, b: 0.15686275, a: 0}
-    - _WarningColor: {r: 0.348, g: 0.046969313, b: 0.07045389, a: 0}
+    - _WarningColor: {r: 0.5754717, g: 0.08414916, b: 0.12243393, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &2756938064709779665
 MonoBehaviour:

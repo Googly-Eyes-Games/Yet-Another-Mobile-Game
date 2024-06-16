@@ -42,10 +42,11 @@ Material:
     m_Ints: []
     m_Floats:
     - _DisolveFactor: 0
+    - _DissolveFactor: 0
     - _NoiseScale: 15
     - _Warning: 0
     m_Colors:
-    - _Color: {r: 0, g: 0, b: 0, a: 0}
+    - _Color: {r: 0.16078432, g: 0.08627451, b: 0.15686275, a: 0}
     - _WarningColor: {r: 0.2735849, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &2756938064709779665
