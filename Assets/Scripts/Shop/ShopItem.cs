@@ -14,6 +14,9 @@ public class ShopItem : ScriptableObject
     public Sprite Sprite { get; private set; }
     
     [field: SerializeField]
+    public Material Material { get; private set; }
+    
+    [field: SerializeField]
     public int Price { get; private set; }
     
     [field: SerializeField]

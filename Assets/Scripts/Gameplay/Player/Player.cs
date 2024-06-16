@@ -43,6 +43,9 @@ public class Player : MonoBehaviour
         {
             lineRenderer.startColor = lineItem.Color;
             lineRenderer.endColor = lineItem.Color;
+
+            if (lineItem.Material)
+                lineRenderer.material = lineItem.Material;
         }
 
         if (ropeHandler)

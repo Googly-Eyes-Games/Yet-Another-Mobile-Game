@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Shop;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
@@ -15,8 +17,6 @@ public class ShopMenu : MonoBehaviour
     [SerializeField] private GameObject linesContent;
     [SerializeField] private GameObject upgradesContent;
     
-    [SerializeField] private List<ShopItem> boatItemsSO;
-    [SerializeField] private List<ShopItem> lineItemsSO;
     [SerializeField] private List<ShopUpgradeSO> upgradesSO;
     
     private Dictionary<Button, ShopItem> buttonsDict = new();
@@ -24,14 +24,16 @@ public class ShopMenu : MonoBehaviour
     
     private void Awake()
     {
-        foreach (var boatItemSO in boatItemsSO)
+        List<ShopItem> sortedItems = ShopItemsCollection.Instance.shopItemsDict.Values.ToList();
+        sortedItems = sortedItems.OrderBy(item => item.Price).ToList();
+        
+        foreach (ShopItem shopItem in sortedItems)
         {
-            CreateItem(boatItemSO, boatsContent.transform,  button  => HandleItemClick(button, boatItemSO));
-        }
-
-        foreach (var lineItemSO in lineItemsSO)
-        {
-            CreateItem(lineItemSO, linesContent.transform, button => HandleItemClick(button, lineItemSO));
+            if (shopItem.itemType == ShopItem.ItemType.Boat)
+                CreateItem(shopItem, boatsContent.transform,  button  => HandleItemClick(button, shopItem));
+            else
+                CreateItem(shopItem, linesContent.transform, button => HandleItemClick(button, shopItem));
+            
         }
         
         foreach (var upgradeSO in upgradesSO)
@@ -86,6 +88,7 @@ public class ShopMenu : MonoBehaviour
         itemTemplateComponent.titleText.text = item.Title;
         itemTemplateComponent.image.sprite = item.Sprite;
         itemTemplateComponent.image.color = item.Color;
+        
         itemTemplateComponent.priceText.text = $"Buy: ${item.Price}";
     
         itemTemplateComponent.button.onClick.AddListener(() => onClickAction(itemTemplateComponent.button));
