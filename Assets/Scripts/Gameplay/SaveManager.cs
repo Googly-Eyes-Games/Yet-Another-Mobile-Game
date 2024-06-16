@@ -62,23 +62,23 @@ public class SaveManager : ScriptableObject
         
 	    Task.Run(() =>
 	    {
-		    try
-		    {
 			    lock (saveGameCS)
 			    {
-				    BinaryFormatter binaryFormatter = new BinaryFormatter();
-				    MemoryStream memoryStream = new MemoryStream();
-				    binaryFormatter.Serialize(memoryStream, Save);
-				    byte[] data = memoryStream.ToArray();
+					try
+					{
+						BinaryFormatter binaryFormatter = new BinaryFormatter();
+						MemoryStream memoryStream = new MemoryStream();
+						binaryFormatter.Serialize(memoryStream, Save);
+						byte[] data = memoryStream.ToArray();
 
-				    File.WriteAllBytes(savePath, data);
-				    Debug.Log($"Game saved successfully to {savePath}");
+						File.WriteAllBytes(savePath, data);
+						Debug.Log($"Game saved successfully to {savePath}");
+					}
+					catch (Exception ex)
+					{
+						Debug.LogError($"Failed to save game: {ex.Message}");
+					}
 			    }
-		    }
-		    catch (Exception ex)
-		    {
-			    Debug.LogError($"Failed to save game: {ex.Message}");
-		    }
 	    });
 
 	    onSaveDataChanged?.Invoke();
