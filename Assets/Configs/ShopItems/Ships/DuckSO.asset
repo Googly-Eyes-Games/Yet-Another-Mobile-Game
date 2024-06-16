@@ -10,9 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eee14ab965521e0449816c4a7c42c884, type: 3}
-  m_Name: ShipSO
+  m_Name: DuckSO
   m_EditorClassIdentifier: 
-  <Title>k__BackingField: Ship
-  <Sprite>k__BackingField: {fileID: 21300000, guid: d7e070af2e1ed70479859ace9cb914fe, type: 3}
-  <Price>k__BackingField: 20
+  <Title>k__BackingField: Duck
+  <Sprite>k__BackingField: {fileID: 21300000, guid: c3a0041f3df66d845b6edf0079478f40, type: 3}
+  <Price>k__BackingField: 2
   <Color>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+  <Purchased>k__BackingField: 0
+  itemType: 0

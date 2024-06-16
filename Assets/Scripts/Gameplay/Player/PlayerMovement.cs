@@ -1,4 +1,5 @@
 using System;
+using UnityEditor;
 using UnityEngine;
 
 [RequireComponent(typeof(SFGPlayerInput))]
@@ -23,6 +24,22 @@ public class PlayerMovement : MonoBehaviour
         targetPosition = mainCamera.WorldToScreenPoint(transform.position);
         
         lastPosition = transform.position + Vector3.down;
+        
+        GameSave newSave = SaveManager.Instance.Save;
+
+        shipSpeed += newSave.ShipSpeedLevel;
+        
+        if (newSave.SpriteName == null)
+        {
+            Sprite boatSprite = GetComponentInChildren<SpriteRenderer>().sprite;
+            newSave.SpriteName = boatSprite.name;
+        }
+        else
+        {
+            GetComponentInChildren<SpriteRenderer>().sprite = Resources.Load<Sprite>("PlayersRes/" + newSave.SpriteName);
+        }
+        
+        SaveManager.Instance.SaveGameAsync(newSave);
     }
 
     private void Update()
@@ -57,5 +74,10 @@ public class PlayerMovement : MonoBehaviour
             Vector3 boatDirection = deltaPosition.normalized;
             transform.rotation = MathUtils.LookAt2D(boatDirection);
         }
+    }
+    
+    public void UpgradeShipSpeed(float value)
+    {
+        shipSpeed += value;
     }
 }

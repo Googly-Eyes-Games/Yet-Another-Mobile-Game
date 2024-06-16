@@ -12,6 +12,10 @@ public class PersistentUI : MonoBehaviour
     [SerializeField]
     private SOEvent saveDataChangedEvent;
 
+    [Foldout("Components")]
+    [SerializeField]
+    private ShopMenu shopMenuComponent;
+    
     private void OnEnable()
     {
         saveDataChangedEvent.OnRaise += HandleSaveDataChanged;
