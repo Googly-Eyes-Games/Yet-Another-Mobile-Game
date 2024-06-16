@@ -44,12 +44,10 @@ public class ShopMenu : MonoBehaviour
     {
         GameSave newSave = SaveManager.Instance.Save;
 
-        if (!newSave.BoughtItems.Contains(shopItem.ID))
+        if (!newSave.WasItemBought(shopItem))
         {
             newSave.MoneyAmount -= shopItem.Price;
-            shopItem.Purchased = true;
-
-            newSave.BoughtItems.Add(shopItem.ID);
+            newSave.BuyItem(shopItem);
         }
         
         button.GetComponentInChildren<TextMeshProUGUI>().text = "In use";
@@ -63,7 +61,7 @@ public class ShopMenu : MonoBehaviour
             if (buttonPair.Value.itemType != shopItem.itemType)
                 continue;
 
-            if (!buttonPair.Value.Purchased) 
+            if (!newSave.WasItemBought(buttonPair.Value)) 
                 continue;
             
             buttonPair.Key.GetComponentInChildren<TextMeshProUGUI>().text = "Use";
@@ -88,13 +86,15 @@ public class ShopMenu : MonoBehaviour
         itemTemplateComponent.titleText.text = item.Title;
         itemTemplateComponent.image.sprite = item.Sprite;
         itemTemplateComponent.image.color = item.Color;
-        itemTemplateComponent.priceText.text = $"Buy: {item.Price} scrap";
+        itemTemplateComponent.priceText.text = $"Buy: ${item.Price}";
     
         itemTemplateComponent.button.onClick.AddListener(() => onClickAction(itemTemplateComponent.button));
         
         buttonsDict.Add(itemTemplateComponent.button, item);
+
+        GameSave save = SaveManager.Instance.Save;
         
-        if (!item.Purchased) 
+        if (!save.WasItemBought(item) && item.Price != 0) 
             return;
 
         bool isInUse = item.ID == SaveManager.Instance.Save.BoatItemInUse
@@ -169,23 +169,5 @@ public class ShopMenu : MonoBehaviour
                 upgradePair.Key.interactable = true;
             }
         }
-    }
-
-    public void ResetSO()
-    {
-        foreach (var itemSo in buttonsDict.Values)
-        {
-            itemSo.Purchased = itemSo.Price == 0;
-        }
-        
-        foreach (var upgradeSo in upgradesDict.Values)
-        {
-            upgradeSo.currentLevel = 0;
-        }
-    }
-    
-    private void OnDisable()
-    {
-
     }
 }

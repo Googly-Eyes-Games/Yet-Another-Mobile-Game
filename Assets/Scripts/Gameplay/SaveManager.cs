@@ -23,7 +23,7 @@ public class SaveManager : ScriptableObject
         {
             if (instance == null)
             {
-                instance = Resources.Load<SaveManager>("SO_MoneyManager");
+                instance = Resources.Load<SaveManager>("SO_SaveManager");
                 instance.LoadGame();
             }
 
@@ -158,4 +158,14 @@ public struct GameSave
 	public string LineItem { get; set; }
 
 	public HashSet<string> BoughtItems { get; set; }
+
+	public bool WasItemBought(ShopItem item)
+	{
+		return BoughtItems.Contains(item.ID);
+	}
+	
+	public void BuyItem(ShopItem item)
+	{
+		BoughtItems.Add(item.ID);
+	}
 }
