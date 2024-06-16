@@ -1,4 +1,5 @@
 using System;
+using UnityEditor;
 using UnityEngine;
 
 [RequireComponent(typeof(SFGPlayerInput))]
@@ -28,14 +29,14 @@ public class PlayerMovement : MonoBehaviour
 
         shipSpeed += newSave.ShipSpeedLevel;
         
-        if (newSave.Sprite == null)
+        if (newSave.SpriteName == null)
         {
             Sprite boatSprite = GetComponentInChildren<SpriteRenderer>().sprite;
-            newSave.Sprite = boatSprite;
+            newSave.SpriteName = boatSprite.name;
         }
         else
         {
-            GetComponentInChildren<SpriteRenderer>().sprite = newSave.Sprite;
+            GetComponentInChildren<SpriteRenderer>().sprite = Resources.Load<Sprite>("PlayersRes/" + newSave.SpriteName);
         }
         
         SaveManager.Instance.SaveGameAsync(newSave);

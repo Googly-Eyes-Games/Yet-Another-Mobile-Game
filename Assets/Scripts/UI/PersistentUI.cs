@@ -31,9 +31,4 @@ public class PersistentUI : MonoBehaviour
     {
         moneyText.text = $"{SaveManager.Instance.Save.MoneyAmount}";
     }
-    
-    private void OnApplicationQuit()
-    {
-        shopMenuComponent.GetComponent<ShopMenu>().ResetSO();
-    }
 }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20050b57a66362540915cb03da35327c, type: 3}
   m_Name: SO_BaseSettings
   m_EditorClassIdentifier: 
-  <ShipSpeed>k__BackingField: 0
-  <LineLength>k__BackingField: 0
-  <Sprite>k__BackingField: {fileID: 21300000, guid: 018e56cbb94f60ecfb734bc445583f09, type: 3}
+  <ShipSpeedLevel>k__BackingField: 0
+  <LineLengthLevel>k__BackingField: 0
+  <Sprite>k__BackingField: {fileID: 21300000, guid: c8df92546751272469b9415eaa15c59e, type: 3}
   <LineColor>k__BackingField: {r: 0.9843137, g: 0.52156866, b: 0, a: 1}

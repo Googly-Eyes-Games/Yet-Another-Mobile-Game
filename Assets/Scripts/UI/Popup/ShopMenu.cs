@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -54,7 +55,7 @@ public class ShopMenu : MonoBehaviour
         if (shopItemSo.itemType == ShopItemSO.ItemType.Boat)
         {
             Player.GetComponentInChildren<SpriteRenderer>().sprite = shopItemSo.Sprite;
-            newSave.Sprite = shopItemSo.Sprite;
+            newSave.SpriteName = shopItemSo.Sprite.name; 
         }
         else
         {
@@ -94,7 +95,7 @@ public class ShopMenu : MonoBehaviour
         itemTemplateComponent.titleText.text = itemSO.Title;
         itemTemplateComponent.image.sprite = itemSO.Sprite;
         itemTemplateComponent.image.color = itemSO.Color;
-        itemTemplateComponent.priceText.text = $"{itemSO.Price} $";
+        itemTemplateComponent.priceText.text = $"Buy: {itemSO.Price} scrap";
     
         itemTemplateComponent.button.onClick.AddListener(() => onClickAction(itemTemplateComponent.button));
         
@@ -107,7 +108,7 @@ public class ShopMenu : MonoBehaviour
 
         if (itemSO.itemType == ShopItemSO.ItemType.Boat)
         {
-            isInUse = itemSO.Sprite == SaveManager.Instance.Save.Sprite;
+            isInUse = itemSO.Sprite.name == SaveManager.Instance.Save.SpriteName;
         }
         else
         {
@@ -131,7 +132,7 @@ public class ShopMenu : MonoBehaviour
 
         itemTemplateComponent.titleText.text = upgradeSO.Title;
         itemTemplateComponent.image.sprite = upgradeSO.Sprite;
-        itemTemplateComponent.priceText.text = upgradeSO.currentLevel == upgradeSO.maxLevel ? "Max" : $"{upgradeSO.GetCurrentPrice()} $";
+        itemTemplateComponent.priceText.text = upgradeSO.currentLevel == upgradeSO.maxLevel ? "Max" : $"Buy: {upgradeSO.GetCurrentPrice()} scrap";
         itemTemplateComponent.upgradeText.text = upgradeSO.currentLevel.ToString();
 
         itemTemplateComponent.button.onClick.AddListener(() => onClickAction(itemTemplateComponent));
@@ -165,8 +166,9 @@ public class ShopMenu : MonoBehaviour
             iconTemplate.button.GetComponentInChildren<TextMeshProUGUI>().text = "Max";
             return;
         }
+
+        iconTemplate.button.GetComponentInChildren<TextMeshProUGUI>().text = $"Buy: {upgradeSO.GetCurrentPrice()} scrap";
         
-        iconTemplate.button.GetComponentInChildren<TextMeshProUGUI>().text = $"{upgradeSO.GetCurrentPrice()} $";
         
     }
     

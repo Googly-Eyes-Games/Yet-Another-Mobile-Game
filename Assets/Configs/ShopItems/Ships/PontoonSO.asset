@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: PontoonSO
   m_EditorClassIdentifier: 
   <Title>k__BackingField: Pontoon
-  <Sprite>k__BackingField: {fileID: 21300000, guid: 018e56cbb94f60ecfb734bc445583f09, type: 3}
+  <Sprite>k__BackingField: {fileID: 21300000, guid: c8df92546751272469b9415eaa15c59e, type: 3}
   <Price>k__BackingField: 0
   <Color>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
   <Purchased>k__BackingField: 1
-  <CurrentInUse>k__BackingField: 1
   itemType: 0
