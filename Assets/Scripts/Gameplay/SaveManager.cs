@@ -130,8 +130,9 @@ public class SaveManager : ScriptableObject
 	    return initialSave;
     }
 
+    // Only for cheat purposes
     [Button]
-    private void AddMoney()
+    public void AddMoney()
     {
 	    GameSave newSave = save;
 	    newSave.MoneyAmount += 10;
