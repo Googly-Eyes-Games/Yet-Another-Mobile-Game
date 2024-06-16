@@ -16,18 +16,30 @@ public class SFGPlayerInput : MonoBehaviour
     [SerializeField]
     private InputActionProperty pressInputAction;
 
+    [SerializeField]
+    private InputLockSOEvent inputLockSoEvent;
+
+    [field: SerializeField]
+    public Collider bottomScreenCollider { get; private set; }
+
+    public InputLock CurrentInputLock { get; private set; } = InputLock.None;
+
     private void OnEnable()
     {
         pressInputAction.action.started += PressStarted;
         pressInputAction.action.canceled += PressCancelled;
+
+        inputLockSoEvent.OnRaise += HandleInputLock;
     }
 
     private void OnDisable()
     {
         pressInputAction.action.started -= PressStarted;
         pressInputAction.action.canceled -= PressCancelled;
+        
+        inputLockSoEvent.OnRaise -= HandleInputLock;
     }
-    
+
     private void PressStarted(InputAction.CallbackContext callbackContext)
     {
         IsPressed = true;
@@ -38,6 +50,11 @@ public class SFGPlayerInput : MonoBehaviour
     {
         IsPressed = false;
         OnUnPress?.Invoke();
+    }
+
+    private void HandleInputLock(InputLock inputLock)
+    {
+        CurrentInputLock = inputLock;
     }
 
 }

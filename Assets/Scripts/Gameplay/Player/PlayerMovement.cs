@@ -12,9 +12,6 @@ public class PlayerMovement : MonoBehaviour
     private float distanceToCalculateRotation = 0.1f;
 
     [SerializeField]
-    private BoolSOEvent enableInputEvent;
-
-    [SerializeField]
     private SOEvent onSaveDataChanged;
     
     private SFGPlayerInput playerInput;
@@ -45,16 +42,26 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         UpdateTargetPosition();
+        
         UpdatePosition();
         UpdateRotation();
     }
 
     private void UpdateTargetPosition()
     {
-        if (playerInput.IsPressed)
-        {
-            targetPosition = playerInput.TouchPosition;
-        }
+        if (playerInput.CurrentInputLock == InputLock.Locked)
+            return;
+
+        if (!playerInput.IsPressed)
+            return;
+
+        Vector3 touchInWorldSpace = Camera.main.ScreenToWorldPoint(playerInput.TouchPosition);
+        
+        if (playerInput.CurrentInputLock == InputLock.LockOnlyBottom
+            && playerInput.bottomScreenCollider.bounds.Contains(touchInWorldSpace.ToVector2()))
+            return;
+            
+        targetPosition = playerInput.TouchPosition;
     }
 
     private void UpdatePosition()
