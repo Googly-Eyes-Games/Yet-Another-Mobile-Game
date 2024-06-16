@@ -45,6 +45,9 @@ public class Player : MonoBehaviour
             lineRenderer.endColor = lineItem.Color;
         }
 
-        ropeHandler.maxMarksCount = ropeHandler.baseMaxMarksCount + SaveManager.Instance.Save.RopeLengthLevel;
+        if (ropeHandler)
+        {
+            ropeHandler.maxMarksCount = ropeHandler.baseMaxMarksCount + SaveManager.Instance.Save.RopeLengthLevel;
+        }
     }
 }
