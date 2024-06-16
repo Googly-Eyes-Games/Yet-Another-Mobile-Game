@@ -92,6 +92,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onGameOver: {fileID: 11400000, guid: 67566996c58f7ec4f8edb12d8570baed, type: 2}
+  trigger: {fileID: 1877483481255189584}
 --- !u!50 &1180938442545827699
 Rigidbody2D:
   serializedVersion: 4

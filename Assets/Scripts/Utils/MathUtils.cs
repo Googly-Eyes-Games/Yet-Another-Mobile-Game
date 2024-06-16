@@ -120,4 +120,20 @@ public static class MathUtils
 
         return result.ToArray();
     }
+    
+    public static Vector2 ClosestPointOnLineSegment2D(Vector2 start, Vector2 end, Vector2 point)
+    {
+        // Shift the problem to the origin to simplify the math.    
+        Vector2 wander = point - start;
+        Vector2 span = end - start;
+
+        // Compute how far along the line is the closest approach to our point.
+        float t = Vector2.Dot(wander, span) / span.sqrMagnitude;
+
+        // Restrict this point to within the line segment from start to end.
+        t = Mathf.Clamp01(t);
+
+        // Return this point.
+        return start + t * span;
+    }
 }
