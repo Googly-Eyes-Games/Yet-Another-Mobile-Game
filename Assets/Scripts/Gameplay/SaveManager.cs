@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using UnityEditor;
 using UnityEngine;
 using Task = System.Threading.Tasks.Task;
 
@@ -8,7 +9,7 @@ public class SaveManager : ScriptableObject
 {
 	[SerializeField]
 	private SOEvent onSaveDataChanged;
-
+	
 	private static string savePath;
 	
     private static SaveManager instance;
@@ -51,26 +52,36 @@ public class SaveManager : ScriptableObject
     
     public void ResetSave()
     {
-	    SaveGameAsync(new GameSave());
+	    GameSave initialGameSave = InitializeGameSettings();
+	    SaveGameAsync(initialGameSave);
     }
     
     public void SaveGameAsync(GameSave newSave)
     {
 	    Save = newSave;
-	    
+        
 	    Task.Run(() =>
 	    {
-		    lock (saveGameCS)
+		    try
 		    {
-			    BinaryFormatter binaryFormatter = new BinaryFormatter();
-			    MemoryStream memoryStream = new MemoryStream();
-			    binaryFormatter.Serialize(memoryStream, Save);
+			    lock (saveGameCS)
+			    {
+				    BinaryFormatter binaryFormatter = new BinaryFormatter();
+				    MemoryStream memoryStream = new MemoryStream();
+				    binaryFormatter.Serialize(memoryStream, Save);
+				    byte[] data = memoryStream.ToArray();
 
-			    File.WriteAllBytesAsync(savePath, memoryStream.ToArray());
+				    File.WriteAllBytes(savePath, data);
+				    Debug.Log($"Game saved successfully to {savePath}");
+			    }
+		    }
+		    catch (Exception ex)
+		    {
+			    Debug.LogError($"Failed to save game: {ex.Message}");
 		    }
 	    });
-	    
-		onSaveDataChanged?.Invoke();
+
+	    onSaveDataChanged?.Invoke();
     }
 
     private void OnEnable()
@@ -87,7 +98,9 @@ public class SaveManager : ScriptableObject
 	    {
 			if (!File.Exists(savePath))
 			{
-				SaveGameAsync(new GameSave());
+				GameSave initialGameSave = InitializeGameSettings();
+				
+				SaveGameAsync(initialGameSave);
 				return;
 			}
 			
@@ -101,11 +114,57 @@ public class SaveManager : ScriptableObject
 			Save = (GameSave) binaryFormatter.Deserialize(memoryStream);
 	    }
     }
+    
+    private GameSave InitializeGameSettings()
+    {
+	    BaseSettingSO baseSettingSo = Resources.Load<BaseSettingSO>("SO_BaseSettings");
+	    
+	    if (baseSettingSo == null)
+	    {
+		    Debug.LogError("Failed to load SO_BaseSettings!");
+		    return new GameSave();
+	    }
+	    
+	    GameSave initialSave = new GameSave
+	    {
+		    ShipSpeedLevel = baseSettingSo.ShipSpeedLevel,
+		    LineLengthLevel = baseSettingSo.LineLengthLevel,
+		    SpriteName = baseSettingSo.Sprite.name,
+		    LineColor = baseSettingSo.LineColor
+	    };
+	    
+	    return initialSave;
+    }
 
 }
 
 [Serializable]
 public struct GameSave
 {
-    public int MoneyAmount { get; set; }
+	public int MoneyAmount { get; set; }
+	public float ShipSpeedLevel { get; set; }
+	public float LineLengthLevel { get; set; }
+	
+	public string SpriteName { get; set; }
+	
+	public SerializableColor LineColor { get; set; }
+}
+
+
+[Serializable]
+public class SerializableColor{
+	
+	public	float[]	colorStore = new float[4]{1F,1F,1F,1F};
+	public	Color	Color {
+		get{ return new Color( colorStore[0], colorStore[1], colorStore[2], colorStore[3] );}
+		set{ colorStore = new float[4]{ value.r, value.g, value.b, value.a  };				}
+	}
+	
+	public static implicit operator Color( SerializableColor instance ){
+		return instance.Color;
+	}
+	
+	public static implicit operator SerializableColor( Color color ){
+		return new SerializableColor{ Color = color};
+	}
 }

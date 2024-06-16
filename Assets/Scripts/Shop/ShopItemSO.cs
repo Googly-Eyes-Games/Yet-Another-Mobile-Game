@@ -17,6 +17,15 @@ public class ShopItemSO : ScriptableObject
     public Color Color { get; private set; }
     
     [field: SerializeField]
-    public bool Purchased { get;  private set; }
+    public bool Purchased { get;  set; }
+    
+    public enum ItemType
+    {
+        Boat,
+        Line
+    }
+
+    [field: SerializeField] 
+    public ItemType itemType;
     
 }
