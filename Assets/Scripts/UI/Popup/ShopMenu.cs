@@ -8,7 +8,6 @@ using UnityEngine.UI;
 
 public class ShopMenu : MonoBehaviour
 {
-    [SerializeField] private GameObject Player;
     [SerializeField] private GameObject itemTemplate;
     [SerializeField] private GameObject upgradeTemplate;
     
@@ -16,11 +15,11 @@ public class ShopMenu : MonoBehaviour
     [SerializeField] private GameObject linesContent;
     [SerializeField] private GameObject upgradesContent;
     
-    [SerializeField] private List<ShopItemSO> boatItemsSO;
-    [SerializeField] private List<ShopItemSO> lineItemsSO;
+    [SerializeField] private List<ShopItem> boatItemsSO;
+    [SerializeField] private List<ShopItem> lineItemsSO;
     [SerializeField] private List<ShopUpgradeSO> upgradesSO;
     
-    private Dictionary<Button, ShopItemSO> buttonsDict = new();
+    private Dictionary<Button, ShopItem> buttonsDict = new();
     private Dictionary<Button, ShopUpgradeSO> upgradesDict = new();
     
     private void Awake()
@@ -41,31 +40,18 @@ public class ShopMenu : MonoBehaviour
         }
     }
 
-    private void HandleItemClick(Button button, ShopItemSO shopItemSo)
+    private void HandleItemClick(Button button, ShopItem shopItem)
     {
         GameSave newSave = SaveManager.Instance.Save;
 
-        if (!shopItemSo.Purchased)
+        if (!newSave.BoughtItems.Contains(shopItem.ID))
         {
-            newSave.MoneyAmount -= shopItemSo.Price;
-            SaveManager.Instance.SaveGameAsync(newSave);
-            shopItemSo.Purchased = true;
+            newSave.MoneyAmount -= shopItem.Price;
+            shopItem.Purchased = true;
+
+            newSave.BoughtItems.Add(shopItem.ID);
         }
         
-        if (shopItemSo.itemType == ShopItemSO.ItemType.Boat)
-        {
-            Player.GetComponentInChildren<SpriteRenderer>().sprite = shopItemSo.Sprite;
-            newSave.SpriteName = shopItemSo.Sprite.name; 
-        }
-        else
-        {
-            var lineRenderer = Player.GetComponentInChildren<LineRenderer>();
-            lineRenderer.startColor = shopItemSo.Color;
-            lineRenderer.endColor = shopItemSo.Color;
-            newSave.LineColor = shopItemSo.Color;
-        }
-            
-        SaveManager.Instance.SaveGameAsync(newSave);
         button.GetComponentInChildren<TextMeshProUGUI>().text = "In use";
         button.interactable = false;
             
@@ -74,7 +60,7 @@ public class ShopMenu : MonoBehaviour
             if (buttonPair.Key == button)
                 continue;
 
-            if (buttonPair.Value.itemType != shopItemSo.itemType)
+            if (buttonPair.Value.itemType != shopItem.itemType)
                 continue;
 
             if (!buttonPair.Value.Purchased) 
@@ -83,37 +69,36 @@ public class ShopMenu : MonoBehaviour
             buttonPair.Key.GetComponentInChildren<TextMeshProUGUI>().text = "Use";
             buttonPair.Key.interactable = true;
         }
+
+        if (shopItem.itemType == ShopItem.ItemType.Boat)
+            newSave.BoatItemInUse = shopItem.ID;
+        else if (shopItem.itemType == ShopItem.ItemType.Line)
+            newSave.LineItem = shopItem.ID;
+        
+        SaveManager.Instance.SaveGameAsync(newSave);
     }
     
     
-    private void CreateItem(ShopItemSO itemSO, Transform parentTransform, UnityEngine.Events.UnityAction<Button> onClickAction)
+    private void CreateItem(ShopItem item, Transform parentTransform, UnityEngine.Events.UnityAction<Button> onClickAction)
     {
         GameObject newItem = Instantiate(itemTemplate, parentTransform, false);
     
         ItemTemplate itemTemplateComponent = newItem.GetComponent<ItemTemplate>();
         
-        itemTemplateComponent.titleText.text = itemSO.Title;
-        itemTemplateComponent.image.sprite = itemSO.Sprite;
-        itemTemplateComponent.image.color = itemSO.Color;
-        itemTemplateComponent.priceText.text = $"Buy: {itemSO.Price} scrap";
+        itemTemplateComponent.titleText.text = item.Title;
+        itemTemplateComponent.image.sprite = item.Sprite;
+        itemTemplateComponent.image.color = item.Color;
+        itemTemplateComponent.priceText.text = $"Buy: {item.Price} scrap";
     
         itemTemplateComponent.button.onClick.AddListener(() => onClickAction(itemTemplateComponent.button));
         
-        buttonsDict.Add(itemTemplateComponent.button, itemSO);
+        buttonsDict.Add(itemTemplateComponent.button, item);
         
-        if (!itemSO.Purchased) 
+        if (!item.Purchased) 
             return;
 
-        bool isInUse;
-
-        if (itemSO.itemType == ShopItemSO.ItemType.Boat)
-        {
-            isInUse = itemSO.Sprite.name == SaveManager.Instance.Save.SpriteName;
-        }
-        else
-        {
-            isInUse = itemSO.Color == SaveManager.Instance.Save.LineColor;
-        }
+        bool isInUse = item.ID == SaveManager.Instance.Save.BoatItemInUse
+                       || item.ID == SaveManager.Instance.Save.LineItem;
 
         SetButtonState(itemTemplateComponent.button, isInUse);
     }
@@ -146,16 +131,6 @@ public class ShopMenu : MonoBehaviour
         newSave.MoneyAmount -= upgradeSO.GetCurrentPrice();
         upgradeSO.currentLevel += upgradeSO.UpgradeIncrement;
         
-        if (upgradeSO.upgradeType == ShopUpgradeSO.UpgradeType.LineLength)
-        {
-            newSave.LineLengthLevel = upgradeSO.currentLevel;
-            Player.GetComponent<RopeHandler>().UpgradeMarksCount(upgradeSO.UpgradeIncrement);
-        }
-        else
-        {
-            newSave.ShipSpeedLevel = upgradeSO.currentLevel;
-            Player.GetComponent<PlayerMovement>().UpgradeShipSpeed(upgradeSO.UpgradeIncrement);
-        }
         SaveManager.Instance.SaveGameAsync(newSave);
         
         iconTemplate.upgradeText.text = upgradeSO.currentLevel.ToString();
@@ -168,8 +143,6 @@ public class ShopMenu : MonoBehaviour
         }
 
         iconTemplate.button.GetComponentInChildren<TextMeshProUGUI>().text = $"Buy: {upgradeSO.GetCurrentPrice()} scrap";
-        
-        
     }
     
     private void OnEnable() 
@@ -178,7 +151,7 @@ public class ShopMenu : MonoBehaviour
         
         foreach (var buttonPair in buttonsDict)
         {
-            if (!buttonPair.Value.Purchased)
+            if (!newSave.BoughtItems.Contains(buttonPair.Value.ID))
             {
                 buttonPair.Key.interactable = buttonsDict[buttonPair.Key].Price <= newSave.MoneyAmount;
             }

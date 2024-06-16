@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Shop;
 using UnityEngine;
 
 public class RopeHandler : MonoBehaviour
@@ -13,28 +14,19 @@ public class RopeHandler : MonoBehaviour
     [SerializeField]
     private float distanceBetweenMarks = 1f;
     
+    [field: SerializeField]
+    public int baseMaxMarksCount {get; private set; } = 25;
+
     [SerializeField]
-    private float maxMarksCount = 10f;
+    private SOEvent onSaveDataChanged;
+    
+    public int maxMarksCount;
 
     public List<Mark> Marks { get; private set; } = new List<Mark>();
     
     private void Awake()
     {
-        GameSave newSave = SaveManager.Instance.Save;
-
-        maxMarksCount += newSave.LineLengthLevel;
-        
-        if (newSave.LineColor == new Color(0, 0, 0, 0))
-        {
-            newSave.LineColor = lineRenderer.startColor;
-            SaveManager.Instance.SaveGameAsync(newSave);
-        }
-        else
-        {
-            lineRenderer.startColor = newSave.LineColor;
-            lineRenderer.endColor = newSave.LineColor;
-        }
-        
+        maxMarksCount = baseMaxMarksCount;
         PlaceMark();
     }
 
@@ -108,11 +100,6 @@ public class RopeHandler : MonoBehaviour
         Vector3[] marksPositions = Marks.Select(x => new Vector3(x.Position.x, x.Position.y, depth)).ToArray();
         lineRenderer.positionCount = marksPositions.Length;
         lineRenderer.SetPositions(marksPositions);
-    }
-    
-    public void UpgradeMarksCount(float value)
-    {
-        maxMarksCount += value;
     }
 }
 

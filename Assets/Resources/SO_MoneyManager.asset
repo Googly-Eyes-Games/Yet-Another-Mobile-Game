@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b8e445cacd34a34bf7f2c150e08c7c5, type: 3}
   m_Name: SO_MoneyManager
   m_EditorClassIdentifier: 
-  onSaveDataChanged: {fileID: 11400000, guid: 8ca7d45b1dc4d7eb59e6a46eb6d4f780, type: 2}
+  onSaveDataChanged: {fileID: 11400000, guid: 58c6647f86093d0008e1c128a5708046, type: 2}

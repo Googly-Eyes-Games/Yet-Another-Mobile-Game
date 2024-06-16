@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eee14ab965521e0449816c4a7c42c884, type: 3}
-  m_Name: PontoonSO
+  m_Name: SO_Boat_ShopItem
   m_EditorClassIdentifier: 
-  <Title>k__BackingField: Pontoon
-  <Sprite>k__BackingField: {fileID: 21300000, guid: c8df92546751272469b9415eaa15c59e, type: 3}
-  <Price>k__BackingField: 0
+  <ID>k__BackingField: BoatBoat
+  <Title>k__BackingField: Boat
+  <Sprite>k__BackingField: {fileID: 21300000, guid: 9dcb22d562b822df69aeaa3a2326c337, type: 3}
+  <Price>k__BackingField: 20
   <Color>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
-  <Purchased>k__BackingField: 1
+  <Purchased>k__BackingField: 0
   itemType: 0

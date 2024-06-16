@@ -6,15 +6,23 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField]
-    private float shipSpeed = 10f;
+    private float baseShipSpeed = 10f;
     
     [SerializeField]
     private float distanceToCalculateRotation = 0.1f;
+
+    [SerializeField]
+    private BoolSOEvent enableInputEvent;
+
+    [SerializeField]
+    private SOEvent onSaveDataChanged;
     
     private SFGPlayerInput playerInput;
 
     private Vector3 targetPosition;
     private Vector3 lastPosition;
+
+    private float shipSpeed;
 
     private void Awake()
     {
@@ -24,22 +32,14 @@ public class PlayerMovement : MonoBehaviour
         targetPosition = mainCamera.WorldToScreenPoint(transform.position);
         
         lastPosition = transform.position + Vector3.down;
-        
-        GameSave newSave = SaveManager.Instance.Save;
 
-        shipSpeed += newSave.ShipSpeedLevel;
-        
-        if (newSave.SpriteName == null)
-        {
-            Sprite boatSprite = GetComponentInChildren<SpriteRenderer>().sprite;
-            newSave.SpriteName = boatSprite.name;
-        }
-        else
-        {
-            GetComponentInChildren<SpriteRenderer>().sprite = Resources.Load<Sprite>("PlayersRes/" + newSave.SpriteName);
-        }
-        
-        SaveManager.Instance.SaveGameAsync(newSave);
+        onSaveDataChanged.OnRaise += HandleSaveDataChanged;
+        HandleSaveDataChanged();
+    }
+
+    private void HandleSaveDataChanged()
+    {
+        shipSpeed = baseShipSpeed + SaveManager.Instance.Save.ShipSpeedLevel;
     }
 
     private void Update()
@@ -74,10 +74,5 @@ public class PlayerMovement : MonoBehaviour
             Vector3 boatDirection = deltaPosition.normalized;
             transform.rotation = MathUtils.LookAt2D(boatDirection);
         }
-    }
-    
-    public void UpgradeShipSpeed(float value)
-    {
-        shipSpeed += value;
     }
 }

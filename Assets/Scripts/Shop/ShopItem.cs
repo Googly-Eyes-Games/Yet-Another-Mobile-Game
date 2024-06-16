@@ -2,8 +2,11 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "ShopMenu", menuName = "New Shop Item")]
-public class ShopItemSO : ScriptableObject
+public class ShopItem : ScriptableObject
 {
+    [field: SerializeField]
+    public string ID { get; private set; }
+    
     [field: SerializeField]
     public string Title { get; private set; }
     

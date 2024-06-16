@@ -1,0 +1,50 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using Shop;
+using UnityEngine;
+
+public class Player : MonoBehaviour
+{
+    [SerializeField]
+    private SpriteRenderer spriteRenderer;
+    
+    [SerializeField]
+    private LineRenderer lineRenderer;
+    
+    [SerializeField]
+    private SOEvent onSaveDataChanged;
+
+    [SerializeField]
+    private RopeHandler ropeHandler;
+
+    public void OnEnable()
+    {
+        onSaveDataChanged.OnRaise += HandleSaveDataChanged;
+        HandleSaveDataChanged();
+    }
+
+    public void OnDisable()
+    {
+        onSaveDataChanged.OnRaise -= HandleSaveDataChanged;
+    }
+
+    private void HandleSaveDataChanged()
+    {
+        ShopItem boatItem = ShopItemsCollection.Instance.GetBoatItem();
+        if (boatItem)
+        {
+            spriteRenderer.sprite = boatItem.Sprite;
+            spriteRenderer.color = boatItem.Color;
+        }
+        
+        ShopItem lineItem = ShopItemsCollection.Instance.GetLineItem();
+        if (lineItem)
+        {
+            lineRenderer.startColor = lineItem.Color;
+            lineRenderer.endColor = lineItem.Color;
+        }
+
+        ropeHandler.maxMarksCount = ropeHandler.baseMaxMarksCount + SaveManager.Instance.Save.RopeLengthLevel;
+    }
+}

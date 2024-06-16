@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using NaughtyAttributes;
 using UnityEditor;
 using UnityEngine;
 using Task = System.Threading.Tasks.Task;
@@ -117,25 +119,32 @@ public class SaveManager : ScriptableObject
     
     private GameSave InitializeGameSettings()
     {
-	    BaseSettingSO baseSettingSo = Resources.Load<BaseSettingSO>("SO_BaseSettings");
-	    
-	    if (baseSettingSo == null)
-	    {
-		    Debug.LogError("Failed to load SO_BaseSettings!");
-		    return new GameSave();
-	    }
-	    
 	    GameSave initialSave = new GameSave
 	    {
-		    ShipSpeedLevel = baseSettingSo.ShipSpeedLevel,
-		    LineLengthLevel = baseSettingSo.LineLengthLevel,
-		    SpriteName = baseSettingSo.Sprite.name,
-		    LineColor = baseSettingSo.LineColor
+		    ShipSpeedLevel = 0,
+		    RopeLengthLevel = 0,
+		    BoatItemInUse = "",
+		    LineItem = "",
+		    BoughtItems = new()
 	    };
 	    
 	    return initialSave;
     }
 
+    [Button]
+    private void AddMoney()
+    {
+	    GameSave newSave = save;
+	    newSave.MoneyAmount += 10;
+	    
+	    SaveGameAsync(newSave);
+    }
+    
+    [Button]
+    private void Reset()
+    {
+		ResetSave();
+    }
 }
 
 [Serializable]
@@ -143,28 +152,10 @@ public struct GameSave
 {
 	public int MoneyAmount { get; set; }
 	public float ShipSpeedLevel { get; set; }
-	public float LineLengthLevel { get; set; }
+	public int RopeLengthLevel { get; set; }
 	
-	public string SpriteName { get; set; }
-	
-	public SerializableColor LineColor { get; set; }
-}
+	public string BoatItemInUse { get; set; }
+	public string LineItem { get; set; }
 
-
-[Serializable]
-public class SerializableColor{
-	
-	public	float[]	colorStore = new float[4]{1F,1F,1F,1F};
-	public	Color	Color {
-		get{ return new Color( colorStore[0], colorStore[1], colorStore[2], colorStore[3] );}
-		set{ colorStore = new float[4]{ value.r, value.g, value.b, value.a  };				}
-	}
-	
-	public static implicit operator Color( SerializableColor instance ){
-		return instance.Color;
-	}
-	
-	public static implicit operator SerializableColor( Color color ){
-		return new SerializableColor{ Color = color};
-	}
+	public HashSet<string> BoughtItems { get; set; }
 }

@@ -11,8 +11,16 @@ public class MoneyVFXHandler : MonoBehaviour
     public void Awake()
     {
         moneyParticleSystem = GetComponent<ParticleSystem>();
-        
+    }
+
+    public void OnEnable()
+    {
         scrapCollectedEvent.OnRaise += HandleScrapCollected;
+    }
+
+    public void OnDisable()
+    {
+        scrapCollectedEvent.OnRaise -= HandleScrapCollected;
     }
 
     private void HandleScrapCollected()

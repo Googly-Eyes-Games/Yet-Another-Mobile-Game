@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eee14ab965521e0449816c4a7c42c884, type: 3}
-  m_Name: GreenLine
+  m_Name: SO_Unicorn_ShopItem
   m_EditorClassIdentifier: 
-  <Title>k__BackingField: Green
-  <Sprite>k__BackingField: {fileID: 21300000, guid: 9dcb22d562b822df69aeaa3a2326c337, type: 3}
+  <ID>k__BackingField: UnicornBoat
+  <Title>k__BackingField: Unicorn
+  <Sprite>k__BackingField: {fileID: 21300000, guid: 9549da6b9a020914aab7814543b65da7, type: 3}
   <Price>k__BackingField: 1
-  <Color>k__BackingField: {r: 0, g: 0.94509804, b: 0.08627451, a: 1}
+  <Color>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
   <Purchased>k__BackingField: 0
-  itemType: 1
+  itemType: 0
