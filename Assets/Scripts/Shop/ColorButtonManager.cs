@@ -23,6 +23,26 @@ public class ColorButtonManager : MonoBehaviour
         buttonImage.color = interactable ? interactableButtonColor : nonInteractableButtonColor;
         buttonText.color = interactable ? interactableTextColor : nonInteractableTextColor;
     }
+    
+    public void DisableButtonApperance(GameObject gameObject)
+    {
+        Button button = gameObject.GetComponent<Button>();
+
+        if (button == null)
+            return;
+        
+        ChangeButtonAppearance(button, false);
+    }
+    
+    public void EnableButtonApperance(GameObject gameObject)
+    {
+        Button button = gameObject.GetComponent<Button>();
+
+        if (button == null)
+            return;
+        
+        ChangeButtonAppearance(button, true);
+    }
 }
     
 
