@@ -60,19 +60,15 @@ public class ShopMenu : MonoBehaviour
             if (buttonPair.Key == button)
                 continue;
 
-            if (buttonPair.Value.itemType != shopItem.itemType)
-                continue;
-
             if (!newSave.WasItemBought(buttonPair.Value))
             {
-                if (buttonPair.Value.Price > newSave.MoneyAmount)
-                {
-                    buttonPair.Key.interactable = false;
-                }
-
+                buttonPair.Key.interactable = buttonPair.Value.Price <= newSave.MoneyAmount;
                 continue;
             }
-
+            
+            if (buttonPair.Value.itemType != shopItem.itemType)
+                continue;
+            
             buttonPair.Key.GetComponentInChildren<TextMeshProUGUI>().text = "Use";
             buttonPair.Key.interactable = true;
         }
@@ -183,13 +179,6 @@ public class ShopMenu : MonoBehaviour
 
         SaveManager.Instance.SaveGameAsync(newSave);
 
-        if (currentUpgradeLevel == upgradeSO.maxLevel)
-        {
-            iconTemplate.button.interactable = false;
-            iconTemplate.button.GetComponentInChildren<TextMeshProUGUI>().text = "Max";
-            return;
-        }
-
         foreach (var buttonPair in buttonsDict)
         {
             if (!newSave.BoughtItems.Contains(buttonPair.Value.ID))
@@ -197,7 +186,14 @@ public class ShopMenu : MonoBehaviour
                 buttonPair.Key.interactable = buttonsDict[buttonPair.Key].Price <= newSave.MoneyAmount;
             }
         }
-
+        
+        if (currentUpgradeLevel == upgradeSO.maxLevel)
+        {
+            iconTemplate.button.interactable = false;
+            iconTemplate.button.GetComponentInChildren<TextMeshProUGUI>().text = "Max";
+            return;
+        }
+        
         iconTemplate.button.GetComponentInChildren<TextMeshProUGUI>().text =
             $"Buy: ${upgradeSO.GetCurrentPrice(currentUpgradeLevel)}";
     }
@@ -219,8 +215,8 @@ public class ShopMenu : MonoBehaviour
             }
         }
     }
-    
-    private void OnEnable()
+
+    private void CheckItemsPrice()
     {
         GameSave newSave = SaveManager.Instance.Save;
         
@@ -231,7 +227,11 @@ public class ShopMenu : MonoBehaviour
                 buttonPair.Key.interactable = buttonsDict[buttonPair.Key].Price <= newSave.MoneyAmount;
             }
         }
-        
+    }
+    
+    private void OnEnable()
+    {
+        CheckItemsPrice();
         CheckUpgradesPrice();
     }
 }
