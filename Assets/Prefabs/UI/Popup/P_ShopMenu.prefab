@@ -95,7 +95,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.10196079, g: 0.3137255, b: 0.36862746, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -133,11 +133,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.101960786, g: 0.3137255, b: 0.36862746, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.08018868, g: 0.27122635, b: 0.3207547, a: 1}
-    m_SelectedColor: {r: 0.1254902, g: 0.6156863, b: 0.73333335, a: 1}
-    m_DisabledColor: {r: 0.1254902, g: 0.6156863, b: 0.73333335, a: 0.5019608}
+    m_PressedColor: {r: 0.8, g: 0.8, b: 0.8, a: 1}
+    m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -187,6 +187,42 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1255691281301697103}
+        m_TargetAssemblyTypeName: ColorButtonManager, Assembly-CSharp
+        m_MethodName: EnableButtonApperance
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 7284499838404226628}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1255691281301697103}
+        m_TargetAssemblyTypeName: ColorButtonManager, Assembly-CSharp
+        m_MethodName: EnableButtonApperance
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1904212884109517247}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1255691281301697103}
+        m_TargetAssemblyTypeName: ColorButtonManager, Assembly-CSharp
+        m_MethodName: DisableButtonApperance
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 740482460279227280}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -491,8 +527,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4293909153
+  m_fontColor: {r: 0.6313726, g: 0.85490197, b: 0.9372549, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -736,7 +772,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.10196079, g: 0.3137255, b: 0.36862746, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -774,11 +810,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.101960786, g: 0.3137255, b: 0.36862746, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.08018868, g: 0.27122635, b: 0.3207547, a: 1}
-    m_SelectedColor: {r: 0.1254902, g: 0.6156863, b: 0.73333335, a: 1}
-    m_DisabledColor: {r: 0.1254902, g: 0.6156863, b: 0.73333335, a: 0.5019608}
+    m_PressedColor: {r: 0.8, g: 0.8, b: 0.8, a: 1}
+    m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -831,6 +867,42 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: Lines
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1255691281301697103}
+        m_TargetAssemblyTypeName: ColorButtonManager, Assembly-CSharp
+        m_MethodName: EnableButtonApperance
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 7284499838404226628}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1255691281301697103}
+        m_TargetAssemblyTypeName: ColorButtonManager, Assembly-CSharp
+        m_MethodName: DisableButtonApperance
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1904212884109517247}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1255691281301697103}
+        m_TargetAssemblyTypeName: ColorButtonManager, Assembly-CSharp
+        m_MethodName: EnableButtonApperance
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 740482460279227280}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &2477641929490349657
@@ -1696,7 +1768,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.1254902, g: 0.6156863, b: 0.73333335, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1734,11 +1806,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.101960786, g: 0.3137255, b: 0.36862746, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.08018868, g: 0.27122635, b: 0.3207547, a: 1}
-    m_SelectedColor: {r: 0.1254902, g: 0.6156863, b: 0.73333335, a: 1}
-    m_DisabledColor: {r: 0.1254902, g: 0.6156863, b: 0.73333335, a: 0.5019608}
+    m_PressedColor: {r: 0.8, g: 0.8, b: 0.8, a: 1}
+    m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -1788,6 +1860,42 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1255691281301697103}
+        m_TargetAssemblyTypeName: ColorButtonManager, Assembly-CSharp
+        m_MethodName: DisableButtonApperance
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 7284499838404226628}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1255691281301697103}
+        m_TargetAssemblyTypeName: ColorButtonManager, Assembly-CSharp
+        m_MethodName: EnableButtonApperance
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1904212884109517247}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1255691281301697103}
+        m_TargetAssemblyTypeName: ColorButtonManager, Assembly-CSharp
+        m_MethodName: EnableButtonApperance
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 740482460279227280}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2132,6 +2240,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 530080184457855788, guid: c75db1421a215d24cba4c59c6d949c88, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2975144330378718590}
+    - targetCorrespondingSourceObject: {fileID: 530080184457855788, guid: c75db1421a215d24cba4c59c6d949c88, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1255691281301697103}
   m_SourcePrefab: {fileID: 100100000, guid: c75db1421a215d24cba4c59c6d949c88, type: 3}
 --- !u!1 &2498058682417794050 stripped
 GameObject:
@@ -2150,20 +2261,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccfa9e3b82eb49344a8d10870bea28f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 0}
   itemTemplate: {fileID: 4037640489509342810, guid: bd28e483e76e36145aa896943d7c8c52, type: 3}
   upgradeTemplate: {fileID: 4037640489509342810, guid: d7bd719a2fa1a154fad2d4bf1bb7819e, type: 3}
   boatsContent: {fileID: 1148152055865135873}
   linesContent: {fileID: 3853906260660898835}
   upgradesContent: {fileID: 7501397809416242601}
-  boatItemsSO:
-  - {fileID: 11400000, guid: ff7bd8be076cda44d8d801993d494d21, type: 2}
-  - {fileID: 11400000, guid: 1d31e0469135e194288cf4b63e524ed7, type: 2}
-  lineItemsSO:
-  - {fileID: 11400000, guid: d423e5bb2cb587e4fac4ca4bc0078832, type: 2}
-  - {fileID: 11400000, guid: e50df2630cf5fe5499c06e8cdf160cd1, type: 2}
-  - {fileID: 11400000, guid: 29434df714c7b7a4a96554e2a7b10a3d, type: 2}
   upgradesSO: []
+--- !u!114 &1255691281301697103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2498058682417794050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf0c68053cc863943a6b1b435591f166, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactableButtonColor: {r: 0.10196079, g: 0.3137255, b: 0.3647059, a: 1}
+  nonInteractableButtonColor: {r: 0.1254902, g: 0.6156863, b: 0.73333335, a: 1}
+  interactableTextColor: {r: 1, g: 1, b: 1, a: 1}
+  nonInteractableTextColor: {r: 0.6313726, g: 0.854902, b: 0.93725497, a: 1}
 --- !u!224 &9081730752910116705 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6627346180033513551, guid: c75db1421a215d24cba4c59c6d949c88, type: 3}

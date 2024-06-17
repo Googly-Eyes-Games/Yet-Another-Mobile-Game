@@ -18,6 +18,8 @@ public class ShopMenu : MonoBehaviour
 
     [SerializeField] private List<ShopUpgradeSO> upgradesSO;
 
+    private ColorButtonManager colorManager;
+    
     private Dictionary<Button, ShopItem> buttonsDict = new();
     private Dictionary<Button, ShopUpgradeSO> upgradesDict = new();
 
@@ -26,6 +28,8 @@ public class ShopMenu : MonoBehaviour
         List<ShopItem> sortedItems = ShopItemsCollection.Instance.shopItemsDict.Values.ToList();
         sortedItems = sortedItems.OrderBy(item => item.Price).ToList();
 
+        colorManager = GetComponent<ColorButtonManager>();
+        
         foreach (ShopItem shopItem in sortedItems)
         {
             if (shopItem.itemType == ShopItem.ItemType.Boat)
@@ -54,7 +58,8 @@ public class ShopMenu : MonoBehaviour
 
         button.GetComponentInChildren<TextMeshProUGUI>().text = "In use";
         button.interactable = false;
-
+        colorManager.ChangeButtonAppearance(button, button.interactable);
+        
         foreach (var buttonPair in buttonsDict)
         {
             if (buttonPair.Key == button)
@@ -63,6 +68,7 @@ public class ShopMenu : MonoBehaviour
             if (!newSave.WasItemBought(buttonPair.Value))
             {
                 buttonPair.Key.interactable = buttonPair.Value.Price <= newSave.MoneyAmount;
+                colorManager.ChangeButtonAppearance(buttonPair.Key, buttonPair.Key.interactable);
                 continue;
             }
             
@@ -71,6 +77,7 @@ public class ShopMenu : MonoBehaviour
             
             buttonPair.Key.GetComponentInChildren<TextMeshProUGUI>().text = "Use";
             buttonPair.Key.interactable = true;
+            colorManager.ChangeButtonAppearance(buttonPair.Key, buttonPair.Key.interactable);
         }
 
         CheckUpgradesPrice();
@@ -132,6 +139,7 @@ public class ShopMenu : MonoBehaviour
     private void SetButtonState(Button button, bool isInUse)
     {
         button.interactable = !isInUse;
+        colorManager.ChangeButtonAppearance(button, !isInUse);
         button.GetComponentInChildren<TextMeshProUGUI>().text = isInUse ? "In use" : "Use";
     }
 
@@ -161,7 +169,12 @@ public class ShopMenu : MonoBehaviour
             itemTemplateComponent.button.interactable =
                 upgradeSO.GetCurrentPrice(currentUpgradeLevel) <= newSave.MoneyAmount;
         }
-
+        else
+        {
+            itemTemplateComponent.button.interactable = false;
+        }
+        
+        colorManager.ChangeButtonAppearance(itemTemplateComponent.button, itemTemplateComponent.button.interactable);
         itemTemplateComponent.button.onClick.AddListener(() => onClickAction(itemTemplateComponent));
         upgradesDict.Add(itemTemplateComponent.button, upgradeSO);
     }
@@ -181,15 +194,35 @@ public class ShopMenu : MonoBehaviour
 
         foreach (var buttonPair in buttonsDict)
         {
-            if (!newSave.BoughtItems.Contains(buttonPair.Value.ID))
-            {
-                buttonPair.Key.interactable = buttonsDict[buttonPair.Key].Price <= newSave.MoneyAmount;
-            }
+            if (newSave.BoughtItems.Contains(buttonPair.Value.ID)) 
+                continue;
+            
+            buttonPair.Key.interactable = buttonsDict[buttonPair.Key].Price <= newSave.MoneyAmount;
+            colorManager.ChangeButtonAppearance(buttonPair.Key, buttonPair.Key.interactable);
+        }
+
+        foreach (var upgradePair in upgradesDict)
+        {
+            if (upgradePair.Value == upgradeSO)
+                continue;
+            
+            int upgradeLevel = upgradePair.Value.upgradeType == ShopUpgradeSO.UpgradeType.RopeLength
+                ? newSave.RopeLengthLevel
+                : newSave.ShipSpeedLevel;
+
+            if (upgradePair.Value.maxLevel == upgradeLevel) 
+                continue;
+            
+            int upgradePrice = upgradePair.Value.GetCurrentPrice(upgradeLevel);
+            upgradePair.Key.interactable = upgradePrice <= newSave.MoneyAmount;
+            colorManager.ChangeButtonAppearance(upgradePair.Key, upgradePair.Key.interactable);
+            
         }
         
         if (currentUpgradeLevel == upgradeSO.maxLevel)
         {
             iconTemplate.button.interactable = false;
+            colorManager.ChangeButtonAppearance(iconTemplate.button, iconTemplate.button.interactable);
             iconTemplate.button.GetComponentInChildren<TextMeshProUGUI>().text = "Max";
             return;
         }
@@ -208,11 +241,16 @@ public class ShopMenu : MonoBehaviour
                 ? newSave.RopeLengthLevel
                 : newSave.ShipSpeedLevel;
 
-            if (upgradeKey.Value.maxLevel != currentUpgradeLevel)
-            {
-                int upgradePrice = upgradeKey.Value.GetCurrentPrice(currentUpgradeLevel);
-                upgradeKey.Key.interactable = upgradePrice <= newSave.MoneyAmount;
-            }
+            if (upgradeKey.Value.maxLevel == currentUpgradeLevel) 
+                continue;
+            
+            int upgradePrice = upgradeKey.Value.GetCurrentPrice(currentUpgradeLevel);
+            
+            upgradeKey.Key.GetComponentInChildren<TextMeshProUGUI>().text =
+                $"Buy: ${upgradePrice}";
+            
+            upgradeKey.Key.interactable = upgradePrice <= newSave.MoneyAmount;
+            colorManager.ChangeButtonAppearance(upgradeKey.Key, upgradeKey.Key.interactable);
         }
     }
 
@@ -225,6 +263,7 @@ public class ShopMenu : MonoBehaviour
             if (!newSave.BoughtItems.Contains(buttonPair.Value.ID))
             {
                 buttonPair.Key.interactable = buttonsDict[buttonPair.Key].Price <= newSave.MoneyAmount;
+                colorManager.ChangeButtonAppearance(buttonPair.Key, buttonPair.Key.interactable);
             }
         }
     }
