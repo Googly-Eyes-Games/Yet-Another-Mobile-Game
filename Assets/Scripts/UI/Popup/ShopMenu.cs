@@ -169,6 +169,11 @@ public class ShopMenu : MonoBehaviour
             itemTemplateComponent.button.interactable =
                 upgradeSO.GetCurrentPrice(currentUpgradeLevel) <= newSave.MoneyAmount;
         }
+        else
+        {
+            itemTemplateComponent.button.interactable = false;
+        }
+        
         colorManager.ChangeButtonAppearance(itemTemplateComponent.button, itemTemplateComponent.button.interactable);
         itemTemplateComponent.button.onClick.AddListener(() => onClickAction(itemTemplateComponent));
         upgradesDict.Add(itemTemplateComponent.button, upgradeSO);
@@ -240,6 +245,10 @@ public class ShopMenu : MonoBehaviour
                 continue;
             
             int upgradePrice = upgradeKey.Value.GetCurrentPrice(currentUpgradeLevel);
+            
+            upgradeKey.Key.GetComponentInChildren<TextMeshProUGUI>().text =
+                $"Buy: ${upgradePrice}";
+            
             upgradeKey.Key.interactable = upgradePrice <= newSave.MoneyAmount;
             colorManager.ChangeButtonAppearance(upgradeKey.Key, upgradeKey.Key.interactable);
         }
