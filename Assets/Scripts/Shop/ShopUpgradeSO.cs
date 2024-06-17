@@ -24,19 +24,16 @@ public class ShopUpgradeSO : ScriptableObject
     public enum UpgradeType
     {
         SpeedShip,
-        LineLength
+        RopeLength
     }
 
     [field: SerializeField] 
     public UpgradeType upgradeType;
     
     [HideInInspector]
-    public int currentLevel;
-    
-    [HideInInspector]
     public int maxLevel = 4;
     
-    public int GetCurrentPrice()
+    public int GetCurrentPrice(int currentLevel)
     {
         return BasePrice + (currentLevel * PriceIncrement);
     }

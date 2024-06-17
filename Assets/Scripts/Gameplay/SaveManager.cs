@@ -151,7 +151,7 @@ public class SaveManager : ScriptableObject
 public struct GameSave
 {
 	public int MoneyAmount { get; set; }
-	public float ShipSpeedLevel { get; set; }
+	public int ShipSpeedLevel { get; set; }
 	public int RopeLengthLevel { get; set; }
 	
 	public string BoatItemInUse { get; set; }
