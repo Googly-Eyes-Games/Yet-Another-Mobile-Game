@@ -196,7 +196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.10196079, g: 0.3137255, b: 0.3647059, a: 1}
+  m_Color: {r: 0.019607844, g: 0.15294118, b: 0.27058825, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -406,7 +406,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.52156866, g: 0.8000001, b: 0.9176471, a: 1}
+  m_Color: {r: 0.34509805, g: 0.63529414, b: 0.89019614, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -435,8 +435,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4b55b55032a2ad45a0e22bed7b92c08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultTextColor: {r: 1, g: 1, b: 1, a: 1}
-  disabledTextColor: {r: 0.7372549, g: 0.92156863, b: 1, a: 1}
   titleText: {fileID: 7011575306295001218}
   image: {fileID: 6551830141917087675}
   priceText: {fileID: 892018573869670223}

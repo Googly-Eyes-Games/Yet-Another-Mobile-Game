@@ -12,6 +12,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: P_EtcMenu Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 3816639506633293456, guid: c75db1421a215d24cba4c59c6d949c88, type: 3}
+      propertyPath: m_Color.b
+      value: 0.86274517
+      objectReference: {fileID: 0}
+    - target: {fileID: 3816639506633293456, guid: c75db1421a215d24cba4c59c6d949c88, type: 3}
+      propertyPath: m_Color.g
+      value: 0.6156863
+      objectReference: {fileID: 0}
+    - target: {fileID: 3816639506633293456, guid: c75db1421a215d24cba4c59c6d949c88, type: 3}
+      propertyPath: m_Color.r
+      value: 0.33333334
+      objectReference: {fileID: 0}
     - target: {fileID: 6627346180033513551, guid: c75db1421a215d24cba4c59c6d949c88, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
