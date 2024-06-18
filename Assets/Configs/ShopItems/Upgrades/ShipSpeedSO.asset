@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: ShipSpeedSO
   m_EditorClassIdentifier: 
   <Title>k__BackingField: Ship speed
-  <Sprite>k__BackingField: {fileID: 21300000, guid: b42c0ecb657146a4aac362ecd049eaa6, type: 3}
+  <Sprite>k__BackingField: {fileID: 21300000, guid: 65d5c711752011c42bb0cca5d8f8cad0, type: 3}
   <BasePrice>k__BackingField: 1
   <PriceIncrement>k__BackingField: 1
   <UpgradeIncrement>k__BackingField: 1
   upgradeType: 0
-  currentLevel: 4
   maxLevel: 4

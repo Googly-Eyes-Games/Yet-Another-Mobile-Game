@@ -10,13 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 10df67a08cb52894dbf1063fbed6d8b5, type: 3}
-  m_Name: LineLengthSO
+  m_Name: RopeLengthSO
   m_EditorClassIdentifier: 
-  <Title>k__BackingField: Line Length
-  <Sprite>k__BackingField: {fileID: 21300000, guid: 80526f27aab5cf64db7234f31e7fced3, type: 3}
+  <Title>k__BackingField: Rope Length
+  <Sprite>k__BackingField: {fileID: 21300000, guid: 8a11b307529765b418dce90e9aeeed81, type: 3}
   <BasePrice>k__BackingField: 1
   <PriceIncrement>k__BackingField: 1
   <UpgradeIncrement>k__BackingField: 1
   upgradeType: 1
-  currentLevel: 0
   maxLevel: 4
