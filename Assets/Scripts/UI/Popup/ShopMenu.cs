@@ -58,7 +58,7 @@ public class ShopMenu : MonoBehaviour
 
         button.GetComponentInChildren<TextMeshProUGUI>().text = "In use";
         button.interactable = false;
-        colorManager.ChangeButtonAppearance(button, button.interactable);
+        colorManager.ChangeButtonAppearance(button);
         
         foreach (var buttonPair in buttonsDict)
         {
@@ -68,7 +68,7 @@ public class ShopMenu : MonoBehaviour
             if (!newSave.WasItemBought(buttonPair.Value))
             {
                 buttonPair.Key.interactable = buttonPair.Value.Price <= newSave.MoneyAmount;
-                colorManager.ChangeButtonAppearance(buttonPair.Key, buttonPair.Key.interactable);
+                colorManager.ChangeButtonAppearance(buttonPair.Key);
                 continue;
             }
             
@@ -77,7 +77,7 @@ public class ShopMenu : MonoBehaviour
             
             buttonPair.Key.GetComponentInChildren<TextMeshProUGUI>().text = "Use";
             buttonPair.Key.interactable = true;
-            colorManager.ChangeButtonAppearance(buttonPair.Key, buttonPair.Key.interactable);
+            colorManager.ChangeButtonAppearance(buttonPair.Key);
         }
 
         CheckUpgradesPrice();
@@ -139,7 +139,7 @@ public class ShopMenu : MonoBehaviour
     private void SetButtonState(Button button, bool isInUse)
     {
         button.interactable = !isInUse;
-        colorManager.ChangeButtonAppearance(button, !isInUse);
+        colorManager.ChangeButtonAppearance(button);
         button.GetComponentInChildren<TextMeshProUGUI>().text = isInUse ? "In use" : "Use";
     }
 
@@ -174,7 +174,7 @@ public class ShopMenu : MonoBehaviour
             itemTemplateComponent.button.interactable = false;
         }
         
-        colorManager.ChangeButtonAppearance(itemTemplateComponent.button, itemTemplateComponent.button.interactable);
+        colorManager.ChangeButtonAppearance(itemTemplateComponent.button);
         itemTemplateComponent.button.onClick.AddListener(() => onClickAction(itemTemplateComponent));
         upgradesDict.Add(itemTemplateComponent.button, upgradeSO);
     }
@@ -198,7 +198,7 @@ public class ShopMenu : MonoBehaviour
                 continue;
             
             buttonPair.Key.interactable = buttonsDict[buttonPair.Key].Price <= newSave.MoneyAmount;
-            colorManager.ChangeButtonAppearance(buttonPair.Key, buttonPair.Key.interactable);
+            colorManager.ChangeButtonAppearance(buttonPair.Key);
         }
 
         foreach (var upgradePair in upgradesDict)
@@ -215,14 +215,14 @@ public class ShopMenu : MonoBehaviour
             
             int upgradePrice = upgradePair.Value.GetCurrentPrice(upgradeLevel);
             upgradePair.Key.interactable = upgradePrice <= newSave.MoneyAmount;
-            colorManager.ChangeButtonAppearance(upgradePair.Key, upgradePair.Key.interactable);
+            colorManager.ChangeButtonAppearance(upgradePair.Key);
             
         }
         
         if (currentUpgradeLevel == upgradeSO.maxLevel)
         {
             iconTemplate.button.interactable = false;
-            colorManager.ChangeButtonAppearance(iconTemplate.button, iconTemplate.button.interactable);
+            colorManager.ChangeButtonAppearance(iconTemplate.button);
             iconTemplate.button.GetComponentInChildren<TextMeshProUGUI>().text = "Max";
             return;
         }
@@ -250,7 +250,7 @@ public class ShopMenu : MonoBehaviour
                 $"Buy: ${upgradePrice}";
             
             upgradeKey.Key.interactable = upgradePrice <= newSave.MoneyAmount;
-            colorManager.ChangeButtonAppearance(upgradeKey.Key, upgradeKey.Key.interactable);
+            colorManager.ChangeButtonAppearance(upgradeKey.Key);
         }
     }
 
@@ -263,7 +263,7 @@ public class ShopMenu : MonoBehaviour
             if (!newSave.BoughtItems.Contains(buttonPair.Value.ID))
             {
                 buttonPair.Key.interactable = buttonsDict[buttonPair.Key].Price <= newSave.MoneyAmount;
-                colorManager.ChangeButtonAppearance(buttonPair.Key, buttonPair.Key.interactable);
+                colorManager.ChangeButtonAppearance(buttonPair.Key);
             }
         }
     }

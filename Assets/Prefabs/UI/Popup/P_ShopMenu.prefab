@@ -194,11 +194,11 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1255691281301697103}
         m_TargetAssemblyTypeName: ColorButtonManager, Assembly-CSharp
-        m_MethodName: EnableButtonApperance
+        m_MethodName: EnableButtonAppearance
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 7284499838404226628}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 2501053761774580437}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -206,11 +206,11 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1255691281301697103}
         m_TargetAssemblyTypeName: ColorButtonManager, Assembly-CSharp
-        m_MethodName: EnableButtonApperance
+        m_MethodName: EnableButtonAppearance
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 1904212884109517247}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 6051723063191679716}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -218,11 +218,11 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1255691281301697103}
         m_TargetAssemblyTypeName: ColorButtonManager, Assembly-CSharp
-        m_MethodName: DisableButtonApperance
+        m_MethodName: DisableButtonAppearance
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 740482460279227280}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 6919321573113692620}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -871,11 +871,11 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1255691281301697103}
         m_TargetAssemblyTypeName: ColorButtonManager, Assembly-CSharp
-        m_MethodName: EnableButtonApperance
+        m_MethodName: EnableButtonAppearance
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 7284499838404226628}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 2501053761774580437}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -883,11 +883,11 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1255691281301697103}
         m_TargetAssemblyTypeName: ColorButtonManager, Assembly-CSharp
-        m_MethodName: DisableButtonApperance
+        m_MethodName: DisableButtonAppearance
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 1904212884109517247}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 6051723063191679716}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -895,11 +895,11 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1255691281301697103}
         m_TargetAssemblyTypeName: ColorButtonManager, Assembly-CSharp
-        m_MethodName: EnableButtonApperance
+        m_MethodName: EnableButtonAppearance
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 740482460279227280}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 6919321573113692620}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1867,11 +1867,11 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1255691281301697103}
         m_TargetAssemblyTypeName: ColorButtonManager, Assembly-CSharp
-        m_MethodName: DisableButtonApperance
+        m_MethodName: DisableButtonAppearance
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 7284499838404226628}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 2501053761774580437}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1879,11 +1879,11 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1255691281301697103}
         m_TargetAssemblyTypeName: ColorButtonManager, Assembly-CSharp
-        m_MethodName: EnableButtonApperance
+        m_MethodName: EnableButtonAppearance
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 1904212884109517247}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 6051723063191679716}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1891,11 +1891,11 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1255691281301697103}
         m_TargetAssemblyTypeName: ColorButtonManager, Assembly-CSharp
-        m_MethodName: EnableButtonApperance
+        m_MethodName: EnableButtonAppearance
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 740482460279227280}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 6919321573113692620}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

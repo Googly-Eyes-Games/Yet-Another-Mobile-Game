@@ -12,36 +12,36 @@ public class ColorButtonManager : MonoBehaviour
     public Color interactableTextColor;
     public Color nonInteractableTextColor;
 
-    public void ChangeButtonAppearance(Button button, bool interactable)
+    public void ChangeButtonAppearance(Button button)
     {
         Image buttonImage = button.gameObject.GetComponent<Image>();
         TextMeshProUGUI buttonText = button.GetComponentInChildren<TextMeshProUGUI>();
         
         if (!buttonImage && !buttonText)
             return;
+
+        bool interactable = button.interactable;
         
         buttonImage.color = interactable ? interactableButtonColor : nonInteractableButtonColor;
         buttonText.color = interactable ? interactableTextColor : nonInteractableTextColor;
     }
     
-    public void DisableButtonApperance(GameObject gameObject)
+    public void DisableButtonAppearance(Button button)
     {
-        Button button = gameObject.GetComponent<Button>();
-
         if (button == null)
             return;
-        
-        ChangeButtonAppearance(button, false);
+
+        button.interactable = false; 
+        ChangeButtonAppearance(button);
     }
     
-    public void EnableButtonApperance(GameObject gameObject)
+    public void EnableButtonAppearance(Button button)
     {
-        Button button = gameObject.GetComponent<Button>();
-
         if (button == null)
             return;
         
-        ChangeButtonAppearance(button, true);
+        button.interactable = true; 
+        ChangeButtonAppearance(button);
     }
 }
     
