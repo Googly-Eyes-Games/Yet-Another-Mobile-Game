@@ -187,11 +187,27 @@ public class ShopMenu : MonoBehaviour
             ? newSave.RopeLengthLevel += 1
             : newSave.ShipSpeedLevel += 1;
 
-        newSave.MoneyAmount -= upgradeSO.GetCurrentPrice(currentUpgradeLevel - 1);
+        int currentPrice = upgradeSO.GetCurrentPrice(currentUpgradeLevel);
+        
+        newSave.MoneyAmount -= currentPrice - 1;
         iconTemplate.upgradeText.text = currentUpgradeLevel.ToString();
 
         SaveManager.Instance.SaveGameAsync(newSave);
 
+        if (currentUpgradeLevel == upgradeSO.maxLevel)
+        {
+            iconTemplate.button.interactable = false;
+            iconTemplate.button.GetComponentInChildren<TextMeshProUGUI>().text = "Max";
+        }
+        else
+        {
+            iconTemplate.button.GetComponentInChildren<TextMeshProUGUI>().text =
+                $"Buy: ${currentPrice}";
+            iconTemplate.button.interactable = currentPrice <= newSave.MoneyAmount;
+        }
+        
+        colorManager.ChangeButtonAppearance(iconTemplate.button);
+        
         foreach (var buttonPair in buttonsDict)
         {
             if (newSave.BoughtItems.Contains(buttonPair.Value.ID)) 
@@ -218,17 +234,6 @@ public class ShopMenu : MonoBehaviour
             colorManager.ChangeButtonAppearance(upgradePair.Key);
             
         }
-        
-        if (currentUpgradeLevel == upgradeSO.maxLevel)
-        {
-            iconTemplate.button.interactable = false;
-            colorManager.ChangeButtonAppearance(iconTemplate.button);
-            iconTemplate.button.GetComponentInChildren<TextMeshProUGUI>().text = "Max";
-            return;
-        }
-        
-        iconTemplate.button.GetComponentInChildren<TextMeshProUGUI>().text =
-            $"Buy: ${upgradeSO.GetCurrentPrice(currentUpgradeLevel)}";
     }
 
     private void CheckUpgradesPrice()
