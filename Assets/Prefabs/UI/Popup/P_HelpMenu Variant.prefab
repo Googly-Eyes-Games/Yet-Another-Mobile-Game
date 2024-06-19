@@ -12,6 +12,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: P_HelpMenu Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 1818279555324909799, guid: c75db1421a215d24cba4c59c6d949c88, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1818279555324909799, guid: c75db1421a215d24cba4c59c6d949c88, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1818279555324909799, guid: c75db1421a215d24cba4c59c6d949c88, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1818279555324909799, guid: c75db1421a215d24cba4c59c6d949c88, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1818279555324909799, guid: c75db1421a215d24cba4c59c6d949c88, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -49.63795
+      objectReference: {fileID: 0}
     - target: {fileID: 3816639506633293456, guid: c75db1421a215d24cba4c59c6d949c88, type: 3}
       propertyPath: m_Color.b
       value: 0.86274517
