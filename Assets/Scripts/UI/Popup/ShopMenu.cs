@@ -9,15 +9,27 @@ using UnityEngine.UI;
 
 public class ShopMenu : MonoBehaviour
 {
-    [SerializeField] private GameObject itemTemplate;
-    [SerializeField] private GameObject upgradeTemplate;
+    [SerializeField] 
+    private GameObject itemTemplate;
+    
+    [SerializeField] 
+    private GameObject upgradeTemplate;
 
-    [SerializeField] private GameObject boatsContent;
-    [SerializeField] private GameObject linesContent;
-    [SerializeField] private GameObject upgradesContent;
+    [SerializeField] 
+    private GameObject boatsContent;
+    
+    [SerializeField] 
+    private GameObject linesContent;
+    
+    [SerializeField] 
+    private GameObject upgradesContent;
 
-    [SerializeField] private List<ShopUpgradeSO> upgradesSO;
+    [SerializeField] 
+    private List<ShopUpgradeSO> upgradesSO;
 
+    [SerializeField] 
+    private SOEvent onReset;
+    
     private ColorButtonManager colorManager;
     
     private Dictionary<Button, ShopItem> buttonsDict = new();
@@ -25,25 +37,14 @@ public class ShopMenu : MonoBehaviour
 
     private void Awake()
     {
-        List<ShopItem> sortedItems = ShopItemsCollection.Instance.shopItemsDict.Values.ToList();
-        sortedItems = sortedItems.OrderBy(item => item.Price).ToList();
-
-        colorManager = GetComponent<ColorButtonManager>();
-        
-        foreach (ShopItem shopItem in sortedItems)
-        {
-            if (shopItem.itemType == ShopItem.ItemType.Boat)
-                CreateItem(shopItem, boatsContent.transform, button => HandleItemClick(button, shopItem));
-            else
-                CreateItem(shopItem, linesContent.transform, button => HandleItemClick(button, shopItem));
-
-        }
-
-        foreach (var upgradeSO in upgradesSO)
-        {
-            CreateUpgradeItem(upgradeSO, upgradesContent.transform,
-                iconTemplate => HandleUpgradeClick(iconTemplate, upgradeSO));
-        }
+        InitializeItems();
+        onReset.OnRaise += HandleReset;
+    }
+    
+    private void OnEnable()
+    {
+        CheckItemsPrice();
+        CheckUpgradesPrice();
     }
 
     private void HandleItemClick(Button button, ShopItem shopItem)
@@ -272,10 +273,47 @@ public class ShopMenu : MonoBehaviour
             }
         }
     }
-    
-    private void OnEnable()
+
+    private void InitializeItems()
     {
-        CheckItemsPrice();
-        CheckUpgradesPrice();
+        List<ShopItem> sortedItems = ShopItemsCollection.Instance.shopItemsDict.Values.ToList();
+        sortedItems = sortedItems.OrderBy(item => item.Price).ToList();
+
+        colorManager = GetComponent<ColorButtonManager>();
+        
+        foreach (ShopItem shopItem in sortedItems)
+        {
+            if (shopItem.itemType == ShopItem.ItemType.Boat)
+                CreateItem(shopItem, boatsContent.transform, button => HandleItemClick(button, shopItem));
+            else
+                CreateItem(shopItem, linesContent.transform, button => HandleItemClick(button, shopItem));
+
+        }
+
+        foreach (var upgradeSO in upgradesSO)
+        {
+            CreateUpgradeItem(upgradeSO, upgradesContent.transform,
+                iconTemplate => HandleUpgradeClick(iconTemplate, upgradeSO));
+        }
+    }
+
+    private void HandleReset()
+    {
+        DestroyItem(boatsContent);
+        DestroyItem(linesContent);
+        DestroyItem(upgradesContent);
+        
+        buttonsDict.Clear();
+        upgradesDict.Clear();
+
+        InitializeItems();
+    }
+
+    private void DestroyItem(GameObject parent)
+    {
+        foreach (var item in parent.GetComponentsInChildren<ItemTemplate>())
+        {
+            Destroy(item.gameObject);
+        }
     }
 }

@@ -11,6 +11,9 @@ public class SaveManager : ScriptableObject
 	[SerializeField]
 	private SOEvent onSaveDataChanged;
 	
+	[SerializeField]
+	private SOEvent onReset;
+	
 	private static string savePath;
 	
     private static SaveManager instance;
@@ -55,6 +58,7 @@ public class SaveManager : ScriptableObject
     {
 	    GameSave initialGameSave = InitializeGameSettings();
 	    SaveGameAsync(initialGameSave);
+	    onReset?.Invoke();
     }
     
     public void SaveGameAsync(GameSave newSave)
