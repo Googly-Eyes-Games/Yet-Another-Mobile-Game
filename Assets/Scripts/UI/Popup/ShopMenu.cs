@@ -56,10 +56,8 @@ public class ShopMenu : MonoBehaviour
             newSave.MoneyAmount -= shopItem.Price;
             newSave.BuyItem(shopItem);
         }
-
-        button.GetComponentInChildren<TextMeshProUGUI>().text = "In use";
-        button.interactable = false;
-        colorManager.ChangeButtonAppearance(button);
+        
+        SetButtonState(button, false);
         
         foreach (var buttonPair in buttonsDict)
         {
@@ -76,9 +74,7 @@ public class ShopMenu : MonoBehaviour
             if (buttonPair.Value.itemType != shopItem.itemType)
                 continue;
             
-            buttonPair.Key.GetComponentInChildren<TextMeshProUGUI>().text = "Use";
-            buttonPair.Key.interactable = true;
-            colorManager.ChangeButtonAppearance(buttonPair.Key);
+            SetButtonState(buttonPair.Key, true, "Use");
         }
 
         CheckUpgradesPrice();
@@ -90,8 +86,7 @@ public class ShopMenu : MonoBehaviour
 
         SaveManager.Instance.SaveGameAsync(newSave);
     }
-
-
+    
     private void CreateItem(ShopItem item, Transform parentTransform,
         UnityEngine.Events.UnityAction<Button> onClickAction)
     {
@@ -134,14 +129,14 @@ public class ShopMenu : MonoBehaviour
         bool isInUse = item.ID == SaveManager.Instance.Save.BoatItemInUse
                        || item.ID == SaveManager.Instance.Save.LineItem;
 
-        SetButtonState(itemTemplateComponent.button, isInUse);
+        SetButtonState(itemTemplateComponent.button, !isInUse);
     }
 
-    private void SetButtonState(Button button, bool isInUse)
+    private void SetButtonState(Button button, bool isInteractable, string text = "In use")
     {
-        button.interactable = !isInUse;
+        button.interactable = isInteractable;
         colorManager.ChangeButtonAppearance(button);
-        button.GetComponentInChildren<TextMeshProUGUI>().text = isInUse ? "In use" : "Use";
+        button.GetComponentInChildren<TextMeshProUGUI>().text = text;
     }
 
     private void CreateUpgradeItem(ShopUpgradeSO upgradeSO, Transform parentTransform,
@@ -197,17 +192,13 @@ public class ShopMenu : MonoBehaviour
 
         if (currentUpgradeLevel == upgradeSO.maxLevel)
         {
-            iconTemplate.button.interactable = false;
-            iconTemplate.button.GetComponentInChildren<TextMeshProUGUI>().text = "Max";
+            SetButtonState(iconTemplate.button, false, "Max");
         }
         else
         {
-            iconTemplate.button.GetComponentInChildren<TextMeshProUGUI>().text =
-                $"Buy: ${currentPrice}";
-            iconTemplate.button.interactable = currentPrice <= newSave.MoneyAmount;
+            bool isInteractable = currentPrice <= newSave.MoneyAmount;
+            SetButtonState(iconTemplate.button, isInteractable, $"Buy: ${currentPrice}");
         }
-        
-        colorManager.ChangeButtonAppearance(iconTemplate.button);
         
         foreach (var buttonPair in buttonsDict)
         {
@@ -252,11 +243,9 @@ public class ShopMenu : MonoBehaviour
             
             int upgradePrice = upgradeKey.Value.GetCurrentPrice(currentUpgradeLevel);
             
-            upgradeKey.Key.GetComponentInChildren<TextMeshProUGUI>().text =
-                $"Buy: ${upgradePrice}";
+            bool isInteractable = upgradePrice <= newSave.MoneyAmount;
             
-            upgradeKey.Key.interactable = upgradePrice <= newSave.MoneyAmount;
-            colorManager.ChangeButtonAppearance(upgradeKey.Key);
+            SetButtonState(upgradeKey.Key, isInteractable, $"Buy: ${upgradePrice}");
         }
     }
 
@@ -287,7 +276,6 @@ public class ShopMenu : MonoBehaviour
                 CreateItem(shopItem, boatsContent.transform, button => HandleItemClick(button, shopItem));
             else
                 CreateItem(shopItem, linesContent.transform, button => HandleItemClick(button, shopItem));
-
         }
 
         foreach (var upgradeSO in upgradesSO)
