@@ -7,6 +7,9 @@ public class GameplayUI : MonoBehaviour
 {
     [SerializeField]
     private IntSOEvent onScoreChanged;
+    
+    [SerializeField]
+    private SOEvent onGameOver;
 
     [SerializeField]
     private Canvas canvas;
@@ -17,11 +20,18 @@ public class GameplayUI : MonoBehaviour
     private void OnEnable()
     {
         onScoreChanged.OnRaise += OnScoreChanged;
+        onGameOver.OnRaise += OnGameOver;
     }
 
     private void OnDisable()
     {
         onScoreChanged.OnRaise -= OnScoreChanged;
+        onGameOver.OnRaise -= OnGameOver;
+    }
+    
+    private void OnGameOver()
+    {
+        canvas.enabled = false;
     }
 
     private void OnScoreChanged(int obj)

@@ -118,6 +118,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onScoreChanged: {fileID: 11400000, guid: cb77d7f418d96fad9bd3f960335022e2, type: 2}
+  onGameOver: {fileID: 11400000, guid: 67566996c58f7ec4f8edb12d8570baed, type: 2}
   canvas: {fileID: 4480553753121835074}
   scoreHandler: {fileID: 6319046317229960017}
 --- !u!1 &6502039827668943671
