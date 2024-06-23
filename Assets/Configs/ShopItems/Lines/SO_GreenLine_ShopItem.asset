@@ -16,6 +16,6 @@ MonoBehaviour:
   <Title>k__BackingField: Green
   <Sprite>k__BackingField: {fileID: 21300000, guid: 9dcb22d562b822df69aeaa3a2326c337, type: 3}
   <Material>k__BackingField: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
-  <Price>k__BackingField: 1
+  <Price>k__BackingField: 5
   <Color>k__BackingField: {r: 0, g: 0.94509804, b: 0.08627451, a: 1}
   itemType: 1

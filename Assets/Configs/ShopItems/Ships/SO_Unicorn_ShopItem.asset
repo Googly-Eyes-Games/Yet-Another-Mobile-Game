@@ -15,7 +15,7 @@ MonoBehaviour:
   <ID>k__BackingField: UnicornBoat
   <Title>k__BackingField: Unicorn
   <Sprite>k__BackingField: {fileID: 21300000, guid: 9549da6b9a020914aab7814543b65da7, type: 3}
-  <Price>k__BackingField: 1
+  <Material>k__BackingField: {fileID: 0}
+  <Price>k__BackingField: 20
   <Color>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
-  <Purchased>k__BackingField: 0
   itemType: 0

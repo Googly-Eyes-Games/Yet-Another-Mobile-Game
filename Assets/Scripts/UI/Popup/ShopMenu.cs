@@ -251,13 +251,13 @@ public class ShopMenu : MonoBehaviour
 
     private void CheckItemsPrice()
     {
-        GameSave newSave = SaveManager.Instance.Save;
+        GameSave save = SaveManager.Instance.Save;
         
         foreach (var buttonPair in buttonsDict)
         {
-            if (!newSave.BoughtItems.Contains(buttonPair.Value.ID))
+            if (!save.BoughtItems.Contains(buttonPair.Value.ID))
             {
-                buttonPair.Key.interactable = buttonsDict[buttonPair.Key].Price <= newSave.MoneyAmount;
+                buttonPair.Key.interactable = buttonsDict[buttonPair.Key].Price <= save.MoneyAmount;
                 colorManager.ChangeButtonAppearance(buttonPair.Key);
             }
         }
