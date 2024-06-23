@@ -1,26 +1,44 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering;
+using UnityEngine.Audio;
 using UnityEngine.UI;
 
 public class MainMenuScreen : MonoBehaviour
 {
-    [SerializeField] private IntSOEvent onScoreChanged;
-    [SerializeField] private InputLockSOEvent onInputLockChanged;
+    [SerializeField]
+    private IntSOEvent onScoreChanged;
 
-    [SerializeField] private Button muteButton;
-    [SerializeField] private Button shopButton;
-    [SerializeField] private Button helpButton;
-    [SerializeField] private Button etcButton;
+    [SerializeField]
+    private InputLockSOEvent onInputLockChanged;
 
-    [SerializeField] private GameObject shopMenu;
-    [SerializeField] private GameObject helpMenu;
-    [SerializeField] private GameObject etcMenu;
+    [SerializeField]
+    private Button muteButton;
 
-    [SerializeField] private Sprite unmutedSprite;
-    [SerializeField] private Sprite mutedSprite;
+    [SerializeField]
+    private Button shopButton;
+
+    [SerializeField]
+    private Button helpButton;
+
+    [SerializeField]
+    private Button etcButton;
+
+    [SerializeField]
+    private GameObject shopMenu;
+
+    [SerializeField]
+    private GameObject helpMenu;
+
+    [SerializeField]
+    private GameObject etcMenu;
+
+    [SerializeField]
+    private Sprite unmutedSprite;
+
+    [SerializeField]
+    private Sprite mutedSprite;
+
+    [SerializeField]
+    private AudioMixer audioMixer;
 
     private Image muteButtonImage;
 

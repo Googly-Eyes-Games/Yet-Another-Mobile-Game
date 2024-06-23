@@ -23,6 +23,12 @@ public class OilCleaner : MonoBehaviour
 
     [SerializeField]
     private IntSOEvent onScoreChanged;
+    
+    [SerializeField]
+    private SOEvent onClean;
+    
+    [SerializeField]
+    private SOEvent onWrongClean;
 
     [SerializeField]
     private GameObject CleanedSpillPrefab;
@@ -103,6 +109,7 @@ public class OilCleaner : MonoBehaviour
                 SpawnCleanedSpill(MathUtils.OptimizePolygon(cleanedSpill[0].ToVectorArray(), 0.3f));
 
                 OnPartlyClean?.Invoke();
+                onWrongClean?.Invoke();
                 
                 return;
             }
@@ -122,6 +129,8 @@ public class OilCleaner : MonoBehaviour
             OnCleanSpill?.Invoke(-1f);
         }
         
+        onClean?.Invoke();
+        
         oilSpill.FullClean();
         
         SpriteShapeController spriteShapeController = polygonSpill.GetComponent<SpriteShapeController>();
@@ -139,6 +148,7 @@ public class OilCleaner : MonoBehaviour
         cleanedSpillPolygon.points = cleanedSpill;
         OilSpillMeshGenerator cleanedSpillMeshGenerator = cleanedSpillGameObject.GetComponent<OilSpillMeshGenerator>();
         cleanedSpillMeshGenerator.GenerateFromCollider();
+        
     }
     
     private void SpawnCleanedSpill(SpriteShapeController otherShape)
@@ -150,5 +160,6 @@ public class OilCleaner : MonoBehaviour
         cleanedSpillGameObject.transform.position += Vector3.forward * 5f;
         OilSpillMeshGenerator cleanedSpillMeshGenerator = cleanedSpillGameObject.GetComponent<OilSpillMeshGenerator>();
         cleanedSpillMeshGenerator.GenerateFromShape(otherShape);
+        
     }
 }
