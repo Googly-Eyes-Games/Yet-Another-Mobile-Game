@@ -129,7 +129,9 @@ public class ShopMenu : MonoBehaviour
         bool isInUse = item.ID == SaveManager.Instance.Save.BoatItemInUse
                        || item.ID == SaveManager.Instance.Save.LineItem;
 
-        SetButtonState(itemTemplateComponent.button, !isInUse);
+        string currentUseText = isInUse ? "In use" : "Use"; 
+        
+        SetButtonState(itemTemplateComponent.button, !isInUse, currentUseText);
     }
 
     private void SetButtonState(Button button, bool isInteractable, string text = "In use")
