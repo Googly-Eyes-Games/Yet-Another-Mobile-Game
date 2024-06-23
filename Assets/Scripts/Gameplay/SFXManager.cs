@@ -69,6 +69,14 @@ public class SFXManager : MonoBehaviour
         scrapCollectedEvent.OnRaise += HandleScrapCollected;
     }
 
+    private void OnDisable()
+    {
+        gameOverEvent.OnRaise -= HandleGameOver;
+        cleanEvent.OnRaise -= HandleClean;
+        wrongCleanEvent.OnRaise -= HandleWrongClean;
+        scrapCollectedEvent.OnRaise -= HandleScrapCollected;
+    }
+
     private void HandleGameOver()
     {
         gameOverAS.Play();
