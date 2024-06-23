@@ -3819,6 +3819,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 536857130}
     m_Modifications:
+    - target: {fileID: 1198911468705308874, guid: 8d73d92923563a743a8ab24c17b370b2, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1198911468705308874, guid: 8d73d92923563a743a8ab24c17b370b2, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1198911468705308874, guid: 8d73d92923563a743a8ab24c17b370b2, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 671.7557
+      objectReference: {fileID: 0}
+    - target: {fileID: 1198911468705308874, guid: 8d73d92923563a743a8ab24c17b370b2, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 1198911468705308874, guid: 8d73d92923563a743a8ab24c17b370b2, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 365.87784
+      objectReference: {fileID: 0}
+    - target: {fileID: 1198911468705308874, guid: 8d73d92923563a743a8ab24c17b370b2, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -330
+      objectReference: {fileID: 0}
     - target: {fileID: 1541056938569549552, guid: 8d73d92923563a743a8ab24c17b370b2, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -3886,6 +3910,38 @@ PrefabInstance:
     - target: {fileID: 5155217805902630019, guid: 8d73d92923563a743a8ab24c17b370b2, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6227411385749413162, guid: 8d73d92923563a743a8ab24c17b370b2, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6227411385749413162, guid: 8d73d92923563a743a8ab24c17b370b2, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6227411385749413162, guid: 8d73d92923563a743a8ab24c17b370b2, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6227411385749413162, guid: 8d73d92923563a743a8ab24c17b370b2, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6227411385749413162, guid: 8d73d92923563a743a8ab24c17b370b2, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -60
+      objectReference: {fileID: 0}
+    - target: {fileID: 6227411385749413162, guid: 8d73d92923563a743a8ab24c17b370b2, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 640
+      objectReference: {fileID: 0}
+    - target: {fileID: 6227411385749413162, guid: 8d73d92923563a743a8ab24c17b370b2, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6227411385749413162, guid: 8d73d92923563a743a8ab24c17b370b2, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 6383227063839212597, guid: 8d73d92923563a743a8ab24c17b370b2, type: 3}
       propertyPath: m_Pivot.x
@@ -3967,6 +4023,27 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7232300630873833216, guid: 8d73d92923563a743a8ab24c17b370b2, type: 3}
+      propertyPath: m_text
+      value: "Mateusz Banasik\nKrystian Baraniecki\nRobert Kunka-Wagner\nKarolina 
+        Leszczy\u0144ska \nSzymon \u015Awi\u0119drych"
+      objectReference: {fileID: 0}
+    - target: {fileID: 7232300630873833216, guid: 8d73d92923563a743a8ab24c17b370b2, type: 3}
+      propertyPath: m_fontSize
+      value: 58.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 7232300630873833216, guid: 8d73d92923563a743a8ab24c17b370b2, type: 3}
+      propertyPath: m_lineSpacing
+      value: -35
+      objectReference: {fileID: 0}
+    - target: {fileID: 7761436373137185681, guid: 8d73d92923563a743a8ab24c17b370b2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8493362587034744809, guid: 8d73d92923563a743a8ab24c17b370b2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8503781145258507528, guid: 8d73d92923563a743a8ab24c17b370b2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 0
@@ -3994,6 +4071,30 @@ PrefabInstance:
     - target: {fileID: 8503781145258507528, guid: 8d73d92923563a743a8ab24c17b370b2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEditor.Audio.AudioMixerGroupController, UnityEditor.CoreModule
+      objectReference: {fileID: 0}
+    - target: {fileID: 8880438049032568471, guid: 8d73d92923563a743a8ab24c17b370b2, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8880438049032568471, guid: 8d73d92923563a743a8ab24c17b370b2, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8880438049032568471, guid: 8d73d92923563a743a8ab24c17b370b2, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 671.7557
+      objectReference: {fileID: 0}
+    - target: {fileID: 8880438049032568471, guid: 8d73d92923563a743a8ab24c17b370b2, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 8880438049032568471, guid: 8d73d92923563a743a8ab24c17b370b2, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 365.87784
+      objectReference: {fileID: 0}
+    - target: {fileID: 8880438049032568471, guid: 8d73d92923563a743a8ab24c17b370b2, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -597.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
