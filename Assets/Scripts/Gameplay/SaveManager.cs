@@ -154,6 +154,8 @@ public class SaveManager : ScriptableObject
 [Serializable]
 public struct GameSave
 {
+	
+	public int HighScore { get; set; }
 	public int MoneyAmount { get; set; }
 	public int ShipSpeedLevel { get; set; }
 	public int RopeLengthLevel { get; set; }
