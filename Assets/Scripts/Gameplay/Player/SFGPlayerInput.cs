@@ -22,7 +22,7 @@ public class SFGPlayerInput : MonoBehaviour
     [field: SerializeField]
     public Collider bottomScreenCollider { get; private set; }
 
-    public InputLock CurrentInputLock { get; private set; } = InputLock.None;
+    public InputLock CurrentInputLock { get; private set; } = InputLock.LockOnlyBottom;
 
     private void OnEnable()
     {
