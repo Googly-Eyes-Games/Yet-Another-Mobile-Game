@@ -24,8 +24,8 @@ public class ScoreHandler : MonoBehaviour
     private void Start() 
     {
         fontSize = text.fontSize;
-        positionY = text.rectTransform.localPosition.y;
-        text.rectTransform.localPosition = new Vector2(0, 60);
+        positionY = text.rectTransform.anchoredPosition.y;
+        text.rectTransform.anchoredPosition = new Vector2(0, -60);
     }
 
     public void OnEnable()
@@ -40,7 +40,10 @@ public class ScoreHandler : MonoBehaviour
 
     public void OnShowScore()
     {
-        DOTween.To(() => text.rectTransform.localPosition.y, y => text.rectTransform.localPosition = new Vector2(0, y), positionY + 620, 2.0f).SetEase(Ease.OutElastic);
+        DOTween.To(
+            () => text.rectTransform.anchoredPosition.y,
+            y => text.rectTransform.anchoredPosition = new Vector2(0, y),
+            positionY, .5f).SetEase(Ease.OutBack);
     }
 
     public void HandleScoreChanged(int score)
