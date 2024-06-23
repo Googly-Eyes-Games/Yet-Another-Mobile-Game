@@ -2287,6 +2287,8 @@ MonoBehaviour:
   linesContent: {fileID: 3853906260660898835}
   upgradesContent: {fileID: 7501397809416242601}
   upgradesSO: []
+  onReset: {fileID: 11400000, guid: f08866ddbd2b020429f1f710fcdf346f, type: 2}
+  colorManager: {fileID: 1255691281301697103}
 --- !u!114 &1255691281301697103
 MonoBehaviour:
   m_ObjectHideFlags: 0

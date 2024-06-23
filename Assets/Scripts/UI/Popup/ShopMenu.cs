@@ -30,6 +30,7 @@ public class ShopMenu : MonoBehaviour
     [SerializeField] 
     private SOEvent onReset;
     
+    [SerializeField] 
     private ColorButtonManager colorManager;
     
     private Dictionary<Button, ShopItem> buttonsDict = new();
@@ -149,8 +150,7 @@ public class ShopMenu : MonoBehaviour
         ItemTemplate itemTemplateComponent = newItem.GetComponent<ItemTemplate>();
 
         itemTemplateComponent.titleText.text = upgradeSO.Title;
-        itemTemplateComponent.image.sprite = upgradeSO.Sprite;
-
+        
         GameSave newSave = SaveManager.Instance.Save;
         int currentUpgradeLevel = upgradeSO.upgradeType == ShopUpgradeSO.UpgradeType.RopeLength
             ? newSave.RopeLengthLevel
@@ -162,6 +162,21 @@ public class ShopMenu : MonoBehaviour
 
         itemTemplateComponent.upgradeText.text = currentUpgradeLevel.ToString();
 
+        if (itemTemplateComponent.slider)
+        {
+            foreach (var sliderImage in itemTemplateComponent.slider.GetComponentsInChildren<Image>())
+            {
+                sliderImage.sprite = upgradeSO.Sprite;
+            }
+
+            itemTemplateComponent.slider.maxValue = upgradeSO.maxLevel;
+            itemTemplateComponent.slider.value = currentUpgradeLevel;
+        }
+        else
+        {
+            itemTemplateComponent.image.sprite = upgradeSO.Sprite;
+        }
+        
         if (currentUpgradeLevel != upgradeSO.maxLevel)
         {
             itemTemplateComponent.button.interactable =
@@ -177,7 +192,7 @@ public class ShopMenu : MonoBehaviour
         upgradesDict.Add(itemTemplateComponent.button, upgradeSO);
     }
 
-    private void HandleUpgradeClick(ItemTemplate iconTemplate, ShopUpgradeSO upgradeSO)
+    private void HandleUpgradeClick(ItemTemplate upgraderTemplate, ShopUpgradeSO upgradeSO)
     {
         GameSave newSave = SaveManager.Instance.Save;
 
@@ -188,18 +203,19 @@ public class ShopMenu : MonoBehaviour
         int currentPrice = upgradeSO.GetCurrentPrice(currentUpgradeLevel);
         
         newSave.MoneyAmount -= currentPrice - 1;
-        iconTemplate.upgradeText.text = currentUpgradeLevel.ToString();
+        upgraderTemplate.upgradeText.text = currentUpgradeLevel.ToString();
+        upgraderTemplate.slider.value = currentUpgradeLevel;
 
         SaveManager.Instance.SaveGameAsync(newSave);
 
         if (currentUpgradeLevel == upgradeSO.maxLevel)
         {
-            SetButtonState(iconTemplate.button, false, "Max");
+            SetButtonState(upgraderTemplate.button, false, "Max");
         }
         else
         {
             bool isInteractable = currentPrice <= newSave.MoneyAmount;
-            SetButtonState(iconTemplate.button, isInteractable, $"Buy: ${currentPrice}");
+            SetButtonState(upgraderTemplate.button, isInteractable, $"Buy: ${currentPrice}");
         }
         
         foreach (var buttonPair in buttonsDict)
@@ -269,17 +285,22 @@ public class ShopMenu : MonoBehaviour
     {
         List<ShopItem> sortedItems = ShopItemsCollection.Instance.shopItemsDict.Values.ToList();
         sortedItems = sortedItems.OrderBy(item => item.Price).ToList();
-
-        colorManager = GetComponent<ColorButtonManager>();
         
         foreach (ShopItem shopItem in sortedItems)
         {
+            if (!boatsContent || !linesContent) 
+                continue;
+            
             if (shopItem.itemType == ShopItem.ItemType.Boat)
                 CreateItem(shopItem, boatsContent.transform, button => HandleItemClick(button, shopItem));
             else
                 CreateItem(shopItem, linesContent.transform, button => HandleItemClick(button, shopItem));
+
         }
 
+        if (!upgradesContent) 
+            return;
+        
         foreach (var upgradeSO in upgradesSO)
         {
             CreateUpgradeItem(upgradeSO, upgradesContent.transform,
@@ -301,6 +322,9 @@ public class ShopMenu : MonoBehaviour
 
     private void DestroyItem(GameObject parent)
     {
+        if (!parent)
+            return;
+        
         foreach (var item in parent.GetComponentsInChildren<ItemTemplate>())
         {
             Destroy(item.gameObject);

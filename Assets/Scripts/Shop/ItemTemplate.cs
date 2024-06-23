@@ -9,5 +9,6 @@ public class ItemTemplate : MonoBehaviour
     public TextMeshProUGUI priceText;
     public Button button;
     public TextMeshProUGUI upgradeText;
+    public Slider slider;
 
 }
