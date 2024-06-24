@@ -143,7 +143,8 @@ PlayerSettings:
   tvOSBundleVersion: 1.0
   bundleVersion: 0.1.0
   preloadedAssets:
-  - {fileID: 11400000, guid: 2fae2e6e803f76e33b50dc77a67b846f, type: 2}
+  - {fileID: 0}
+  - {fileID: 1774817702774220820, guid: 23b1861f5002f9b1ba71b217c268b490, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -419,7 +420,7 @@ PlayerSettings:
   m_BuildTargetGraphicsJobMode: []
   m_BuildTargetGraphicsAPIs:
   - m_BuildTarget: AndroidPlayer
-    m_APIs: 150000000b000000
+    m_APIs: 0b000000
     m_Automatic: 0
   - m_BuildTarget: iOSSupport
     m_APIs: 10000000
@@ -429,11 +430,11 @@ PlayerSettings:
   m_DefaultShaderChunkCount: 0
   openGLRequireES31: 0
   openGLRequireES31AEP: 0
-  openGLRequireES32: 0
+  openGLRequireES32: 1
   m_TemplateCustomTags:
     PRODUCT_DESCRIPTION: Surround Me
   mobileMTRendering:
-    Android: 1
+    Android: 0
     iPhone: 1
     tvOS: 1
   m_BuildTargetGroupLightmapEncodingQuality: []
@@ -443,7 +444,7 @@ PlayerSettings:
   m_BuildTargetNormalMapEncoding: []
   m_BuildTargetDefaultTextureCompressionFormat:
   - m_BuildTarget: Android
-    m_Format: 3
+    m_Format: 2
   - m_BuildTarget: WebGL
     m_Format: 2
   playModeTestRunnerEnabled: 0
