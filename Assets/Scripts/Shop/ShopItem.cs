@@ -12,6 +12,9 @@ public class ShopItem : ScriptableObject
     
     [field: SerializeField]
     public Sprite Sprite { get; private set; }
+
+    [field: SerializeField]
+    public float Scale { get; private set; } = 1f;
     
     [field: SerializeField]
     public Material Material { get; private set; }

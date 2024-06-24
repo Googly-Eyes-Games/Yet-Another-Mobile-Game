@@ -36,6 +36,7 @@ public class Player : MonoBehaviour
         {
             spriteRenderer.sprite = boatItem.Sprite;
             spriteRenderer.color = boatItem.Color;
+            spriteRenderer.transform.localScale = Vector3.one * boatItem.Scale;
         }
         
         ShopItem lineItem = ShopItemsCollection.Instance.GetLineItem();
