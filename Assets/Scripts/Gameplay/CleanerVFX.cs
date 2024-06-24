@@ -35,7 +35,9 @@ public class CleanerVFX : MonoBehaviour
 
     private void OnPartlyClean()
     {
+#if !UNITY_WEBGL
         Handheld.Vibrate();
+#endif
     }
 
     private void OnCleanSpill(float cleanFactor)
