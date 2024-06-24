@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Clipper2Lib;
 using erulathra;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.U2D;
 
@@ -136,7 +135,7 @@ public class OilCleaner : MonoBehaviour
         SpriteShapeController spriteShapeController = polygonSpill.GetComponent<SpriteShapeController>();
         SpawnCleanedSpill(spriteShapeController);
         
-        Destroy(spillCollider.GameObject());
+        Destroy(spillCollider.gameObject);
     }
 
     private void SpawnCleanedSpill(Vector2[] cleanedSpill)

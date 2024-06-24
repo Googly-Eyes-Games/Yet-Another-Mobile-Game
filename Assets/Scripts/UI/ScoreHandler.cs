@@ -15,9 +15,6 @@ public class ScoreHandler : MonoBehaviour
     [SerializeField]
     private float animationTime = 0.9f;
 
-    [SerializeField]
-    private float showScoreDelay = 2.0f;
-
     private float fontSize;
     private float positionY;
 

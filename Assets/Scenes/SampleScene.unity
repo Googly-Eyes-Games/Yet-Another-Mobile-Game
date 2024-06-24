@@ -4478,10 +4478,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: P_Player
       objectReference: {fileID: 0}
-    - target: {fileID: 7250823911136476931, guid: b6c710d3b4d7fd070b86310ad8f2b306, type: 3}
-      propertyPath: <baseMaxMarksCount>k__BackingField
-      value: 25
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
