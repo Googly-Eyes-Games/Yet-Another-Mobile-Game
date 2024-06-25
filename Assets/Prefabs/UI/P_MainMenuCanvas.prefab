@@ -1318,9 +1318,57 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3835439682702306374, guid: 0b1e6e8bd5a1c17458fbb1bf5302bcd6, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3835439682702306374, guid: 0b1e6e8bd5a1c17458fbb1bf5302bcd6, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3835439682702306374, guid: 0b1e6e8bd5a1c17458fbb1bf5302bcd6, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3835439682702306374, guid: 0b1e6e8bd5a1c17458fbb1bf5302bcd6, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3835439682702306374, guid: 0b1e6e8bd5a1c17458fbb1bf5302bcd6, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4739775446733517708, guid: 0b1e6e8bd5a1c17458fbb1bf5302bcd6, type: 3}
+      propertyPath: m_fontSize
+      value: 36.3
+      objectReference: {fileID: 0}
     - target: {fileID: 5633848036566849309, guid: 0b1e6e8bd5a1c17458fbb1bf5302bcd6, type: 3}
       propertyPath: m_Name
       value: P_HelpMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 6819853809507430939, guid: 0b1e6e8bd5a1c17458fbb1bf5302bcd6, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6819853809507430939, guid: 0b1e6e8bd5a1c17458fbb1bf5302bcd6, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6819853809507430939, guid: 0b1e6e8bd5a1c17458fbb1bf5302bcd6, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6819853809507430939, guid: 0b1e6e8bd5a1c17458fbb1bf5302bcd6, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6819853809507430939, guid: 0b1e6e8bd5a1c17458fbb1bf5302bcd6, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8553369004266207767, guid: 0b1e6e8bd5a1c17458fbb1bf5302bcd6, type: 3}
+      propertyPath: m_fontSize
+      value: 51.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
