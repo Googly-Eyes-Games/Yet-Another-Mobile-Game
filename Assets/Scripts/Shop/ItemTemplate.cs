@@ -10,5 +10,5 @@ public class ItemTemplate : MonoBehaviour
     public Button button;
     public TextMeshProUGUI upgradeText;
     public Slider slider;
-
+    public TMP_Text subTitle;
 }

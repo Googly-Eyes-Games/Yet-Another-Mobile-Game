@@ -88,14 +88,14 @@ public class ShopMenu : MonoBehaviour
         SaveManager.Instance.SaveGameAsync(newSave);
     }
     
-    private void CreateItem(ShopItem item, Transform parentTransform,
-        UnityEngine.Events.UnityAction<Button> onClickAction)
+    private void CreateItem(ShopItem item, Transform parentTransform, UnityEngine.Events.UnityAction<Button> onClickAction)
     {
         GameObject newItem = Instantiate(itemTemplate, parentTransform, false);
 
         ItemTemplate itemTemplateComponent = newItem.GetComponent<ItemTemplate>();
 
         itemTemplateComponent.titleText.text = item.Title;
+        itemTemplateComponent.subTitle.text = item.SubTitle;
         itemTemplateComponent.image.sprite = item.Sprite;
         itemTemplateComponent.image.color = item.Color;
 
