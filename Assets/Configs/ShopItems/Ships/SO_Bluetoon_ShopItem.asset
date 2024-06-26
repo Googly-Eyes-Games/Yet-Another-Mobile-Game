@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eee14ab965521e0449816c4a7c42c884, type: 3}
-  m_Name: SO_Motorway_ShopItem
+  m_Name: SO_Bluetoon_ShopItem
   m_EditorClassIdentifier: 
-  <ID>k__BackingField: MotorboatBoat
-  <Title>k__BackingField: Motorboat
-  <SubTitle>k__BackingField: Koliber 44
-  <Sprite>k__BackingField: {fileID: 21300000, guid: d6180172869bf3d489607e528947694b, type: 3}
-  <Scale>k__BackingField: 0.14
+  <ID>k__BackingField: BluetoonBoat
+  <Title>k__BackingField: Bluetoon
+  <SubTitle>k__BackingField: Bluetooth on board
+  <Sprite>k__BackingField: {fileID: 21300000, guid: ad2ba78575bc85e449905fdf6f714e30, type: 3}
+  <Scale>k__BackingField: 0.12
   <Material>k__BackingField: {fileID: 0}
-  <Price>k__BackingField: 6
+  <Price>k__BackingField: 4
   <Color>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
   itemType: 0
