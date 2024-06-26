@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <ID>k__BackingField: YachtBoat
   <Title>k__BackingField: Yacht
-  <SubTitle>k__BackingField: 
+  <SubTitle>k__BackingField: Not Titanic
   <Sprite>k__BackingField: {fileID: 21300000, guid: 0059f87d2e65d24429e7dccce9f356cd, type: 3}
   <Scale>k__BackingField: 0.5
   <Material>k__BackingField: {fileID: 0}
